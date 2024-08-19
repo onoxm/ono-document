@@ -6,9 +6,9 @@ export default defineConfig({
   description: "A VitePress Site",
   srcDir: './docs',
   base: '/ono-document/',
-  head: [["link", { rel: "icon", href: "/ono-document/哭小图（圆）.png" }]],
+  head: [["link", { rel: "icon", href: "/ono-document/cry.png" }]],
   themeConfig: {
-    logo: '/哭小图（圆）.png',
+    logo: '/cry.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
