@@ -2,8 +2,6 @@
 outline: deep
 ---
 
-<img src=".\assets\哭小图（圆）.png" alt="哭小图（圆）" />
-
 # Runtime API Examples
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
