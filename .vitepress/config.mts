@@ -7,7 +7,7 @@ export default defineConfig({
   srcDir: './docs',
   base: '/ono-document/',
   themeConfig: {
-    logo: './assets/哭小图（圆）.png',
+    logo: '/assets/哭小图（圆）.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
