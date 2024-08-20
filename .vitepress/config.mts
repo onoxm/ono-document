@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { sidebar } from '../src/utils'
+import { sidebar, nav } from '../src/utils'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,15 +7,14 @@ export default defineConfig({
   description: "A VitePress Site",
   srcDir: './article',
   base: '/ono-document/',
+
   head: [["link", { rel: "icon", href: "/ono-document/logo.png" }]],
   themeConfig: {
     logo: '/logo.png',
+    outlineTitle: '本页导航',
+    outline: [2, 6],
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Docs', link: '/docs/components' },
-      { text: 'Examples', link: '/examples/markdown-examples' }
-    ],
+    nav,
 
     sidebar,
 
