@@ -8,7 +8,7 @@ export default defineConfig({
   srcDir: './src',
   base: '/ono-document/',
 
-  head: [["link", { rel: "icon", href: "/ono-document/logo.svg" }]],
+  head: [["link", { rel: "icon", href: "/ono-document/src/public/logo.svg" }]],
   themeConfig: {
     logo: '/logo.svg',
     outlineTitle: '本页导航',
