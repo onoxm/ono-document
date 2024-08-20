@@ -5,7 +5,7 @@ import { sidebar, nav } from '../src/utils'
 export default defineConfig({
   title: "ONO的在线文档库",
   description: "A VitePress Site",
-  srcDir: './article',
+  srcDir: './src',
   base: '/ono-document/',
 
   head: [["link", { rel: "icon", href: "/ono-document/logo.svg" }]],
