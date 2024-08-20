@@ -12,7 +12,23 @@ export const sidebar = {
     '/comps/':
         [
             {
-                text: 'Components',
+                text: 'Elements',
+                collapsed: true,
+                items: [
+                    { text: 'Modal 弹窗', link: '/comps/modal' },
+                    { text: 'Pagination 分页', link: '/comps/pagination' },
+                ]
+            },
+            {
+                text: 'Modules',
+                collapsed: true,
+                items: [
+                    { text: 'Modal 弹窗', link: '/comps/modal' },
+                    { text: 'Pagination 分页', link: '/comps/pagination' },
+                ]
+            },
+            {
+                text: 'Tools',
                 collapsed: true,
                 items: [
                     { text: 'Modal 弹窗', link: '/comps/modal' },

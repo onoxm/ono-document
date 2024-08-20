@@ -8,9 +8,9 @@ export default defineConfig({
   srcDir: './article',
   base: '/ono-document/',
 
-  head: [["link", { rel: "icon", href: "/ono-document/logo.png" }]],
+  head: [["link", { rel: "icon", href: "/ono-document/logo.svg" }]],
   themeConfig: {
-    logo: '/logo.png',
+    logo: '/logo.svg',
     outlineTitle: '本页导航',
     outline: [2, 6],
     // https://vitepress.dev/reference/default-theme-config
