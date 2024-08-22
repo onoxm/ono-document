@@ -1,6 +1,13 @@
 # Modal 弹窗
-
 展示一个对话框，提供标题、内容区、操作区。
+
+## 前置条件
+下载Modal组件文件,并将文件放入src/components/tools文件夹下。
+
+在src/components/tools/index.ts写入以下代码
+```tsx
+export * from './Modal';
+```
 
 ## 基础用法
 ```tsx

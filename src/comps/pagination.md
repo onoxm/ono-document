@@ -1,6 +1,14 @@
 # Pagination 分页
 分页器用于分隔长列表，每次只加载一个页面。
 
+## 前置条件
+下载Modal组件文件,并将文件放入src/components/tools文件夹下。
+
+在src/components/tools/index.ts写入以下代码
+```tsx
+export * from './Pagination';
+```
+
 ## 基础用法
 ```tsx
 import { Pagination } from '@/components/tools'
