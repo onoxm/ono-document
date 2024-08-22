@@ -36,6 +36,15 @@ export const sidebar = {
                 ]
             }
         ],
+    '/hooks/':
+        [
+            {
+                text: 'Hooks',
+                items: [
+                    { text: 'useEventListener', link: '/hooks/useEventListener' },
+                ]
+            }
+        ],
     '/examples/':
         [
             {

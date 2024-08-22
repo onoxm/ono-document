@@ -156,7 +156,7 @@ import { Modal } from '@/components/tools'
 function App() {
     const handleModal = () => {
         Modal({
-            modalBody: handleClose => (
+            modalBody: handleClose => 
                 <div
                     style={{
                         width: '416px',
@@ -166,7 +166,7 @@ function App() {
                         borderRadius: '8px'
                     }}
                 >
-                    <p>自定义弹窗标题</p>
+                    <h1>自定义弹窗标题</h1>
                     <p style={{ marginTop: '16px' }}>自定义弹窗内容</p>
                     <button
                         style={{
@@ -182,7 +182,6 @@ function App() {
                         关闭弹窗
                     </button>
                 </div>
-            )
         })
     }
 
