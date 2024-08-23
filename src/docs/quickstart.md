@@ -24,6 +24,9 @@ export default defineConfig(() => {
 ```json
 {
   "compilerOptions": {
+    "target": "ES2022",
+    ...
+    "lib": [..., "ES2022"],
     ...
     "baseUrl": ".",
     "paths": {

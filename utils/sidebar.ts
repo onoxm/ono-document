@@ -15,22 +15,23 @@ export const sidebar = {
                 text: 'Elements',
                 collapsed: true,
                 items: [
-                    { text: 'Modal 弹窗', link: '/comps/modal' },
-                    { text: 'Pagination 分页', link: '/comps/pagination' },
+                    // { text: 'Modal 弹窗', link: '/comps/modal' },
+                    // { text: 'Pagination 分页', link: '/comps/pagination' },
                 ]
             },
             {
                 text: 'Modules',
                 collapsed: true,
                 items: [
-                    { text: 'Modal 弹窗', link: '/comps/modal' },
-                    { text: 'Pagination 分页', link: '/comps/pagination' },
+                    // { text: 'Modal 弹窗', link: '/comps/modal' },
+                    // { text: 'Pagination 分页', link: '/comps/pagination' },
                 ]
             },
             {
                 text: 'Tools',
                 collapsed: true,
                 items: [
+                    { text: 'AutoSliderBox 自动滑块', link: '/comps/autoSliderBox' },
                     { text: 'Modal 弹窗', link: '/comps/modal' },
                     { text: 'Pagination 分页', link: '/comps/pagination' },
                 ]
@@ -41,7 +42,18 @@ export const sidebar = {
             {
                 text: 'Hooks',
                 items: [
+                    { text: 'useDefer', link: '/hooks/useDefer' },
                     { text: 'useEventListener', link: '/hooks/useEventListener' },
+                    { text: 'useGlobalClickListener', link: '/hooks/useGlobalClickListener' },
+                ]
+            }
+        ],
+    '/utils/':
+        [
+            {
+                text: 'Utils',
+                items: [
+                    { text: 'colorUtils', link: '/utils/colorUtils' },
                 ]
             }
         ],

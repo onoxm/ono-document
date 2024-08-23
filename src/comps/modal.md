@@ -2,9 +2,12 @@
 展示一个对话框，提供标题、内容区、操作区。
 
 ## 前置条件
-下载Modal组件文件,并将文件放入src/components/tools文件夹下。
+该组件依赖`colorUtils`里的方法，请先下载<a href='/ono-document/utils/colorUtils'>`colorUtils`</a>文件至`src/utils`文件夹中。
 
-在src/components/tools/index.ts写入以下代码
+<!-- <a href='/ono-document/hooks/useEventListener'>下载Modal组件文件</a>,并将文件放入src/components/tools文件夹下。 -->
+下载Modal组件文件,并将文件放入`src/components/tools`文件夹下。
+
+在`src/components/tools/index.ts`写入以下代码
 ```tsx
 export * from './Modal';
 ```
@@ -200,27 +203,27 @@ function App() {
 
 ## API
 通用属性参考：通用属性
-  参数|说明|类型|默认值|是否必填
-  :- | :- | :- | :- | :-
-  title|弹窗标题|ReactNode|string|否
-  content|弹窗内容|ReactNode|string|否
-  icon|弹窗图标|ReactNode|ReactNode|否
-  okText|确定按钮文字|string|string|否
-  cancelText|取消按钮文字|string|string|否
-  confirmDisabled|确定按钮禁用|boolean|false|否
-  cancelDisabled|取消按钮禁用|boolean|false|否
-  onConfirm|确定按钮回调|() => void|() => void|否
-  onCancel|取消按钮回调|() => void|() => void|否
-  mask|是否显示蒙层|boolean|true|否
-  maskClosable|点击蒙层是否可关闭弹窗|boolean|false|否
-  width|弹窗宽度|string｜number|416|否
-  btnClr|按钮颜色|string|#5644b8|否
-  footer|自定义底部内容|((params: footerRenderParams) => ReactNode)|({ OkBtn, CancelBtn }) => ReactNode|否
-  modalBody|自定义弹窗内容|(handleClose: () => void) =>ReactNode|null|否
+参数|说明|类型|默认值|是否必填
+:- | :- | :- | :- | :-
+title|弹窗标题|<code>ReactNode</code>|<code>string</code>|否
+content|弹窗内容|<code>ReactNode</code>|<code>string</code>|否
+icon|弹窗图标|<code>ReactNode</code>|<code>ReactNode</code>|否
+okText|确定按钮文字|<code>string</code>|<code>string</code>|否
+cancelText|取消按钮文字|<code>string</code>|<code>string</code>|否
+confirmDisabled|确定按钮禁用|<code>boolean</code>|<code>false</code>|否
+cancelDisabled|取消按钮禁用|<code>boolean</code>|<code>false</code>|否
+onConfirm|确定按钮回调|<code>() => void</code>|<code>() => void</code>|否
+onCancel|取消按钮回调|<code>() => void</code>|<code>() => void</code>|否
+mask|是否显示蒙层|<code>boolean</code>|<code>true</code>|否
+maskClosable|点击蒙层是否可关闭弹窗|<code>boolean</code>|<code>false</code>|否
+width|弹窗宽度|string｜number|<code>416</code>|否
+btnClr|按钮颜色|<code>string</code>|<code>#5644b8</code>|否
+footer|自定义底部内容|<code>(params: footerRenderParams) => ReactNode</code>|<code>({ OkBtn, CancelBtn }) => ReactNode</code>|否
+modalBody|自定义弹窗内容|<code>(handleClose: () => void) => ReactNode</code>|<code>null</code>|否
 
 ## footerRenderParams
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-OkBtn|确定按钮组件|FC<{}>|FC<{}>|否
-CancelBtn|取消按钮组件|FC<{}>|FC<{}>|否
-handleClose|关闭弹窗回调|() => void|() => void|否
+OkBtn|确定按钮组件|<code>FC<{}></code>|<code>FC<{}></code>|否
+CancelBtn|取消按钮组件|<code>FC<{}></code>|<code>FC<{}></code>|否
+handleClose|关闭弹窗回调|<code>() => void</code>|<code>() => void</code>|否
