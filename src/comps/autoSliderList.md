@@ -1,21 +1,21 @@
-# AutoSliderBox
+# AutoSliderList
 展示一个滑块区域，可以让滑块滑动到点击区域。
 
 ## 前置条件
-下载AutoSliderBox组件文件,并将文件放入`src/components/tools`文件夹下。
+下载AutoSliderList组件文件,并将文件放入`src/components/tools`文件夹下。
 
 在`src/components/tools/index.ts`写入以下代码
 ```tsx
-export * from './AutoSliderBox';
+export * from './AutoSliderList';
 ```
 
 ## 基础用法
 ```tsx
-import { AutoSliderBox } from '@/components/tools'
+import { AutoSliderList } from '@/components/tools'
 
 function App() {
     return <div>
-        <AutoSliderBox
+        <AutoSliderList
             gap={8}
             padding={8}
             sliderBgc="pink"
@@ -45,7 +45,7 @@ function App() {
                     {item}
                 </li>
             ))}
-      </AutoSliderBox>
+      </AutoSliderList>
     </div>
 }
 ```

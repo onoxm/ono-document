@@ -31,7 +31,8 @@ export const sidebar = {
                 text: 'Tools',
                 collapsed: true,
                 items: [
-                    { text: 'AutoSliderBox 自动滑块', link: '/comps/autoSliderBox' },
+                    { text: 'AutoSliderList 自动滑块', link: '/comps/autoSliderList' },
+                    { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
                     { text: 'Modal 弹窗', link: '/comps/modal' },
                     { text: 'Pagination 分页', link: '/comps/pagination' },
                 ]
