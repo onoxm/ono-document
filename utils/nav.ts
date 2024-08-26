@@ -5,7 +5,7 @@ export const nav = [
         activeMatch: '/docs/',
         items: [
             { text: '快速开始', link: '/docs/quickstart' },
-            { text: '我的组件', link: '/comps/modal' },
+            { text: '我的组件', link: '/comps/card3d' },
             { text: '我的hooks', link: '/hooks/useEventListener' },
         ]
     },

@@ -36,6 +36,8 @@ function App() {
         <Button onClick={handleModal}>打开弹窗</Button>
     </div>
 }
+
+export default App;
 ```
 
 ## 点击蒙层关闭弹窗
@@ -63,6 +65,8 @@ function App() {
         <Button onClick={handleModal}>打开弹窗</Button>
     </div>
 }
+
+export default App;
 ```
 
 ## 自定义底部内容
@@ -85,6 +89,8 @@ function App() {
         <Button onClick={handleModal}>打开弹窗</Button>
     </div>
 }
+
+export default App;
 ```
 
 只需要取消键，不需要确认键，可以这样写：
@@ -106,6 +112,8 @@ function App() {
         <Button onClick={handleModal}>打开弹窗</Button>
     </div>
 }
+
+export default App;
 ```
 
 如果不满意默认的按钮样式，可以这样写：
@@ -142,6 +150,8 @@ function App() {
         <Button onClick={handleModal}>打开弹窗</Button>
     </div>
 }
+
+export default App;
 ```
 
 若不需要底部按钮，可以这样写：
@@ -157,6 +167,8 @@ function App() {
         <Button onClick={handleModal}>打开弹窗</Button>
     </div>
 }
+
+export default App;
 ```
 
 ## 自定义弹窗样式
@@ -199,6 +211,8 @@ function App() {
         <Button onClick={handleModal}>打开弹窗</Button>
     </div>
 }
+
+export default App;
 ```
 
 ## API

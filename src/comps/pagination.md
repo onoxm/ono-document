@@ -11,10 +11,11 @@ export * from './Pagination';
 
 ## 基础用法
 ```tsx
+import React, { useState } from'react'
 import { Pagination } from '@/components/tools'
 
 function App() {
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     return <div>
         <Pagination
@@ -24,14 +25,17 @@ function App() {
         />
     </div>
 }
+
+export default App;
 ```
 
 ## 自定义首页和尾页按钮样式
 ```tsx
+import React, { useState } from'react'
 import { Pagination } from '@/components/tools'
 
 function App() {
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     return <div>
         <Pagination
@@ -67,14 +71,17 @@ function App() {
         />
     </div>
 }
+
+export default App;
 ```
 
 ## 自定义上一页和下一页按钮样式
 ```tsx
+import React, { useState } from'react'
 import { Pagination } from '@/components/tools'
 
 function App() {
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     return <div>
         <Pagination
@@ -110,14 +117,17 @@ function App() {
         />
     </div>
 }
+
+export default App;
 ```
 
 ## 当到达首页或尾页时，禁用上一页或下一页按钮
 ```tsx
+import React, { useState } from'react'
 import { Pagination } from '@/components/tools'
 
 function App() {
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     return <div>
         <Pagination
@@ -129,6 +139,8 @@ function App() {
         />
     </div>
 }
+
+export default App;
 ```
 
 ## API

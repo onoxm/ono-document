@@ -15,6 +15,7 @@ export const sidebar = {
                 text: 'Elements',
                 collapsed: true,
                 items: [
+                    { text: 'Card3D 3D卡片', link: '/comps/card3d' },
                     // { text: 'Modal 弹窗', link: '/comps/modal' },
                     // { text: 'Pagination 分页', link: '/comps/pagination' },
                 ]
@@ -32,9 +33,10 @@ export const sidebar = {
                 collapsed: true,
                 items: [
                     { text: 'AutoSliderList 自动滑块', link: '/comps/autoSliderList' },
-                    { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
+                    // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
                     { text: 'Modal 弹窗', link: '/comps/modal' },
                     { text: 'Pagination 分页', link: '/comps/pagination' },
+                    { text: 'Xscroll 滚动条', link: '/comps/xscroll' },
                 ]
             }
         ],
