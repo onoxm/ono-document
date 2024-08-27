@@ -6,6 +6,7 @@ export const sidebar = {
                 collapsed: false,
                 items: [
                     { text: '快速开始', link: '/docs/quickstart' },
+                    { text: 'Prettierrc 配置', link: '/docs/prettierrc' },
                 ]
             }
         ],
@@ -24,7 +25,7 @@ export const sidebar = {
                 text: 'Modules',
                 collapsed: true,
                 items: [
-                    // { text: 'Modal 弹窗', link: '/comps/modal' },
+                    { text: 'Avatar Crop 头像裁剪', link: '/comps/avatarCrop' },
                     // { text: 'Pagination 分页', link: '/comps/pagination' },
                 ]
             },
@@ -47,6 +48,7 @@ export const sidebar = {
                 items: [
                     { text: 'useDefer', link: '/hooks/useDefer' },
                     { text: 'useEventListener', link: '/hooks/useEventListener' },
+                    { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
                     { text: 'useGlobalClickListener', link: '/hooks/useGlobalClickListener' },
                 ]
             }
