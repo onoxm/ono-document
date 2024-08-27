@@ -230,9 +230,9 @@ onConfirm|确定按钮回调|<code>() => void</code>|<code>() => void</code>|否
 onCancel|取消按钮回调|<code>() => void</code>|<code>() => void</code>|否
 mask|是否显示蒙层|<code>boolean</code>|<code>true</code>|否
 maskClosable|点击蒙层是否可关闭弹窗|<code>boolean</code>|<code>false</code>|否
-width|弹窗宽度|string｜number|<code>416</code>|否
+width|弹窗宽度|<code>string</code>\|<code>number</code>|<code>416</code>|否
 btnClr|按钮颜色|<code>string</code>|<code>#5644b8</code>|否
-footer|自定义底部内容|<code>(params: footerRenderParams) => ReactNode</code>|<code>({ OkBtn, CancelBtn }) => ReactNode</code>|否
+footer|自定义底部内容|<code>(params: footerRenderParams) => ReactNode</code>\|<code>null</code>|<code>({ OkBtn, CancelBtn }) => ReactNode</code>|否
 modalBody|自定义弹窗内容|<code>(handleClose: () => void) => ReactNode</code>|<code>null</code>|否
 
 ## footerRenderParams

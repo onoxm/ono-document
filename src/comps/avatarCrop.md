@@ -251,10 +251,10 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-imgFile|图片文件|File|string|-|是
+imgFile|图片文件|<code>File</code>\|<code>string</code>|-|是
 cvsW|画布宽度|<code>number</code>|<code>520</code>|否
-imageSaveType|图片保存类型|png|jpeg|webp|png|否
-dataSaveType|数据保存类型|string|Blob|<code>string</code>|否
+imageSaveType|图片保存类型|<code>png</code>\|<code>jpeg</code>\|<code>webp</code>|<code>png</code>|否
+dataSaveType|数据保存类型|<code>string</code>\|<code>Blob</code>|<code>string</code>|否
 maskBG|蒙版背景颜色|<code>string</code>|<code>rgba(0, 0, 0, 0.5)</code>|否
 border|边框样式|<code>string</code>|<code>4px solid #fff</code>|否
 quality|图片质量|<code>number</code>|<code>100</code>|否
@@ -270,12 +270,12 @@ handelSave|保存回调函数|<code>(avatarData: AvatarData) => void</code>|-|�
 ## footerBtnList
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-footerBtnList|底部按钮列表|<code>{(params: FooterBtnListParams) => React.ReactNode}</code>|<code>{({ OkBtn, ReductionBtn }) => ( <><ReductionBtn /><OkBtn /></> )}</code>|否
+footerBtnList|底部按钮列表|<code>{(params: FooterBtnListParams) => React.ReactNode}</code> \| <code>null</code>|<code>{({ OkBtn, ReductionBtn }) => ( <><ReductionBtn /><OkBtn /></> )}</code>|否
 
 ## AvatarData
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-AvatarData|头像裁剪数据|string|Blob|-|否
+AvatarData|头像裁剪数据|<code>string</code> \| <code>Blob</code>|-|否
 
 ## footerRenderParams
 参数|说明|类型|默认值|是否必填

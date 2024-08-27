@@ -94,5 +94,5 @@ sliderBgc|滑块背景色|<code>string</code>|<code>#ccc</code>|否
 sliderWidth|滑块宽度|<code>number</code>|-|否
 sliderHeight|滑块高度|<code>number</code>|-|否
 sliderBorderRadius|滑块圆角|<code>number</code>|<code>0</code>|否
-direction|方向|'Horizontal' | 'Vertical'|<code>Horizontal</code>|否
+direction|方向|<code>Horizontal</code>\|<code>Vertical</code>|<code>Horizontal</code>|否
 sliderTransitionTimingFunction|滑块动画效果|<code>string</code>|<code>ease-in-out</code>|否
