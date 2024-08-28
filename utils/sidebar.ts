@@ -47,6 +47,7 @@ export const sidebar = {
                 text: 'Hooks',
                 items: [
                     { text: 'useDefer', link: '/hooks/useDefer' },
+                    { text: 'useGlobalData', link: '/hooks/useGlobalData' },
                     { text: 'useEventListener', link: '/hooks/useEventListener' },
                     { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
                     { text: 'useGlobalClickListener', link: '/hooks/useGlobalClickListener' },
