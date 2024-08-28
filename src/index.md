@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: My Components
-      link: /comps/modal
+      link: /comps/card3d
     - theme: alt
       text: Markdown Examples
       link: /examples/markdown-examples

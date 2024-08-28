@@ -12,9 +12,10 @@ export * from './useGlobalData';
 ```
 
 ## 基础实用
+`src/App.tsx`
 ```tsx
 import { GlobalProvider } from '@/context/GlobalContext'
-import { Home } from '@/pages';
+import Home from '@/pages/Home.tsx';
 
 function App() {
     <GlobalProvider>
@@ -23,10 +24,11 @@ function App() {
 }
 ```
 
+`src/pages/Home.tsx`
 ```tsx
 import { useGlobalData } from '@/hooks';
 
-export const Home = () => {
+function Home() {
     const { dispatch, globalData } = useGlobalData();
 
     const handleSetUsername = (name: string) => {
@@ -40,4 +42,6 @@ export const Home = () => {
         </div>
     )
 }
+
+export default Home;
 ```
