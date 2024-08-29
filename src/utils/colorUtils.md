@@ -1,6 +1,7 @@
 # Color Utils
 颜色的工具函数。
 
+## 代码实现
 将下列代码复制到`src/utils/colorUtils.ts`文件中：
 ```tsx
 export type ColorType = 'rgb' | 'hsl' | 'hex' | 'hsv' | 'rgba'

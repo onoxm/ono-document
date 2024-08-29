@@ -7,6 +7,7 @@ export const sidebar = {
                 items: [
                     { text: '快速开始', link: '/docs/quickstart' },
                     { text: 'Prettierrc 配置', link: '/docs/prettierrc' },
+                    { text: '主题切换', link: '/docs/theme' },
                 ]
             }
         ],
@@ -47,6 +48,9 @@ export const sidebar = {
                 text: 'Hooks',
                 items: [
                     { text: 'useDefer', link: '/hooks/useDefer' },
+                    { text: 'useTheme', link: '/hooks/useTheme' },
+                    { text: 'useUpdate', link: '/hooks/useUpdate' },
+                    { text: 'useReactive', link: '/hooks/useReactive' },
                     { text: 'useGlobalData', link: '/hooks/useGlobalData' },
                     { text: 'useEventListener', link: '/hooks/useEventListener' },
                     { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
@@ -60,6 +64,7 @@ export const sidebar = {
                 text: 'Utils',
                 items: [
                     { text: 'colorUtils', link: '/utils/colorUtils' },
+                    { text: 'themeUtils', link: '/utils/themeUtils' },
                 ]
             }
         ],

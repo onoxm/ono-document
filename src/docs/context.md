@@ -1,5 +1,5 @@
 # Context
-用于管理全局数据，包括用户信息、权限信息等。
+用于管理全局数据，包括用户信息、权限信息等, 一般配合`useGlobalData`使用。
 
 ## GlobalContext 代码实现
 将下列代码复制到`src/context/GlobalContext.tsx`文件中。
@@ -76,6 +76,25 @@ export * from './GlobalContext'
 export * from './GlobalReducer'
 export * from './globalData'
 
+```
+
+## useGlobalData 代码实现
+将下列代码复制到`src/hooks/useGlobalData.tsx`文件中。
+```tsx
+import { GlobalContext } from '@/context/GlobalContext'
+import { useContext } from 'react'
+
+export default () => {
+  const context = useContext(GlobalContext)
+  if (!context) throw new Error('Global data is not initialized')
+  return context
+}
+
+```
+
+在`src/hooks/index.ts`写入以下代码
+```tsx
+export * from './useGlobalData';
 ```
 
 ## 使用方法
