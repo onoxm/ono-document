@@ -18,6 +18,7 @@ export const sidebar = {
                 collapsed: true,
                 items: [
                     { text: 'Card3D 3D卡片', link: '/comps/card3d' },
+                    { text: 'Radio 单选框', link: '/comps/radio' },
                     // { text: 'Modal 弹窗', link: '/comps/modal' },
                     // { text: 'Pagination 分页', link: '/comps/pagination' },
                 ]
