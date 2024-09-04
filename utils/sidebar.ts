@@ -3,7 +3,7 @@ export const sidebar = {
         [
             {
                 text: 'Document',
-                collapsed: false,
+                // collapsed: false,
                 items: [
                     { text: '快速开始', link: '/docs/quickstart' },
                     { text: 'Prettierrc 配置', link: '/docs/prettierrc' },
@@ -15,7 +15,7 @@ export const sidebar = {
         [
             {
                 text: 'Elements',
-                collapsed: true,
+                // collapsed: true,
                 items: [
                     { text: 'Card3D 3D卡片', link: '/comps/card3d' },
                     { text: 'Radio 单选框', link: '/comps/radio' },
@@ -25,7 +25,7 @@ export const sidebar = {
             },
             {
                 text: 'Modules',
-                collapsed: true,
+                // collapsed: true,
                 items: [
                     { text: 'Avatar Crop 头像裁剪', link: '/comps/avatarCrop' },
                     // { text: 'Pagination 分页', link: '/comps/pagination' },
@@ -33,7 +33,7 @@ export const sidebar = {
             },
             {
                 text: 'Tools',
-                collapsed: true,
+                // collapsed: true,
                 items: [
                     { text: 'AutoSliderList 自动滑块', link: '/comps/autoSliderList' },
                     // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },

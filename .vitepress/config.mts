@@ -3,10 +3,12 @@ import { sidebar, nav, socialLinks } from '../utils'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lang:'zh-CN',
   title: "ONO的在线文档库",
   description: "A VitePress Site",
   srcDir: './src',
   base: '/ono-document/',
+  // locales,
 
   head: [["link", { rel: "icon", href: "/ono-document/src/public/logo.svg" }]],
   themeConfig: {
