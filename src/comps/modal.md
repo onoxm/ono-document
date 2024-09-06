@@ -235,7 +235,7 @@ btnClr|按钮颜色|<code>string</code>|<code>#5644b8</code>|否
 footer|自定义底部内容|<code>(params: footerRenderParams) => ReactNode</code>\|<code>null</code>|<code>({ OkBtn, CancelBtn }) => ReactNode</code>|否
 modalBody|自定义弹窗内容|<code>(handleClose: () => void) => ReactNode</code>|<code>null</code>|否
 
-## footerRenderParams
+### footerRenderParams
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 OkBtn|确定按钮组件|<code>FC<{}></code>|<code>FC<{}></code>|否

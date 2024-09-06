@@ -267,17 +267,17 @@ isReduction|是否使用还原按钮的功能|<code>boolean</code>|-|否
 onReductionSuccess|还原成功的回调函数|<code>() => void</code>|-|否
 handelSave|保存回调函数|<code>(avatarData: AvatarData) => void</code>|-|是
 
-## footerBtnList
+### footerBtnList
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 footerBtnList|底部按钮列表|<code>{(params: FooterBtnListParams) => React.ReactNode}</code> \| <code>null</code>|<code>{({ OkBtn, ReductionBtn }) => ( <><ReductionBtn /><OkBtn /></> )}</code>|否
 
-## AvatarData
+### AvatarData
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 AvatarData|头像裁剪数据|<code>string</code> \| <code>Blob</code>|-|否
 
-## footerRenderParams
+### footerRenderParams
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 OkBtn|确定按钮组件|<code>FC</code>|<code>FC</code>|否

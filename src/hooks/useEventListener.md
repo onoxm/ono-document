@@ -31,7 +31,7 @@ function App() {
 :- | :- | :- | :- | :-
 params|监听参数|<code>EventListenerOptions</code>|-|是
 
-## EventListenerOptions
+### EventListenerOptions
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 event|你想要监听的事件类型|<code>string</code>|-|是
