@@ -84,7 +84,13 @@ eventHandler|事件处理函数|<code>(e: KeyboardEvent, key: string) => void</c
 options|可选配置项|<code>Options</code>|-|否
 
 ### FunctionKey
-参数|说明|
+参数|说明
+:- | :- 
+Ctrl|控制键
+Shift|Shift键
+Alt|Alt键
+Meta|Meta键
+CommandOrControl|Mac下为Command键，Windows下为Control键
 
 
 ### Options
