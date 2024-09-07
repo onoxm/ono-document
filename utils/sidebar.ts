@@ -51,6 +51,7 @@ export const sidebar = {
                     { text: 'useDefer', link: '/hooks/useDefer' },
                     { text: 'useTheme', link: '/hooks/useTheme' },
                     { text: 'useUpdate', link: '/hooks/useUpdate' },
+                    { text: 'useKeypress', link: '/hooks/useKeypress' },
                     { text: 'useReactive', link: '/hooks/useReactive' },
                     { text: 'useGlobalData', link: '/hooks/useGlobalData' },
                     { text: 'useEventListener', link: '/hooks/useEventListener' },
