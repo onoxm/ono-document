@@ -35,3 +35,9 @@ export default defineConfig(() => {
   }
 }
 ```
+
+## 配置git
+如果没有使用git，请忽略此步骤。
+```bash
+git config core.ignorecase false
+```
