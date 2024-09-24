@@ -53,6 +53,7 @@ export const sidebar = {
                     { text: 'useUpdate', link: '/hooks/useUpdate' },
                     { text: 'useKeypress', link: '/hooks/useKeypress' },
                     { text: 'useReactive', link: '/hooks/useReactive' },
+                    { text: 'useFullScreen', link: '/hooks/useFullScreen' },
                     { text: 'useGlobalData', link: '/hooks/useGlobalData' },
                     { text: 'useEventListener', link: '/hooks/useEventListener' },
                     { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
@@ -67,6 +68,7 @@ export const sidebar = {
                 items: [
                     { text: 'colorUtils', link: '/utils/colorUtils' },
                     { text: 'themeUtils', link: '/utils/themeUtils' },
+                    { text: 'fullScreen', link: '/utils/fullScreen' },
                 ]
             }
         ],

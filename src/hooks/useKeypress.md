@@ -1,5 +1,5 @@
 # useKeyPress
-用于监听鼠标点击时的位置。
+用于监听键盘事件的hooks。
 
 ## 前置条件
 该hooks依赖于`useEventListener`，需要先下载 <a href='/ono-document/hooks/useEventListener'>useEventListener</a> 文件至`src/hooks`文件夹中。
