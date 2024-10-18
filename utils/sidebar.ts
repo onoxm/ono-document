@@ -53,6 +53,7 @@ export const sidebar = {
                     { text: 'useUpdate', link: '/hooks/useUpdate' },
                     { text: 'useKeypress', link: '/hooks/useKeypress' },
                     { text: 'useReactive', link: '/hooks/useReactive' },
+                    { text: 'useCountdown', link: '/hooks/useCountdown' },
                     { text: 'useFullScreen', link: '/hooks/useFullScreen' },
                     { text: 'useGlobalData', link: '/hooks/useGlobalData' },
                     { text: 'useEventListener', link: '/hooks/useEventListener' },
