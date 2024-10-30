@@ -21,7 +21,7 @@ function App() {
         <Pagination
             allPages={10} //总页数
             currentPage={currentPage} //当前页码
-            setCurrentPage={setCurrentPage} //设置当前页码的回调函数
+            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
         />
     </div>
 }
@@ -41,7 +41,7 @@ function App() {
         <Pagination
             allPages={10} //总页数
             currentPage={currentPage} //当前页码
-            setCurrentPage={setCurrentPage} //设置当前页码的回调函数
+            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
             firstBtn={
                 <div
                     style={{
@@ -87,7 +87,7 @@ function App() {
         <Pagination
             allPages={10} //总页数
             currentPage={currentPage} //当前页码
-            setCurrentPage={setCurrentPage} //设置当前页码的回调函数
+            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
             prevBtn={
                 <div
                     style={{
@@ -133,7 +133,7 @@ function App() {
         <Pagination
             allPages={10} //总页数
             currentPage={currentPage} //当前页码
-            setCurrentPage={setCurrentPage} //设置当前页码的回调函数
+            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
             hiddenNextBtnOnLastPage //当到达尾页时，隐藏下一页按钮
             hiddenPrevBtnOnFirstPage //当到达首页时，隐藏上一页按钮
         />
@@ -149,7 +149,7 @@ export default App;
 :- | :- | :- | :- | :-
 allPages|总页数|<code>number</code>|-|是
 currentPage|当前页码|<code>number</code>|-|是
-setCurrentPage|设置当前页码的回调函数|<code>(page: number) => void</code>|-|是
+onChange|页码改变的回调函数|<code>(page: number) => void</code>|-|是
 hiddenNextBtnOnLastPage|当到达尾页时，隐藏下一页按钮|<code>boolean</code>|<code>false</code>|否
 hiddenPrevBtnOnFirstPage|当到达首页时，隐藏上一页按钮|<code>boolean</code>|<code>false</code>|否
 firstBtn|自定义首页按钮|<code>ReactNode</code>|<code>null</code>|否
