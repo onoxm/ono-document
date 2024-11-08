@@ -16,6 +16,7 @@ import { AvatarCrop } from '@/components/modules';
 
 function App() {
     const [imgFile, setImgFile] = useState<File>();
+    const [isHover, setIsHover] = useState<boolean>(false);
 
     return (
         <div>
@@ -41,10 +42,12 @@ function App() {
                             padding: '4px 16px',
                             borderRadius: '4px',
                             background: '#fff',
-                            color: '#ccc',
-                            border: '1px solid #ccc',
+                            color: isHover ? '#f00' : '#ccc',
+                            border: `1px solid ${isHover ? '#f00' : '#ccc'}`,
                             outline: 'none'
                         }}
+                        onMouseEnter={() => setIsHover(true)}
+                        onMouseLeave={() => setIsHover(false)}
                         onClick={() => setImgFile(undefined)}
                     >
                         Close
@@ -76,6 +79,7 @@ import { AvatarCrop } from '@/components/modules';
 
 function App() {
     const [imgFile, setImgFile] = useState<File>();
+    const [isHover, setIsHover] = useState<boolean>(false);
 
     return (
         <div>
@@ -96,15 +100,17 @@ function App() {
                 >
                     <button
                         style={{
-                        marginLeft: 'auto',
-                        width: 'fit-content',
-                        padding: '4px 16px',
-                        borderRadius: '4px',
-                        background: '#fff',
-                        color: '#ccc',
-                        border: '1px solid #ccc',
-                        outline: 'none'
+                            marginLeft: 'auto',
+                            width: 'fit-content',
+                            padding: '4px 16px',
+                            borderRadius: '4px',
+                            background: '#fff',
+                            color: isHover ? '#f00' : '#ccc',
+                            border: `1px solid ${isHover ? '#f00' : '#ccc'}`,
+                            outline: 'none'
                         }}
+                        onMouseEnter={() => setIsHover(true)}
+                        onMouseLeave={() => setIsHover(false)}
                         onClick={() => setImgFile(undefined)}
                     >
                         Close
@@ -148,6 +154,7 @@ import { AvatarCrop } from '@/components/modules';
 
 function App() {
     const [imgFile, setImgFile] = useState<File>();
+    const [isHover, setIsHover] = useState<boolean>(false);
     const [isReduction, setIsReduction] = useState<boolean>(false);
     const [isConfirm, setIsConfirm] = useState<boolean>(false);
 
@@ -170,15 +177,17 @@ function App() {
                 >
                     <button
                         style={{
-                        marginLeft: 'auto',
-                        width: 'fit-content',
-                        padding: '4px 16px',
-                        borderRadius: '4px',
-                        background: '#fff',
-                        color: '#ccc',
-                        border: '1px solid #ccc',
-                        outline: 'none'
+                            marginLeft: 'auto',
+                            width: 'fit-content',
+                            padding: '4px 16px',
+                            borderRadius: '4px',
+                            background: '#fff',
+                            color: isHover ? '#f00' : '#ccc',
+                            border: `1px solid ${isHover ? '#f00' : '#ccc'}`,
+                            outline: 'none'
                         }}
+                        onMouseEnter={() => setIsHover(true)}
+                        onMouseLeave={() => setIsHover(false)}
                         onClick={() => setImgFile(undefined)}
                     >
                         Close
@@ -194,7 +203,7 @@ function App() {
                         }}
                         handleSave={avatarData => {
                             console.log(avatarData)
-                            setIsConfirm(true); // 自定义按钮必须在回调函数中将状态设置为false
+                            setIsConfirm(false); // 自定义按钮必须在回调函数中将状态设置为false
                         }}
                         footerBtnList={null}
                     />
