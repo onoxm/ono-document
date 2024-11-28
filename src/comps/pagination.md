@@ -74,6 +74,43 @@ function App() {
 
 export default App;
 ```
+## 自定义页码按钮样式
+```tsx
+import React, { useState } from'react'
+import { Pagination } from '@/components/tools'
+
+function App() {
+    const [currentPage, setCurrentPage] = useState<number>(1)
+
+    return <div>
+        <Pagination
+            allPages={10} //总页数
+            currentPage={currentPage} //当前页码
+            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
+            pageBtn={(page) => (
+              <div
+                style={{
+                  width: '40px',
+                  display: 'flex',
+                  aspectRatio: '1',
+                  cursor: 'pointer',
+                  borderRadius: '50%',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: '1px solid #e5e5e5',
+                  color: currentPage === page ? 'white' : '#333',
+                  backgroundColor: currentPage === page ? '#765def' : 'white'
+                }}
+              >
+                {page}
+              </div>
+            )}
+        />
+    </div>
+}
+
+export default App;
+```
 
 ## 自定义上一页和下一页按钮样式
 ```tsx
