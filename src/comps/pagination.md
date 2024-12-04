@@ -87,25 +87,26 @@ function App() {
             allPages={10} //总页数
             currentPage={currentPage} //当前页码
             onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
-            pageBtn={(page) => (
-              <div
-                style={{
-                  width: '40px',
-                  display: 'flex',
-                  aspectRatio: '1',
-                  cursor: 'pointer',
-                  borderRadius: '50%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  border: '1px solid #e5e5e5',
-                  color: currentPage === page ? 'white' : '#333',
-                  backgroundColor: currentPage === page ? '#765def' : 'white'
-                }}
-              >
-                {page}
-              </div>
+        >
+            {(page) => (
+                <div
+                    style={{
+                        width: '40px',
+                        display: 'flex',
+                        aspectRatio: '1',
+                        cursor: 'pointer',
+                        borderRadius: '50%',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid #e5e5e5',
+                        color: currentPage === page ? 'white' : '#333',
+                        backgroundColor: currentPage === page ? '#765def' : 'white'
+                    }}
+                >
+                    {page}
+                </div>
             )}
-        />
+        </Pagination>
     </div>
 }
 
@@ -193,3 +194,4 @@ firstBtn|自定义首页按钮|<code>ReactNode</code>|<code>null</code>|否
 lastBtn|自定义尾页按钮|<code>ReactNode</code>|<code>null</code>|否
 prevBtn|自定义上一页按钮|<code>ReactNode</code>|<code>null</code>|否
 nextBtn|自定义下一页按钮|<code>ReactNode</code>|<code>null</code>|否
+children|自定义页码按钮|<code>(page: number) => ReactNode</code>|<code>null</code>|否
