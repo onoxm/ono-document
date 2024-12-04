@@ -16,11 +16,13 @@ import { AvatarCrop } from '@/components/modules';
 
 function App() {
     const [imgFile, setImgFile] = useState<File>();
+    const [showImg, setShowImg] = useState<string>('');
     const [isHover, setIsHover] = useState<boolean>(false);
 
     return (
         <div>
             <input type="file" onChange={(e) => setImgFile(e.target.files?.[0])} />
+            {showImg && <img src={showImg} alt="avatar" />}
             {imgFile && (
                 <div
                     style={{
@@ -55,7 +57,10 @@ function App() {
                     <AvatarCrop
                         cvsW={552}
                         imgFile={imgFile}
-                        handleSave={avatarData => console.log(avatarData)}
+                        handleSave={avatarData => {
+                          setImgFile(undefined)
+                          setShowImg(avatarData as string)
+                        }}
                         footerBtnList={({ OkBtn, ReductionBtn }) => (
                             <>
                                 <ReductionBtn />
@@ -79,11 +84,13 @@ import { AvatarCrop } from '@/components/modules';
 
 function App() {
     const [imgFile, setImgFile] = useState<File>();
+    const [showImg, setShowImg] = useState<string>('');
     const [isHover, setIsHover] = useState<boolean>(false);
 
     return (
         <div>
             <input type="file" onChange={(e) => setImgFile(e.target.files?.[0])} />
+            {showImg && <img src={showImg} alt="avatar" />}
             {imgFile && (
                 <div
                     style={{
@@ -118,7 +125,10 @@ function App() {
                     <AvatarCrop
                         cvsW={552}
                         imgFile={imgFile}
-                        handleSave={avatarData => console.log(avatarData)}
+                        handleSave={avatarData => {
+                          setImgFile(undefined)
+                          setShowImg(avatarData as string)
+                        }}
                         footerBtnList={({ handleConfirm, ReductionBtn }) => (
                             <>
                                 <ReductionBtn />
@@ -148,12 +158,13 @@ export default App;
 ```
 
 ## 自定义底部按钮
-```tsx{44,45,48,52,75,90}
+```tsx{49,50,53,58,81,96}
 import React, { useState } from'react';
 import { AvatarCrop } from '@/components/modules';
 
 function App() {
     const [imgFile, setImgFile] = useState<File>();
+    const [showImg, setShowImg] = useState<string>('');
     const [isHover, setIsHover] = useState<boolean>(false);
     const [isReduction, setIsReduction] = useState<boolean>(false);
     const [isConfirm, setIsConfirm] = useState<boolean>(false);
@@ -161,6 +172,7 @@ function App() {
     return (
         <div>
             <input type="file" onChange={(e) => setImgFile(e.target.files?.[0])} />
+            {showImg && <img src={showImg} alt="avatar" />}
             {imgFile && (
                 <div
                     style={{
@@ -202,8 +214,9 @@ function App() {
                             setIsReduction(false); // 自定义按钮必须在回调函数中将状态设置为false
                         }}
                         handleSave={avatarData => {
-                            console.log(avatarData)
-                            setIsConfirm(false); // 自定义按钮必须在回调函数中将状态设置为false
+                          setImgFile(undefined)
+                          setShowImg(avatarData as string)
+                          setIsConfirm(false) // 自定义按钮必须在回调函数中将状态设置为false
                         }}
                         footerBtnList={null}
                     />
