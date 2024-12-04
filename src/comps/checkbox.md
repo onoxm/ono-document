@@ -139,7 +139,7 @@ textDom|自定义label|<code>ReactNode</code>|-|否
 onChange|Checkbox的change事件回调函数|<code>(e: ChangeEvent\<HTMLInputElement>) => void</code>|-|是
 borderRadius|Checkbox的圆角|<code>string</code>\|<code>number</code>|<code>0</code>|否
 indeterminateColor|Checkbox的中间状态颜色|<code>string</code>|-|否
-bgColor|Checkbox的选中时的颜色|<code>string</code>|<code>#'0077cc'</code>|否
+bgColor|Checkbox的选中时的颜色|<code>string</code>|<code>'#0077cc'</code>|否
 labelPosition|label相对于Checkbox的位置|<code>'left'</code>\|<code>'right'</code>|<code>'right'</code>|否
 border|Checkbox的边框|<code>string</code>|<code>'1px solid #333'</code>|否
 indeterminate|Checkbox的中间状态|<code>CheckboxIndeterminateType</code>|<code>{ onChange: () => {}, deps: [] }</code>|否
