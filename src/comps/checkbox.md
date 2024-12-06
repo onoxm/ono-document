@@ -1,4 +1,4 @@
-# Checkbox
+# Checkbox 多选框
 收集用户的多项选择。
 
 ## 前置条件

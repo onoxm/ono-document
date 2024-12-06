@@ -1,4 +1,4 @@
-# AutoSliderList
+# AutoSliderList 自动滑块
 一个按钮列表组件，点击某个按钮滑块会自动滑到对应的位置。
 
 ## 前置条件

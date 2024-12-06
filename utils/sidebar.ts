@@ -15,6 +15,7 @@ export const sidebar = {
       text: 'Elements',
       // collapsed: true,
       items: [
+        { text: 'Button 按钮', link: '/comps/button' },
         { text: 'Card3D 3D卡片', link: '/comps/card3d' },
         { text: 'Checkbox 多选框', link: '/comps/checkbox' },
         { text: 'Radio 单选框', link: '/comps/radio' }
@@ -33,7 +34,7 @@ export const sidebar = {
         // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
         { text: 'Modal 弹窗', link: '/comps/modal' },
         { text: 'Pagination 分页', link: '/comps/pagination' },
-        { text: 'Xscroll 滚动条', link: '/comps/xscroll' }
+        { text: 'Xscroll 滚动组件', link: '/comps/xscroll' }
       ]
     }
   ],

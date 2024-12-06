@@ -1,5 +1,5 @@
-# Card3D
-Card3D组件是基于React的卡片组件，可以实现3D效果。
+# Card3D 3D卡片
+Card3D组件是卡片组件，可以实现3D效果。
 
 ## 前置条件
 下载Card3D组件文件,并将文件放入`src/components/elements`文件夹下。
@@ -11,7 +11,6 @@ export * from './Card3D';
 
 ## 基础用法
 ```tsx
-import React, { useState } from'react'
 import { Card3D } from '@/components/elements'
 
 function App() {

@@ -14,6 +14,7 @@ export * from './Modal';
 
 ## 基础用法
 ```tsx
+import { Button } from '@/components/elements'
 import { Modal } from '@/components/tools'
 
 function App() {
@@ -42,6 +43,7 @@ export default App;
 
 ## 点击蒙层关闭弹窗
 ```tsx
+import { Button } from '@/components/elements'
 import { Modal } from '@/components/tools'
 
 function App() {
@@ -72,6 +74,7 @@ export default App;
 ## 自定义底部内容
 只需要确认键，不需要取消键，可以这样写：
 ```tsx
+import { Button } from '@/components/elements'
 import { Modal } from '@/components/tools'
 
 function App() {
@@ -95,6 +98,7 @@ export default App;
 
 只需要取消键，不需要确认键，可以这样写：
 ```tsx
+import { Button } from '@/components/elements'
 import { Modal } from '@/components/tools'
 
 function App() {
@@ -118,6 +122,7 @@ export default App;
 
 如果不满意默认的按钮样式，可以这样写：
 ```tsx
+import { Button } from '@/components/elements'
 import { Modal } from '@/components/tools'
 
 function App() {
@@ -156,11 +161,12 @@ export default App;
 
 若不需要底部按钮，可以这样写：
 ```tsx
+import { Button } from '@/components/elements'
 import { Modal } from '@/components/tools'
 
 function App() {
     const handleModal = () => {
-        Modal({ footer: null })
+        Modal({ footer: null, maskClosable: true })
     }
 
     return <div>
@@ -173,6 +179,7 @@ export default App;
 
 ## 自定义弹窗样式
 ```tsx
+import { Button } from '@/components/elements'
 import { Modal } from '@/components/tools'
 
 function App() {
