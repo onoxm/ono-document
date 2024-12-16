@@ -69,6 +69,12 @@ function App() {
       }
     ]
 
+    const handleIndeterminate = () => {
+      const arr = [html, css, javascript]
+      if (arr.every(item => item)) return false
+      else return arr.some(item => item)
+    }
+
     useEffect(() => {
         if (html && css && javascript) setAllChecked(true)
         else setAllChecked(false)
@@ -80,18 +86,11 @@ function App() {
           <Checkbox
             id="checkbox_all"
             w="1rem"
-            border={`1px solid ${allChecked ? '#A78BFA' : '#333'}`}
-            bgColor="#A78BFA"
-            indeterminate={{
-              onChange: checkbox => {
-                if (!checkbox) return
-                if (html && css && javascript) checkbox.indeterminate = false
-                else if (html || css || javascript)
-                  checkbox.indeterminate = html || css || javascript
-                else checkbox.indeterminate = false
-              },
-              deps: [html, css, javascript]
-            }}
+            border={`1px solid ${
+              allChecked ? '#A78BFA' : handleIndeterminate() ? '#A78BFA' : '#333'
+            }`}
+            checkedColor="#A78BFA"
+            indeterminate={handleIndeterminate()}
             indeterminateColor="#A78BFA"
             checked={allChecked}
             onChange={() => {
@@ -109,7 +108,7 @@ function App() {
           <label htmlFor="checkbox_all">全选</label>
           <p>({(html ? 1 : 0) + (css ? 1 : 0) + (javascript ? 1 : 0)} / 3)</p>
         </div>
-
+  
         <div style={{ display: 'flex', gap: '8px' }}>
           <List list={checkList}>
             {({ checked, label, color, onChange }) => (
@@ -120,8 +119,8 @@ function App() {
                 <Checkbox
                   w="1rem"
                   id={`checkbox_${label}`}
-                  border={`1px  solid ${checked ? color : '#333'}`}
-                  bgColor={color}
+                  border={`1px solid ${checked ? color : '#333'}`}
+                  checkedColor={color}
                   checked={checked}
                   onChange={onChange}
                 />
@@ -147,12 +146,8 @@ checked|Checkbox是否选中|<code>boolean</code>|-|是
 onChange|Checkbox的change事件回调函数|<code>(e: ChangeEvent\<HTMLInputElement>) => void</code>|-|是
 borderRadius|Checkbox的圆角|<code>string</code>\|<code>number</code>|<code>0</code>|否
 indeterminateColor|Checkbox的中间状态颜色|<code>string</code>|-|否
-bgColor|Checkbox的选中时的颜色|<code>string</code>|<code>'#0077cc'</code>|否
+indeterminateStyle|Checkbox的中间状态样式|<code>'line'</code>\|<code>'lborder'</code>|<code>'line'</code>|否
+bgColor|Checkbox的背景颜色|<code>string</code>|<code>'transparent'</code>|否
+checkedColor|Checkbox的选中时的颜色|<code>string</code>|<code>'#0077cc'</code>|否
 border|Checkbox的边框|<code>string</code>|<code>'1px solid #333'</code>|否
-indeterminate|Checkbox的中间状态|<code>CheckboxIndeterminateType</code>|<code>{ onChange: () => {}, deps: [] }</code>|否
-
-### CheckboxIndeterminateType
-参数|说明|类型|默认值|是否必填
-:- | :- | :- | :- | :-
-onChange|Checkbox的中间状态change事件回调函数|<code>(element: HTMLInputElement) => void</code>|<code>() => {}</code>|否
-deps|Checkbox的中间状态change事件依赖项|<code>DependencyList</code>|<code>[]</code>|否
+indeterminate|Checkbox的中间状态|<code>boolean</code>|<code>false</code>|否
