@@ -32,6 +32,7 @@ export const sidebar = {
       items: [
         { text: 'AutoSliderList 自动滑块', link: '/comps/autoSliderList' },
         // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
+        { text: 'List 列表循环', link: '/comps/list' },
         { text: 'Modal 弹窗', link: '/comps/modal' },
         { text: 'Pagination 分页', link: '/comps/pagination' },
         { text: 'Xscroll 滚动组件', link: '/comps/xscroll' }
