@@ -77,7 +77,7 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-list|需要循环的数组|<code>T[]</code>\|<code>() => T[]</code>\|<code>() => Promise<\T[]></code>|-|是
+list|需要循环的数组|<code>T[]</code>\|<code>() => T[]</code>\|<code>() => Promise\<T[]></code>|-|是
 children|子元素渲染函数|<code>(item: T, index: number) => ReactNode</code>|-|是
 fallback|当数组为空时显示的元素|<code>ReactNode</code>\|<code>ReactNode[]</code>|-|否
 insertBetweenDom|插入元素的DOM|<code>(i: number) => ReactNode</code>|-|否
