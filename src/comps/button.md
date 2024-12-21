@@ -33,5 +33,7 @@ color|文字颜色|<code>string</code>|<code>'#fff'</code>|否
 children|区域子元素|<code>ReactNode</code>|-|是
 disabled|是否禁用|<code>boolean</code>|-|否
 padding|内边距|<code>number</code>\|<code>string</code>|<code>'5px 12px'</code>|否
+margin|外边距|<code>number</code>\|<code>string</code>|<code>0</code>|否
+border|边框|<code>string</code>|<code>'none'</code>|否
 borderRadius|圆角大小|<code>number</code>\|<code>string</code>|<code>'4px'</code>|否
 onClick|点击事件回调函数|<code>(e: React.MouseEvent\<HTMLButtonElement>) => void</code>|-|否

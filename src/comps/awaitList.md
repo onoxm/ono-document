@@ -6,7 +6,7 @@
 
 在`src/components/tools/index.ts`写入以下代码
 ```tsx
-export * from './List';
+export * from './AwaitList';
 ```
 
 ## 基础用法

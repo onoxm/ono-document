@@ -36,6 +36,8 @@ export const sidebar = {
         { text: 'List 列表循环', link: '/comps/list' },
         { text: 'Modal 弹窗', link: '/comps/modal' },
         { text: 'Pagination 分页', link: '/comps/pagination' },
+        { text: 'Popover 气泡卡片', link: '/comps/popover' },
+        { text: 'Popconfirm 气泡确认框', link: '/comps/popconfirm' },
         { text: 'Xscroll 滚动组件', link: '/comps/xscroll' }
       ]
     }
