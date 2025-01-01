@@ -41,6 +41,21 @@ function App() {
 export default App;
 ```
 
+## 隐藏箭头
+```tsx
+import { Button } from '@/components/elements'
+import { Popconfirm } from '@/components/tools'
+
+function App() {
+  return
+    <Popconfirm title={'这是一段内容'} isShowArrow={false}>
+      <Button>Click</Button>
+    </Popconfirm>
+}
+
+export default App;
+```
+
 ## API
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
@@ -64,3 +79,5 @@ overlayStyle|浮层样式|<code>CSSProperties</code>|-|否
 open|控制浮层显示状态|<code>boolean</code>|<code>false</code>|否
 onOpenChange|浮层显示状态改变回调函数|<code>(open: boolean) => void</code>|<code>() => {}</code>|否
 btnBarDom|自定义按钮组|<code>({ OkBtn, CancelBtn, handleClose }: { OkBtn: FC; CancelBtn: FC; handleClose: () => void}) => ReactNode</code>|<code>({ OkBtn, CancelBtn }: { OkBtn: FC<{}>; CancelBtn: FC<{}> }) =><>\<CancelBtn />\<OkBtn /></></code>|否
+isShowArrow|是否显示箭头|<code>boolean</code>|<code>true</code>|否
+position|气泡位置|<code>'topLeft'</code>\|<code>'top'</code>\|<code>'topRight'</code>\|<code>'leftTop'</code>\|<code>'rightTop'</code>\|<code>'left'</code>\|<code>'right'</code>\|<code>'leftBottom'</code>\|<code>'rightBottom'</code>\|<code>'bottomLeft'</code>\|<code>'bottom'</code>\|<code>'bottomRight'</code>|<code>'top'</code>|否

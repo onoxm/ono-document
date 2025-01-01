@@ -54,6 +54,164 @@ function App() {
 export default App;
 ```
 
+## 隐藏箭头
+```tsx
+import { Popover } from '@/components/tools'
+
+function App() {
+  return
+    <Popover content={'这是一段内容'} isShowArrow={false}>
+      <div>Hover</div>
+    </Popover>
+}
+
+export default App;
+```
+
+## 自定义位置
+```tsx
+import { List, Popover, PositionType } from '@/components/tools'
+
+function App() {
+  const position = [
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: 'topLeft',
+      label: '上左'
+    },
+    {
+      pos: 'top',
+      label: '上'
+    },
+    {
+      pos: 'topRight',
+      label: '上右'
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: 'leftTop',
+      label: '左上'
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: 'rightTop',
+      label: '右上'
+    },
+    {
+      pos: 'left',
+      label: '左'
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: 'right',
+      label: '右'
+    },
+    {
+      pos: 'leftBottom',
+      label: '左下'
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: 'rightBottom',
+      label: '右下'
+    },
+    {
+      pos: '',
+      label: ''
+    },
+    {
+      pos: 'bottomLeft',
+      label: '下左'
+    },
+    {
+      pos: 'bottom',
+      label: '下'
+    },
+    {
+      pos: 'bottomRight',
+      label: '下右'
+    },
+    {
+      pos: '',
+      label: ''
+    }
+  ]
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, 1fr)',
+          width: '800px',
+          gap: '10px'
+        }}
+      >
+        <List list={position}>
+          {({ pos, label }, i) =>
+            pos === '' ? (
+              <div key={i}></div>
+            ) : (
+              <Popover
+                key={i}
+                overlayStyle={{ width: '300px' }}
+                content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime voluptatibus doloribus iure quia excepturi iste sunt esse quibusdam omnis nesciunt ullam laborum accusamus amet recusandae, soluta velit! Amet, maiores nisi."
+                position={pos as PositionType}
+              >
+                <div style={{ padding: '8px', border: '1px solid #333' }}>
+                  {label}
+                </div>
+              </Popover>
+            )
+          }
+        </List>
+      </div>
+    </div>
+  )
+}
+
+export default App;
+```
+
 ## API
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
@@ -70,3 +228,5 @@ overlayClassName|浮层类名|<code>string</code>|-|否
 overlayStyle|浮层样式|<code>CSSProperties</code>|-|否
 open|控制浮层显示状态|<code>boolean</code>|<code>false</code>|否
 onOpenChange|浮层显示状态改变回调函数|<code>(open: boolean) => void</code>|<code>() => {}</code>|否
+isShowArrow|是否显示箭头|<code>boolean</code>|<code>true</code>|否
+position|气泡位置|<code>'topLeft'</code>\|<code>'top'</code>\|<code>'topRight'</code>\|<code>'leftTop'</code>\|<code>'rightTop'</code>\|<code>'left'</code>\|<code>'right'</code>\|<code>'leftBottom'</code>\|<code>'rightBottom'</code>\|<code>'bottomLeft'</code>\|<code>'bottom'</code>\|<code>'bottomRight'</code>|<code>'top'</code>|否
