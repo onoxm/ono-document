@@ -26,14 +26,13 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-width|组件宽度|<code>number</code>\|<code>string</code>|<code>'fit-content'</code>|否
-height|组件高度|<code>number</code>\|<code>string</code>|<code>'fit-content'</code>|否
-btnClr|按钮背景色|<code>string</code>|<code>'#967aeb'</code>|否
-color|文字颜色|<code>string</code>|<code>'#fff'</code>|否
-children|区域子元素|<code>ReactNode</code>|-|是
-disabled|是否禁用|<code>boolean</code>|-|否
-padding|内边距|<code>number</code>\|<code>string</code>|<code>'5px 12px'</code>|否
-margin|外边距|<code>number</code>\|<code>string</code>|<code>0</code>|否
-border|边框|<code>string</code>|<code>'none'</code>|否
-borderRadius|圆角大小|<code>number</code>\|<code>string</code>|<code>'4px'</code>|否
+type|按钮类型|<code>'primary'</code>\|<code>'success'</code>\|<code>'warning'</code>\|<code>'danger'</code>\|<code>'info'</code>\|<code>'default'</code>|<code>'primary'</code>|否
+htmlType|设置button原生type属性|<code>'button'</code>\|<code>'submit'</code>\|<code>'reset'</code>|<code>'button'</code>|否
+shape|按钮形状|<code>'default'</code>\|<code>'round'</code>\|<code>'circle'</code>|<code>'#default'</code>|否
+plain|是否朴素按钮|<code>boolean</code>|<code>false</code>|否
+disabled|是否禁用|<code>boolean</code>/|<code>() => boolean</code>|<code>false</code>|否
+loading|是否显示加载中状态|<code>boolean</code>/|<code>boolean</code>|<code>false</code>|否
+children|区域子元素|<code>ReactNode</code>|-|否
+className|自定义类名||<code>string</code>|-|否
+style|自定义样式|<code>CSSProperties</code>|-|否
 onClick|点击事件回调函数|<code>(e: React.MouseEvent\<HTMLButtonElement>) => void</code>|-|否

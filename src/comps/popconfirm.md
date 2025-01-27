@@ -80,4 +80,20 @@ open|控制浮层显示状态|<code>boolean</code>|<code>false</code>|否
 onOpenChange|浮层显示状态改变回调函数|<code>(open: boolean) => void</code>|<code>() => {}</code>|否
 btnBarDom|自定义按钮组|<code>({ OkBtn, CancelBtn, handleClose }: { OkBtn: FC; CancelBtn: FC; handleClose: () => void}) => ReactNode</code>|<code>({ OkBtn, CancelBtn }: { OkBtn: FC<{}>; CancelBtn: FC<{}> }) =><>\<CancelBtn />\<OkBtn /></></code>|否
 isShowArrow|是否显示箭头|<code>boolean</code>|<code>true</code>|否
-position|气泡位置|<code>'topLeft'</code>\|<code>'top'</code>\|<code>'topRight'</code>\|<code>'leftTop'</code>\|<code>'rightTop'</code>\|<code>'left'</code>\|<code>'right'</code>\|<code>'leftBottom'</code>\|<code>'rightBottom'</code>\|<code>'bottomLeft'</code>\|<code>'bottom'</code>\|<code>'bottomRight'</code>|<code>'top'</code>|否
+position|气泡位置|<code>positionParams</code>|<code>'top'</code>|否
+
+### positionParams
+类型|说明
+:- | :- 
+<code>'top'</code>|上方
+<code>'bottom'</code>|下方
+<code>'left'</code>|左侧
+<code>'right'</code>|右侧
+<code>'topLeft'</code>|上左方
+<code>'topRight'</code>|上右方
+<code>'bottomLeft'</code>|下左方
+<code>'bottomRight'</code>|下右方
+<code>'leftTop'</code>|左上角
+<code>'leftBottom'</code>|左下角
+<code>'rightTop'</code>|右上角
+<code>'rightBottom'</code>|右下角

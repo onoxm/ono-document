@@ -115,4 +115,4 @@ onChange|当 Radio 的值发送改变时触发|<code>(value: string\|number\|boo
 :- | :- | :- | :- | :-
 value|Radio 选项的值|<code>string</code>\|<code>number</code>\|<code>boolean</code>|-|是
 text|Radio 选项的文字|<code>string</code>|-|是
-disabled|禁用函数|<code>(value: string\|number\|boolean) => boolean</code>|-|否
+disabled|禁用函数|<code>boolean</code>\|<code>(value: string\|number\|boolean) => boolean</code>|-|否
