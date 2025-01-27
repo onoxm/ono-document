@@ -84,7 +84,7 @@ export default App;
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 gap|元素间距|<code>number</code>|<code>0</code>|否
-padding|区域内边距|<code>number</code>|<code>0</code>|否
+padding|区域内边距|<code>number</code>\|<code>string</code>|<code>0</code>|否
 border|区域外边框|<code>string</code>|<code>null</code>|否
 borderRadius|区域外边框圆角|<code>number</code>|<code>0</code>|否
 duration|滑块滑动动画时长|<code>number</code>|<code>300</code>|否
