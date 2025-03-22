@@ -160,7 +160,7 @@ export default App;
 containerClassName|虚拟列表的container类名|<code>string</code>|-|否
 containerStyle|虚拟列表的container样式|<code>CSSProperties</code>|-|否
 refreshSpeed|虚拟列表滚动时的刷新速度|<code>number</code>|<code>50</code>|否
-estimatedHeight|预估每一项的高度|<code>number</code>|<code>50</code>|否
+estimatedHeight|预估每一项的高度|<code>number</code>|<code>35</code>|否
 wrapperClassName|虚拟列表的wrapper类名|<code>string</code>|-|否
 wrapperStyle|虚拟列表的wrapper样式|<code>CSSProperties</code>|-|否
 direction|虚拟列表的方向|<code>'vertical'</code>\|<code>'horizontal'</code>|<code>'vertical'</code>|否
