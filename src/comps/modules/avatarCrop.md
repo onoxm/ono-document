@@ -143,11 +143,6 @@ border|边框样式|<code>string</code>|<code>4px solid #fff</code>|否
 wheelScale|滚轮缩放比例|<code>number</code>|<code>0.1</code>|否
 children|子元素|<code>({handleConfirm, handleReduction}: ChildrenParams) => JSX.Element</code>|-|否
 
-### footerBtnList
-参数|说明|类型|默认值|是否必填
-:- | :- | :- | :- | :-
-footerBtnList|底部按钮列表|<code>{(params: FooterBtnListParams) => React.ReactNode}</code> \| <code>null</code>|<code>{({ OkBtn, ReductionBtn }) => ( <><ReductionBtn /><OkBtn /></> )}</code>|否
-
 ### ChildrenParams
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
