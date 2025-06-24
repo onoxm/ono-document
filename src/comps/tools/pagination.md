@@ -19,7 +19,7 @@ function App() {
 
     return <div>
         <Pagination
-            allPages={10} //总页数
+            total={10} //总页数
             currentPage={currentPage} //当前页码
             onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
         />
@@ -39,7 +39,7 @@ function App() {
 
     return <div>
         <Pagination
-            allPages={10} //总页数
+            total={10} //总页数
             currentPage={currentPage} //当前页码
             onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
             firstBtn={
@@ -84,7 +84,7 @@ function App() {
 
     return <div>
         <Pagination
-            allPages={10} //总页数
+            total={10} //总页数
             currentPage={currentPage} //当前页码
             onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
         >
@@ -123,7 +123,7 @@ function App() {
 
     return <div>
         <Pagination
-            allPages={10} //总页数
+            total={10} //总页数
             currentPage={currentPage} //当前页码
             onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
             prevBtn={
@@ -169,7 +169,7 @@ function App() {
 
     return <div>
         <Pagination
-            allPages={10} //总页数
+            total={10} //总页数
             currentPage={currentPage} //当前页码
             onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
             hiddenNextBtnOnLastPage //当到达尾页时，隐藏下一页按钮
@@ -185,7 +185,7 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-allPages|总页数|<code>number</code>|-|是
+total|总页数|<code>number</code>|-|是
 currentPage|当前页码|<code>number</code>|-|是
 onChange|页码改变的回调函数|<code>(page: number) => void</code>|-|是
 hiddenNextBtnOnLastPage|当到达尾页时，隐藏下一页按钮|<code>boolean</code>|<code>false</code>|否
