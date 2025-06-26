@@ -146,7 +146,7 @@ children|子元素|<code>({handleConfirm, handleReduction}: ChildrenParams) => J
 ### ChildrenParams
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-handleConfirm|确认按钮的回调函数|<code>(handelSave:(avatarData: AvatarData) => void, options: OptionsParams) => void</code>|-|否
+handleConfirm|确认按钮的回调函数|<code>(handelSave:(avatarData: string \| Blob) => void, options: OptionsParams) => void</code>|-|否
 handleReduction|还原按钮的回调函数|<code>(onReductionSuccess?: () => void) => void</code>|-|否
 
 ### OptionsParams
@@ -155,8 +155,3 @@ handleReduction|还原按钮的回调函数|<code>(onReductionSuccess?: () => vo
 imageSaveType|图片保存类型|<code>png</code>\|<code>jpeg</code>\|<code>webp</code>|<code>png</code>|否
 dataSaveType|数据保存类型|<code>string</code>\|<code>Blob</code>|<code>string</code>|否
 quality|图片质量|<code>number</code>|<code>100</code>|否
-
-### AvatarData
-参数|说明|类型|默认值|是否必填
-:- | :- | :- | :- | :-
-AvatarData|头像裁剪数据|<code>string</code> \| <code>Blob</code>|-|否

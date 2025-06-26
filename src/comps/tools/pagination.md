@@ -187,13 +187,17 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-total|总页数|<code>number</code>|-|是
 currentPage|当前页码|<code>number</code>|-|是
+total|总页数|<code>number</code>|-|是
 onChange|页码改变的回调函数|<code>(page: number) => void</code>|-|是
+className|自定义样式类名|<code>string</code>|-|否
+style|自定义样式对象|<code>CSSProperties</code>|-|否
+pageBtnClassName|自定义页码按钮样式类名|<code>string</code>|-|否
+pageBtnActiveClassName|自定义页码按钮激活样式类名|<code>string</code>|-|否
 hiddenNextBtnOnLastPage|当到达尾页时，隐藏下一页按钮|<code>boolean</code>|<code>false</code>|否
 hiddenPrevBtnOnFirstPage|当到达首页时，隐藏上一页按钮|<code>boolean</code>|<code>false</code>|否
 firstBtn|自定义首页按钮|<code>ReactNode</code>|<code>null</code>|否
 lastBtn|自定义尾页按钮|<code>ReactNode</code>|<code>null</code>|否
-prevBtn|自定义上一页按钮|<code>ReactNode | (isActive: boolean) => ReactNode</code>|<code>null</code>|否
-nextBtn|自定义下一页按钮|<code>ReactNode | (isActive: boolean) => ReactNode</code>|<code>null</code>|否
+prevBtn|自定义上一页按钮|<code>ReactNode</code>\|<code>(isActive: boolean) => ReactNode</code>|<code>null</code>|否
+nextBtn|自定义下一页按钮|<code>ReactNode</code>\|<code>(isActive: boolean) => ReactNode</code>|<code>null</code>|否
 children|自定义页码按钮|<code>({page, isActive}: {page: number; isActive: boolean}) => ReactNode</code>|<code>null</code>|否
