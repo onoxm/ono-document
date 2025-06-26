@@ -21,7 +21,7 @@ function App() {
         <Pagination
             total={10} //总页数
             currentPage={currentPage} //当前页码
-            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
+            onChange={setCurrentPage} //页码改变的回调函数
         />
     </div>
 }
@@ -41,7 +41,7 @@ function App() {
         <Pagination
             total={10} //总页数
             currentPage={currentPage} //当前页码
-            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
+            onChange={setCurrentPage} //页码改变的回调函数
             firstBtn={
                 <div
                     style={{
@@ -86,9 +86,9 @@ function App() {
         <Pagination
             total={10} //总页数
             currentPage={currentPage} //当前页码
-            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
+            onChange={setCurrentPage} //页码改变的回调函数
         >
-            {(page) => (
+            {({ page, isActive }) => (
                 <div
                     style={{
                         width: '40px',
@@ -99,8 +99,8 @@ function App() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         border: '1px solid #e5e5e5',
-                        color: currentPage === page ? 'white' : '#333',
-                        backgroundColor: currentPage === page ? '#765def' : 'white'
+                        color: isActive ? 'white' : '#333',
+                        backgroundColor: isActive ? '#765def' : 'white'
                     }}
                 >
                     {page}
@@ -125,8 +125,8 @@ function App() {
         <Pagination
             total={10} //总页数
             currentPage={currentPage} //当前页码
-            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
-            prevBtn={
+            onChange={setCurrentPage} //页码改变的回调函数
+            prevBtn={(isActive) =>
                 <div
                     style={{
                         color: '#333',
@@ -134,12 +134,13 @@ function App() {
                         borderRadius: '4px',
                         backgroundColor: 'white',
                         border: '1px solid #e5e5e5',
+                        opacity: isActive ? 1 : 0.5
                     }}
                 >
                     上一页
                 </div>
             }
-            nextBtn={
+            nextBtn={(isActive) =>
                 <div
                     style={{
                         color: '#333',
@@ -147,6 +148,7 @@ function App() {
                         borderRadius: '4px',
                         backgroundColor: 'white',
                         border: '1px solid #e5e5e5',
+                        opacity: isActive ? 1 : 0.5
                     }}
                 >
                     下一页
@@ -171,7 +173,7 @@ function App() {
         <Pagination
             total={10} //总页数
             currentPage={currentPage} //当前页码
-            onChange={(page)=>setCurrentPage(page)} //页码改变的回调函数
+            onChange={setCurrentPage} //页码改变的回调函数
             hiddenNextBtnOnLastPage //当到达尾页时，隐藏下一页按钮
             hiddenPrevBtnOnFirstPage //当到达首页时，隐藏上一页按钮
         />
@@ -192,6 +194,6 @@ hiddenNextBtnOnLastPage|当到达尾页时，隐藏下一页按钮|<code>boolean
 hiddenPrevBtnOnFirstPage|当到达首页时，隐藏上一页按钮|<code>boolean</code>|<code>false</code>|否
 firstBtn|自定义首页按钮|<code>ReactNode</code>|<code>null</code>|否
 lastBtn|自定义尾页按钮|<code>ReactNode</code>|<code>null</code>|否
-prevBtn|自定义上一页按钮|<code>ReactNode</code>|<code>null</code>|否
-nextBtn|自定义下一页按钮|<code>ReactNode</code>|<code>null</code>|否
-children|自定义页码按钮|<code>(page: number) => ReactNode</code>|<code>null</code>|否
+prevBtn|自定义上一页按钮|<code>ReactNode | (isActive: boolean) => ReactNode</code>|<code>null</code>|否
+nextBtn|自定义下一页按钮|<code>ReactNode | (isActive: boolean) => ReactNode</code>|<code>null</code>|否
+children|自定义页码按钮|<code>({page, isActive}: {page: number; isActive: boolean}) => ReactNode</code>|<code>null</code>|否
