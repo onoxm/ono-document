@@ -15,8 +15,6 @@ import React, { useState } from'react'
 import { AutoSliderList } from '@/components/tools'
 
 function App() {
-    const [currentIndex, setCurrentIndex] = useState<number>(0)
-
     const list = [
         'html',
         'css',
@@ -24,39 +22,73 @@ function App() {
         'typescript',
         'vue',
         'angular',
-        'react',
-        'node',
-        'express',
-        'koa',
-        'egg',
-        'nest',
-        'next',
-        'nuxt',
-        'jquery',
-        'backbone',
-        'rust',
-        'go',
-        'python',
-        'ruby',
-        'php',
-        'java',
-        'c++',
-        'c#'
+        'react'
     ]
 
     return <div>
         <AutoSliderList
-            gap={8}
-            padding={8}
-            sliderBgc="pink"
-            sliderBorderRadius={8}
-            border="2px dashed #ccc"
-            currentIndex={currentIndex}
+            style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
+            sliderStyle={{ background: 'pink', borderRadius: 8 }}
+            list={list}
             sliderTransitionTimingFunction="linear"
         >
-            {list.map((item, i) => (
-                <li // 子元素推荐使用li标签
-                    key={i}
+        {({ item, isActive }) => (
+            <li
+                key={item}
+                style={{
+                    width: '100%',
+                    height: 'fit-content',
+                    padding: '4px 8px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    color: isActive ? '#fff' : '#333'
+                }}
+            >   
+                {item}
+            </li>
+        )}
+      </AutoSliderList>
+    </div>
+}
+
+export default App;
+```
+
+## 使用默认选项属性
+```tsx
+import React, { useState } from'react'
+import { AutoSliderList } from '@/components/tools'
+
+function App() {
+    const list = [
+        'html',
+        'css',
+        'javascript',
+        'typescript',
+        'vue',
+        'angular',
+        'react'
+    ]
+
+    return (
+        <AutoSliderList
+            style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
+            sliderStyle={{ background: 'pink', borderRadius: 8 }}
+            list={list}
+            defaultSelectedItem={list =>
+                list
+                    .map((item, i) => {
+                      if (item === 'javascript') return i
+                    })
+                    .filter(Boolean)[0] as number
+            }
+            sliderTransitionTimingFunction="linear"
+        >
+            {({ item, isActive }) => (
+                <li
+                    key={item}
                     style={{
                         width: '100%',
                         height: 'fit-content',
@@ -65,15 +97,14 @@ function App() {
                         justifyContent: 'center',
                         alignItems: 'center',
                         cursor: 'pointer',
-                        color: currentIndex === i ? '#fff' : '#333',
+                        color: isActive ? '#fff' : '#333'
                     }}
-                    onClick={() => setCurrentIndex(i)}
                 >
                     {item}
                 </li>
-            ))}
-      </AutoSliderList>
-    </div>
+            )}
+        </AutoSliderList>
+    )
 }
 
 export default App;
@@ -83,16 +114,13 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-gap|元素间距|<code>number</code>|<code>0</code>|否
-padding|区域内边距|<code>number</code>\|<code>string</code>|<code>0</code>|否
-border|区域外边框|<code>string</code>|<code>null</code>|否
-borderRadius|区域外边框圆角|<code>number</code>|<code>0</code>|否
+list|列表|<code>T[]</code>|-|是
+children|子元素|<code>({item, index, isActive}: {item: T; index: number; isActive: boolean})=>JSX.Element</code>|-|是
+className|自定义样式类名|<code>string</code>|-|否
+style|自定义样式对象|<code>CSSProperties</code>|-|否
+sliderClassName|自定义滑块样式类名|<code>string</code>|-|否
+sliderStyle|自定义滑块样式对象|<code>CSSProperties</code>|-|否
+sliderBox|滑块|<code>JSX.Element</code>|<code>JSX.Element</code>|否
 duration|滑块滑动动画时长|<code>number</code>|<code>300</code>|否
-children|区域子元素|<code>ReactNode</code>|-|是
-currentIndex|当前索引|<code>number</code>|-|是
-sliderBgc|滑块背景色|<code>string</code>|<code>#ccc</code>|否
-sliderWidth|滑块宽度|<code>number</code>|-|否
-sliderHeight|滑块高度|<code>number</code>|-|否
-sliderBorderRadius|滑块圆角|<code>number</code>|<code>0</code>|否
 direction|方向|<code>Horizontal</code>\|<code>Vertical</code>|<code>Horizontal</code>|否
 sliderTransitionTimingFunction|滑块动画效果|<code>string</code>|<code>ease-in-out</code>|否
