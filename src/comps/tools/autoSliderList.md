@@ -77,12 +77,12 @@ function App() {
             style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
             sliderStyle={{ background: 'pink', borderRadius: 8 }}
             list={list}
-            defaultSelectedItem={list =>
+            currentIndex={
                 list
-                .map((item, i) => {
-                  if (item === 'javascript') return i
-                })
-                .filter(Boolean)[0]!
+                    .map((item, i) => {
+                      if (item === 'javascript') return i
+                    })
+                    .filter(Boolean)[0]!
             }
             sliderTransitionTimingFunction="linear"
         >
@@ -121,7 +121,7 @@ style|自定义样式对象|<code>CSSProperties</code>|-|否
 sliderClassName|自定义滑块样式类名|<code>string</code>|-|否
 sliderStyle|自定义滑块样式对象|<code>CSSProperties</code>|-|否
 sliderBox|滑块|<code>JSX.Element</code>|<code>JSX.Element</code>|否
+currentIndex|选择项|<code>number</code>|<code>0</code>|否
 duration|滑块滑动动画时长|<code>number</code>|<code>300</code>|否
 direction|方向|<code>Horizontal</code>\|<code>Vertical</code>|<code>Horizontal</code>|否
-defaultSelectedItem|默认选择项|<code>(list: T[]) => number</code>|<code>-</code>|否
 sliderTransitionTimingFunction|滑块动画效果|<code>string</code>|<code>ease-in-out</code>|否
