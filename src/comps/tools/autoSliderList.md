@@ -2,6 +2,8 @@
 一个按钮列表组件，点击某个按钮滑块会自动滑到对应的位置。
 
 ## 前置条件
+该组件依赖`common`里的方法，请先下载<a href='/ono-document/utils/common'>`common`</a>文件至`src/utils`文件夹中。
+
 下载AutoSliderList组件文件,并将文件放入`src/components/tools`文件夹下。
 
 在`src/components/tools/index.ts`写入以下代码
@@ -56,7 +58,7 @@ function App() {
 export default App;
 ```
 
-## 使用默认选项属性
+## 使用当前下标属性
 ```tsx
 import React, { useState } from'react'
 import { AutoSliderList } from '@/components/tools'
@@ -74,16 +76,10 @@ function App() {
 
     return (
         <AutoSliderList
+            list={list}
             style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
             sliderStyle={{ background: 'pink', borderRadius: 8 }}
-            list={list}
-            currentIndex={
-                list
-                    .map((item, i) => {
-                      if (item === 'javascript') return i
-                    })
-                    .filter(Boolean)[0]!
-            }
+            currentIndex={list.findIndex(item => item === 'javascript')}
             sliderTransitionTimingFunction="linear"
         >
             {({ item, isActive }) => (
@@ -121,7 +117,7 @@ style|自定义样式对象|<code>CSSProperties</code>|-|否
 sliderClassName|自定义滑块样式类名|<code>string</code>|-|否
 sliderStyle|自定义滑块样式对象|<code>CSSProperties</code>|-|否
 sliderBox|滑块|<code>JSX.Element</code>|<code>JSX.Element</code>|否
-currentIndex|选择项|<code>number</code>|<code>0</code>|否
+currentIndex|当前下标|<code>number</code>|<code>0</code>|否
 duration|滑块滑动动画时长|<code>number</code>|<code>300</code>|否
 direction|方向|<code>Horizontal</code>\|<code>Vertical</code>|<code>Horizontal</code>|否
 sliderTransitionTimingFunction|滑块动画效果|<code>string</code>|<code>ease-in-out</code>|否

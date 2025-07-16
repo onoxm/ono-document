@@ -20,7 +20,7 @@ export const sidebar = {
         { text: 'Checkbox 多选框', link: '/comps/elements/checkbox' },
         // { text: 'Input 输入框', link: '/comps/elements/input' },
         { text: 'Radio 单选框', link: '/comps/elements/radio' },
-        // { text: 'Switch 开关', link: '/comps/elements/switch' }
+        { text: 'Switch 开关', link: '/comps/elements/switch' }
       ]
     },
     {
