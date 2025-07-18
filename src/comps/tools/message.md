@@ -136,4 +136,5 @@ message|提示内容|<code>ReactNode</code>\|<code>(icon: ReactNode, closeButton
 speed|动画速度，单位毫秒。|<code>number</code>|300|否
 offset|偏移距离|<code>number</code>|20|否
 showClose|显示关闭按钮|<code>boolean</code>|false|否
+onClose|message组件关闭时回调|<code>() => void</code>|-|否
 zIndex|层级|<code>number</code>|9999|否

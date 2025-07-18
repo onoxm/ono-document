@@ -111,6 +111,7 @@ export default App;
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 list|列表|<code>T[]</code>|-|是
+disable|是否禁止|<code>boolean</code>|false|否
 children|子元素|<code>({item, index, isActive}: {item: T; index: number; isActive: boolean}) => JSX.Element</code>|-|是
 className|自定义样式类名|<code>string</code>|-|否
 style|自定义样式对象|<code>CSSProperties</code>|-|否
