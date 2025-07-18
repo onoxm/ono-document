@@ -43,7 +43,7 @@ export const sidebar = {
         // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
         { text: 'AwaitList 异步列表循环', link: '/comps/tools/awaitList' },
         { text: 'List 列表循环', link: '/comps/tools/list' },
-        // { text: 'Message 消息提示', link: '/comps/tools/message' },
+        { text: 'Message 消息提示', link: '/comps/tools/message' },
         { text: 'Modal 弹窗', link: '/comps/tools/modal' },
         { text: 'Pagination 分页', link: '/comps/tools/pagination' },
         { text: 'Popover 气泡卡片', link: '/comps/tools/popover' },

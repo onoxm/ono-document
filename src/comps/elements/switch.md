@@ -4,7 +4,7 @@
 ## 前置条件
 该组件依赖`common`里的方法，请先下载<a href='/ono-document/utils/common'>`common`</a>文件至`src/utils`文件夹中。
 
-下载Pagination组件文件,并将文件放入`src/components/elements`文件夹下。
+下载Switch组件文件,并将文件放入`src/components/elements`文件夹下。
 
 在`src/components/elements/index.ts`写入以下代码
 ```tsx

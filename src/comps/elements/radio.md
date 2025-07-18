@@ -2,7 +2,7 @@
 单选框用于在多个选项中选取一个。
 
 ## 前置条件
-下载Pagination组件文件,并将文件放入`src/components/elements`文件夹下。
+下载Radio组件文件,并将文件放入`src/components/elements`文件夹下。
 
 在`src/components/elements/index.ts`写入以下代码
 ```tsx
