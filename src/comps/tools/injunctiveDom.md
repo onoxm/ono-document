@@ -71,6 +71,11 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-Component|传入组件的props必须有destroy函数属性|<code>(props: T) => JSX.Element</code>|-|是
+Component|传入组件的props必须带有destroy函数属性|<code>(props: T) => JSX.Element</code>|-|是
 props|传入组件的props，除了destroy函数属性|<code>Omit<T, "destroy"></code>|-|是
 id|dom的id，destroy函数会根据传入的id删除对应的dom|<code>string</code>|-|否
+
+### ComponentProps
+参数|说明|类型|默认值|是否必填
+:- | :- | :- | :- | :-
+destroy|命令式组件的销毁函数|<code>(onDestroy?: () => void) => void</code>|-|是
