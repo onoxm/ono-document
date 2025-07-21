@@ -142,7 +142,7 @@ style|RadioGroup的样式|<code>CSSProperties</code>|<code>-</code>|否
 className|RadioGroup的样式的类名|<code>string</code>|<code>-</code>|否
 checkColor|Radio选中时的颜色|<code>string</code>|<code>'#532ce1'</code>|否
 unCheckColor|Radio未选中时的颜色|<code>string</code>|<code>'transparent'</code>|否
-labelPosition|Radio的标签位置|<code>'left' | 'right'</code>|<code>'left'</code>|否
+labelPosition|Radio的标签位置|<code>'left'</code>\|<code>'right'</code>|<code>'left'</code>|否
 onChange|当 Radio 的值发送改变时触发|<code>(value: T) => void</code>|-|是
 
 ### RadioItemType
