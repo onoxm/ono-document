@@ -19,6 +19,7 @@ export const sidebar = {
         { text: 'Card3D 3D卡片', link: '/comps/elements/card3d' },
         { text: 'Checkbox 多选框', link: '/comps/elements/checkbox' },
         // { text: 'Input 输入框', link: '/comps/elements/input' },
+        { text: 'MenuButton 菜单按钮', link: '/comps/elements/menuButton' },
         { text: 'Radio 单选框', link: '/comps/elements/radio' },
         { text: 'Switch 开关', link: '/comps/elements/switch' }
       ]
