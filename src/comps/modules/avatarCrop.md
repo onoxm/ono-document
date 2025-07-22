@@ -2,9 +2,9 @@
 一个头像裁剪功能的组件。
 
 ## 前置条件
-下载AutoSliderList组件文件,并将文件放入`src/components/tools`文件夹下。
+下载AutoSliderList组件文件,并将文件放入`src/components/modules`文件夹下。
 
-在`src/components/tools/index.ts`写入以下代码
+在`src/components/modules/index.ts`写入以下代码
 ```tsx
 export * from './AvatarCrop';
 ```
