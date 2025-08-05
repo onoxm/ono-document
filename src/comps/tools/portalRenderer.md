@@ -1,18 +1,18 @@
-# InjunctiveDom 命令式Dom
+# PortalRenderer 命令式Dom
 将声明式的组件转换成命令式组件。
 
 ## 前置条件
-下载InjunctiveDom组件文件,并将文件放入`src/components/tools`文件夹下。
+下载PortalRenderer组件文件,并将文件放入`src/components/tools`文件夹下。
 
 在`src/components/tools/index.ts`写入以下代码
 ```tsx
-export * from './InjunctiveDom';
+export * from './PortalRenderer';
 ```
 
 ## 基础用法
 ```tsx
 import { Button } from '@/components/elements'
-import { injunctiveDom } from '@/components/tools'
+import { portalRenderer } from '@/components/tools'
 
 const MyComponent = ({ destroy }: { destroy: () => void }) => {
   return (
@@ -57,7 +57,7 @@ const MyComponent = ({ destroy }: { destroy: () => void }) => {
 function App() {
   return (
     <div style={{ width: '100%', display: 'flex', gap: 10 }}>
-      <Button onClick={() => injunctiveDom(MyComponent, {}, 'my-component')}>
+      <Button onClick={() => portalRenderer(MyComponent, {}, 'my-component')}>
         Open My Component
       </Button>
     </div>

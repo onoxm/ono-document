@@ -44,13 +44,16 @@ export const sidebar = {
         },
         // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
         { text: 'AwaitList 异步列表循环', link: '/comps/tools/awaitList' },
-        { text: 'InjunctiveDom 命令式Dom', link: '/comps/tools/injunctiveDom' },
         { text: 'List 列表循环', link: '/comps/tools/list' },
         { text: 'Message 消息提示', link: '/comps/tools/message' },
         { text: 'Modal 弹窗', link: '/comps/tools/modal' },
         { text: 'Pagination 分页', link: '/comps/tools/pagination' },
         { text: 'Popover 气泡卡片', link: '/comps/tools/popover' },
         { text: 'Popconfirm 气泡确认框', link: '/comps/tools/popconfirm' },
+        {
+          text: 'PortalRenderer 命令式Dom',
+          link: '/comps/tools/portalRenderer'
+        },
         // { text: 'Toast 提示框', link: '/comps/tools/toast' },
         // { text: 'Tooltip 提示框', link: '/comps/tools/tooltip' },
         { text: 'Xscroll 滚动组件', link: '/comps/tools/xscroll' }
