@@ -30,7 +30,8 @@ export const sidebar = {
       items: [
         { text: 'Avatar Crop 头像裁剪', link: '/comps/modules/avatarCrop' },
         // { text: 'Select 下拉选择', link: '/comps/modules/select' },
-        { text: 'VirtualList 虚拟列表', link: '/comps/modules/virtualList' }
+        { text: 'VirtualList 虚拟列表', link: '/comps/modules/virtualList' },
+        { text: 'Waterfall 瀑布流', link: '/comps/modules/waterfall' }
       ]
     },
     {
