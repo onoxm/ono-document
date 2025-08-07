@@ -62,15 +62,20 @@ function App() {
           border: '1px solid black',
           padding: 12
         }}
-        itemDom={img => (
+        request={requestData}
+      >
+        {img => (
           <img
-            className="w-full h-full object-fit-cover"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
+            }}
             src={img.url}
             alt=""
           />
         )}
-        request={requestData}
-      />
+      </Waterfall>
     </div>
   )
 }
@@ -114,15 +119,20 @@ function App() {
           border: '1px solid black',
           padding: 12
         }}
-        itemDom={img => (
+        request={requestData}
+      >
+        {img => (
           <img
-            className="w-full h-full object-fit-cover"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
+            }}
             src={img.url}
             alt=""
           />
         )}
-        request={requestData}
-      />
+      </Waterfall>
     </div>
   )
 }
@@ -142,7 +152,7 @@ bottomThreshold|滚动到底部的阈值，到达阈值会更新数据|<code>num
 reloadData|重新加载数据的依赖项，当该数据更新时，会重新清除之前的所有数据，重新获取|<code>string</code>\|<code>number</code>|-|否
 updateData|用于组件外部控制瀑布流内部数据的更新|<code>boolean</code>|-|否
 loading|显示加载中的样式|<code>boolean</code>\|<code>ReactElement</code>\|<code>() => ReactElement</code>|-|否
-itemDom|瀑布流中每一项的DOM结构|<code>(item: ImageItem, index: number) => ReactElement</code>|-|是
+children|瀑布流中每一项的DOM结构|<code>(item: ImageItem, index: number) => ReactElement</code>|-|是
 request|请求数据的方法，返回一个Promise对象|<code>(page: number, pageSize: number) => Promise<ImageItem[]></code>|-|是
 
 ### ImageItem
