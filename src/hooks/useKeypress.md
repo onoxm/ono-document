@@ -98,4 +98,5 @@ CommandOrControl|Mac下为Command键，Windows下为Control键
 :- | :- | :- | :- | :-
 event|触发事件类型|<code>keydown</code>\|<code>keyup</code>|keydown|否
 target|触发事件的目标元素|<code>Element</code>|document.body|否
+deps|依赖项，当依赖项发生变化时，会重新执行监听|<code>DependencyList</code>|-|否
 exactMatch|是否精确匹配组合键|<code>boolean</code>|false|否

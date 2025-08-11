@@ -13,7 +13,7 @@ export const sidebar = {
   '/comps/': [
     {
       text: 'Elements',
-      // collapsed: true,
+      collapsed: false,
       items: [
         { text: 'Button 按钮', link: '/comps/elements/button' },
         { text: 'Card3D 3D卡片', link: '/comps/elements/card3d' },
@@ -26,7 +26,7 @@ export const sidebar = {
     },
     {
       text: 'Modules',
-      // collapsed: true,
+      collapsed: false,
       items: [
         { text: 'Avatar Crop 头像裁剪', link: '/comps/modules/avatarCrop' },
         // { text: 'Select 下拉选择', link: '/comps/modules/select' },
@@ -36,7 +36,7 @@ export const sidebar = {
     },
     {
       text: 'Tools',
-      // collapsed: true,
+      collapsed: false,
       items: [
         {
           text: 'AutoSliderList 自动滑块',
@@ -55,6 +55,7 @@ export const sidebar = {
           link: '/comps/tools/portalRenderer'
         },
         // { text: 'Toast 提示框', link: '/comps/tools/toast' },
+        // { text: 'TemplateDialog 模板弹窗', link: '/comps/tools/templateDialog' },
         // { text: 'Tooltip 提示框', link: '/comps/tools/tooltip' },
         { text: 'Xscroll 滚动组件', link: '/comps/tools/xscroll' }
       ]
@@ -64,20 +65,17 @@ export const sidebar = {
     {
       text: 'Hooks',
       items: [
+        { text: 'useCountdown', link: '/hooks/useCountdown' },
+        { text: 'useClickOutSide', link: '/hooks/useClickOutSide' },
         { text: 'useDefer', link: '/hooks/useDefer' },
-        { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useUpdate', link: '/hooks/useUpdate' },
+        { text: 'useEventListener', link: '/hooks/useEventListener' },
+        { text: 'useFullScreen', link: '/hooks/useFullScreen' },
+        { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
+        { text: 'useGlobalData', link: '/hooks/useGlobalData' },
         { text: 'useKeypress', link: '/hooks/useKeypress' },
         { text: 'useReactive', link: '/hooks/useReactive' },
-        { text: 'useCountdown', link: '/hooks/useCountdown' },
-        { text: 'useFullScreen', link: '/hooks/useFullScreen' },
-        { text: 'useGlobalData', link: '/hooks/useGlobalData' },
-        { text: 'useEventListener', link: '/hooks/useEventListener' },
-        { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
-        {
-          text: 'useGlobalClickListener',
-          link: '/hooks/useGlobalClickListener'
-        }
+        { text: 'useTheme', link: '/hooks/useTheme' },
+        { text: 'useUpdate', link: '/hooks/useUpdate' }
       ]
     }
   ],

@@ -36,5 +36,6 @@ options|监听参数|<code>EventListenerOptions</code>|-|否
 ### EventListenerOptions
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
+isDeferred|是否延迟执行回调函数，值为true时会返回一个函数，可供随时调用|<code>boolean</code>|false|否
 target|你想要监听的目标元素|<code>Element</code>|<code>window</code>|否
 deps|依赖项，当依赖项发生变化时，会重新绑定事件监听|<code>any[]</code>|<code>[]</code>|否
