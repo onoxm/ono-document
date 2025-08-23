@@ -13,7 +13,7 @@ export * from './Popconfirm';
 
 ## 基础用法
 ```tsx
-import { Button } from '@/components/elements'
+import { Button } from 'ono-react-element'
 import { Popconfirm } from '@/components/tools'
 
 function App() {
@@ -28,7 +28,7 @@ export default App;
 
 ## 默认打开
 ```tsx
-import { Button } from '@/components/elements'
+import { Button } from 'ono-react-element'
 import { Popconfirm } from '@/components/tools'
 
 function App() {
@@ -43,7 +43,7 @@ export default App;
 
 ## 隐藏箭头
 ```tsx
-import { Button } from '@/components/elements'
+import { Button } from 'ono-react-element'
 import { Popconfirm } from '@/components/tools'
 
 function App() {

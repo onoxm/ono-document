@@ -2,17 +2,15 @@
 收集用户的多项选择。
 
 ## 前置条件
-下载Checkbox组件文件,并将文件放入`src/components/elements`文件夹下。
-
-在`src/components/elements/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Checkbox';
+import 'ono-react-element/dist/style/Checkbox.css'
 ```
 
 ## 基础用法
 ```tsx
 import React, { useState } from'react'
-import { Checkbox } from '@/components/elements'
+import { Checkbox } from 'ono-react-element'
 
 function App() {
     const [checked, setChecked] = useState(false)
@@ -37,7 +35,7 @@ export default App;
 ## 多选用法
 ```tsx
 import React, { useState } from'react'
-import { Checkbox } from '@/components/elements'
+import { Checkbox } from 'ono-react-element'
 
 function App() {
   const [allChecked, setAllChecked] = useState(false)

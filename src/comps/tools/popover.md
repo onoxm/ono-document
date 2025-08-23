@@ -27,7 +27,7 @@ export default App;
 
 ## 点击触发
 ```tsx
-import { Button } from '@/components/elements'
+import { Button } from 'ono-react-element'
 import { Popover } from '@/components/tools'
 
 function App() {
@@ -70,7 +70,8 @@ export default App;
 
 ## 自定义位置
 ```tsx
-import { List, Popover, PositionType } from '@/components/tools'
+import { List } from 'ono-react-element'
+import { Popover, PositionType } from '@/components/tools'
 
 function App() {
   const position = [

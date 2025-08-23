@@ -2,20 +2,14 @@
 展示一个对话框，提供标题、内容区、操作区。
 
 ## 前置条件
-该组件依赖`colorUtils`里的方法，请先下载<a href='/ono-document/utils/colorUtils'>`colorUtils`</a>文件至`src/utils`文件夹中。
-
-<!-- <a href='/ono-document/hooks/useEventListener'>下载Modal组件文件</a>,并将文件放入src/components/tools文件夹下。 -->
-下载Modal组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Modal';
+import 'ono-react-element/dist/style/Modal.css'
 ```
 
 ## 基础用法
 ```tsx
-import { Button } from '@/components/elements'
-import { Modal } from '@/components/tools'
+import { Button, Modal } from 'ono-react-element'
 
 function App() {
     const handleModal = () => {
@@ -43,8 +37,7 @@ export default App;
 
 ## 点击蒙层关闭弹窗
 ```tsx
-import { Button } from '@/components/elements'
-import { Modal } from '@/components/tools'
+import { Button, Modal } from 'ono-react-element'
 
 function App() {
     const handleModal = () => {
@@ -74,8 +67,7 @@ export default App;
 ## 自定义底部内容
 只需要确认键，不需要取消键，可以这样写：
 ```tsx
-import { Button } from '@/components/elements'
-import { Modal } from '@/components/tools'
+import { Button, Modal } from 'ono-react-element'
 
 function App() {
     const handleModal = () => {
@@ -98,8 +90,7 @@ export default App;
 
 只需要取消键，不需要确认键，可以这样写：
 ```tsx
-import { Button } from '@/components/elements'
-import { Modal } from '@/components/tools'
+import { Button, Modal } from 'ono-react-element'
 
 function App() {
     const handleModal = () => {
@@ -122,8 +113,7 @@ export default App;
 
 如果不满意默认的按钮样式，可以这样写：
 ```tsx
-import { Button } from '@/components/elements'
-import { Modal } from '@/components/tools'
+import { Button, Modal } from 'ono-react-element'
 
 function App() {
     const handleModal = () => {
@@ -161,8 +151,7 @@ export default App;
 
 若不需要底部按钮，可以这样写：
 ```tsx
-import { Button } from '@/components/elements'
-import { Modal } from '@/components/tools'
+import { Button, Modal } from 'ono-react-element'
 
 function App() {
     const handleModal = () => {
@@ -179,8 +168,7 @@ export default App;
 
 ## 自定义弹窗样式
 ```tsx
-import { Button } from '@/components/elements'
-import { Modal } from '@/components/tools'
+import { Button, Modal } from 'ono-react-element'
 
 function App() {
     const handleModal = () => {

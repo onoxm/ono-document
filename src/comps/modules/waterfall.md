@@ -17,13 +17,9 @@ Waterfall 瀑布流组件是一种常用于展示图片或其他内容的高性�
 - 任何需要美观展示内容集合的场景
 
 ## 前置条件
-该组件依赖于`useEventListener`hook，需要先下载 <a href='/ono-document/hooks/useEventListener'>useEventListener</a> 文件至`src/hooks`文件夹中。
-
-下载Waterfall组件文件,并将文件放入`src/components/modules`文件夹下。
-
-在`src/components/modules/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Waterfall';
+import 'ono-react-element/dist/style/Waterfall.css'
 ```
 
 ## 固定高度

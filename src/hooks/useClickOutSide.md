@@ -1,20 +1,10 @@
 # useClickOutSide
 一个用于监听点击外部元素的hooks。
 
-## 前置条件
-该hooks依赖于`useEventListener`，需要先下载 <a href='/ono-document/hooks/useEventListener'>useEventListener</a> 文件至`src/hooks`文件夹中。
-
-下载`useClickOutSide.ts`文件,并将文件放入`src/hooks`文件夹下。
-
-在`src/hooks/index.ts`写入以下代码
-```tsx
-export * from './useClickOutSide';
-```
-
 ## 基础实用
 ```tsx
 import { useRef } from 'react'
-import { useClickOutSide } from '@/hooks'
+import { useClickOutSide } from 'ono-react-element'
 
 function App() {
     const btnRef = useRef<HTMLButtonElement>(null)

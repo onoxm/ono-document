@@ -2,19 +2,15 @@
 使用开关切换两种状态之间。
 
 ## 前置条件
-该组件依赖`common`里的方法，请先下载<a href='/ono-document/utils/common'>`common`</a>文件至`src/utils`文件夹中。
-
-下载Switch组件文件,并将文件放入`src/components/elements`文件夹下。
-
-在`src/components/elements/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Switch';
+import 'ono-react-element/dist/style/Switch.css'
 ```
 
 ## 基础用法
 ```tsx
 import React, { useState } from'react'
-import { Switch } from '@/components/elements'
+import { Switch } from 'ono-react-element'
 
 function App() {
   const [checked, setChecked] = useState(false)
@@ -35,7 +31,7 @@ export default App;
 ## 自定义文本
 ```tsx
 import React, { useState } from'react'
-import { Switch } from '@/components/elements'
+import { Switch } from 'ono-react-element'
 
 function App() {
   const [checked, setChecked] = useState(false)
@@ -61,7 +57,7 @@ export default App;
 ## 自定义开关颜色
 ```tsx
 import React, { useState } from'react'
-import { Switch } from '@/components/elements'
+import { Switch } from 'ono-react-element'
 
 function App() {
   const [checked, setChecked] = useState(false)

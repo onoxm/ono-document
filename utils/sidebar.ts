@@ -55,7 +55,10 @@ export const sidebar = {
           link: '/comps/tools/portalRenderer'
         },
         // { text: 'Toast 提示框', link: '/comps/tools/toast' },
-        // { text: 'TemplateDialog 模板弹窗', link: '/comps/tools/templateDialog' },
+        {
+          text: 'TemplateDialog 模版对话框',
+          link: '/comps/tools/templateDialog'
+        },
         // { text: 'Tooltip 提示框', link: '/comps/tools/tooltip' },
         { text: 'Xscroll 滚动组件', link: '/comps/tools/xscroll' }
       ]
@@ -65,8 +68,8 @@ export const sidebar = {
     {
       text: 'Hooks',
       items: [
-        { text: 'useCountdown', link: '/hooks/useCountdown' },
         { text: 'useClickOutSide', link: '/hooks/useClickOutSide' },
+        { text: 'useCountdown', link: '/hooks/useCountdown' },
         { text: 'useDefer', link: '/hooks/useDefer' },
         { text: 'useEventListener', link: '/hooks/useEventListener' },
         { text: 'useFullScreen', link: '/hooks/useFullScreen' },
@@ -75,7 +78,8 @@ export const sidebar = {
         { text: 'useKeypress', link: '/hooks/useKeypress' },
         { text: 'useReactive', link: '/hooks/useReactive' },
         { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useUpdate', link: '/hooks/useUpdate' }
+        { text: 'useThemePro', link: '/hooks/useThemePro' },
+        // { text: 'useUpdate', link: '/hooks/useUpdate' }
       ]
     }
   ],

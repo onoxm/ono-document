@@ -17,20 +17,9 @@
 - 商品列表
 - 任何需要高性能长列表渲染的场景
 
-## 前置条件
-该组件依赖于`useEventListener`hook，需要先下载 <a href='/ono-document/hooks/useEventListener'>useEventListener</a> 文件至`src/hooks`文件夹中。
-
-下载VirtualList组件文件,并将文件放入`src/components/modules`文件夹下。
-
-在`src/components/modules/index.ts`写入以下代码
-```tsx
-export * from './VirtualList';
-```
-
 ## 固定高度
 ```tsx
-import { createDataSource, EstimatedVirtualList } from '@/components/modules'
-import colorUtils from '@/utils/colorUtils'
+import { createDataSource, EstimatedVirtualList, colorUtils } from 'ono-react-element'
 import { useMemo } from 'react'
 
 function App() {
@@ -75,8 +64,7 @@ export default App;
 
 ## 不定高度
 ```tsx
-import { createDataSource, EstimatedVirtualList } from '@/components/modules'
-import colorUtils from '@/utils/colorUtils'
+import { createDataSource, EstimatedVirtualList, colorUtils } from '@/components/modules'
 import { useMemo } from 'react'
 
 function App() {
@@ -125,8 +113,7 @@ export default App;
 
 ## 横向列表
 ```tsx
-import { createDataSource, EstimatedVirtualList } from '@/components/modules'
-import colorUtils from '@/utils/colorUtils'
+import { createDataSource, EstimatedVirtualList, colorUtils } from '@/components/modules'
 import { useMemo } from 'react'
 
 function App() {

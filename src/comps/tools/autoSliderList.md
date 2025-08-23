@@ -2,19 +2,15 @@
 一个按钮列表组件，点击某个按钮滑块会自动滑到对应的位置。
 
 ## 前置条件
-该组件依赖`common`里的方法，请先下载<a href='/ono-document/utils/common'>`common`</a>文件至`src/utils`文件夹中。
-
-下载AutoSliderList组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './AutoSliderList';
+import 'ono-react-element/dist/style/AutoSliderList.css'
 ```
 
 ## 基础用法
 ```tsx
 import React, { useState } from'react'
-import { AutoSliderList } from '@/components/tools'
+import { AutoSliderList } from 'ono-react-element'
 
 function App() {
     const list = [
@@ -61,7 +57,7 @@ export default App;
 ## 使用当前下标属性
 ```tsx
 import React, { useState } from'react'
-import { AutoSliderList } from '@/components/tools'
+import { AutoSliderList } from 'ono-react-element'
 
 function App() {
     const list = [

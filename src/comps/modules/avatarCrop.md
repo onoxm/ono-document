@@ -18,17 +18,15 @@
 - 任何需要图片裁剪功能的Web应用
 
 ## 前置条件
-下载AutoSliderList组件文件,并将文件放入`src/components/modules`文件夹下。
-
-在`src/components/modules/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './AvatarCrop';
+import 'ono-react-element/dist/style/AvatarCrop.css'
 ```
 
 ## 基础用法
 ```tsx
 import React, { useState, useRef } from'react';
-import { AvatarCrop } from '@/components/modules';
+import { AvatarCrop } from 'ono-react-element';
 
 function App() {
     const [imgFile, setImgFile] = useState<File>();

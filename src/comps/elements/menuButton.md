@@ -2,16 +2,14 @@
 菜单按钮用于显示隐藏菜单。
 
 ## 前置条件
-下载MenuButton组件文件,并将文件放入`src/components/elements`文件夹下。
-
-在`src/components/elements/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './MenuButton';
+import 'ono-react-element/dist/style/MenuButton.css'
 ```
 
 ## 基础用法
 ```tsx
-import { MenuButton } from '@/components/elements'
+import { MenuButton } from 'ono-react-element'
 
 function App() {
   return (
@@ -26,7 +24,7 @@ export default App;
 
 ## 多个单选框用法
 ```tsx
-import { MenuButton } from '@/components/elements'
+import { MenuButton } from 'ono-react-element'
 import { useState } from 'react'
 
 function App() {

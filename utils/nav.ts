@@ -6,7 +6,7 @@ export const nav = [
     items: [
       { text: '快速开始', link: '/docs/quickstart' },
       { text: '我的组件', link: '/comps/elements/button' },
-      { text: '我的hooks', link: '/hooks/useDefer' }
+      { text: '我的hooks', link: '/hooks/useClickOutSide' }
     ]
   },
   { text: 'Examples', link: '/examples/markdown-examples' }

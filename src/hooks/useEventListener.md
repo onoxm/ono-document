@@ -1,17 +1,9 @@
 # useEventListener
 用于监听事件的Hook。
 
-## 前置条件
-下载`useEventListener.ts`文件,并将文件放入`src/hooks`文件夹下。
-
-在`src/hooks/index.ts`写入以下代码
-```tsx
-export * from './useEventListener';
-```
-
 ## 基础用法
 ```tsx
-import { useEventListener } from '@/hooks';
+import { useEventListener } from 'ono-react-element';
 
 function App() {
     useEventListener(

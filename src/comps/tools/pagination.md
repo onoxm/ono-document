@@ -2,17 +2,15 @@
 分页器用于分隔长列表，每次只加载一个页面。
 
 ## 前置条件
-下载Pagination组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Pagination';
+import 'ono-react-element/dist/style/Pagination.css'
 ```
 
 ## 基础用法
 ```tsx
 import React, { useState } from'react'
-import { Pagination } from '@/components/tools'
+import { Pagination } from 'ono-react-element'
 
 function App() {
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -32,7 +30,7 @@ export default App;
 ## 自定义首页和尾页按钮样式
 ```tsx
 import React, { useState } from'react'
-import { Pagination } from '@/components/tools'
+import { Pagination } from 'ono-react-element'
 
 function App() {
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -74,10 +72,11 @@ function App() {
 
 export default App;
 ```
+
 ## 自定义页码按钮样式
 ```tsx
 import React, { useState } from'react'
-import { Pagination } from '@/components/tools'
+import { Pagination } from 'ono-react-element'
 
 function App() {
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -116,7 +115,7 @@ export default App;
 ## 自定义上一页和下一页按钮样式
 ```tsx
 import React, { useState } from'react'
-import { Pagination } from '@/components/tools'
+import { Pagination } from 'ono-react-element'
 
 function App() {
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -164,7 +163,7 @@ export default App;
 ## 当到达首页或尾页时，禁用上一页或下一页按钮
 ```tsx
 import React, { useState } from'react'
-import { Pagination } from '@/components/tools'
+import { Pagination } from 'ono-react-element'
 
 function App() {
     const [currentPage, setCurrentPage] = useState<number>(1)

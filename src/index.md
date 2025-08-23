@@ -8,11 +8,11 @@ hero:
   tagline: My great project tagline
   actions:
     - theme: brand
-      text: My Components
-      link: /comps/card3d
+      text: Quick Start
+      link: /docs/quickstart
     - theme: alt
-      text: Markdown Examples
-      link: /examples/markdown-examples
+      text: My Components
+      link: /comps/elements/button
 
 features:
   - title: Feature A

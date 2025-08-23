@@ -1,18 +1,9 @@
 # PortalRenderer 命令式Dom
 将声明式的组件转换成命令式组件。
 
-## 前置条件
-下载PortalRenderer组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
-```tsx
-export * from './PortalRenderer';
-```
-
 ## 基础用法
 ```tsx
-import { Button } from '@/components/elements'
-import { portalRenderer } from '@/components/tools'
+import { Button, portalRenderer } from 'ono-react-element'
 
 const MyComponent = ({ destroy }: { destroy: () => void }) => {
   return (

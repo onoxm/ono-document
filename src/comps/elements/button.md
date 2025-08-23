@@ -2,21 +2,20 @@
 按钮用于开始一个即时操作。
 
 ## 前置条件
-该组件依赖`colorUtils`里的方法，请先下载<a href='/ono-document/utils/colorUtils'>`colorUtils`</a>文件至`src/utils`文件夹中。
-
-下载Button组件文件,并将文件放入`src/components/elements`文件夹下。
-
-在`src/components/elements/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Button';
+import 'ono-react-element/dist/style/Button.css'
 ```
 
 ## 基础用法
 ```tsx
-import { Button } from '@/components/elements'
+import { Button } from 'ono-react-element'
+import { useState } from 'react'
 
 function App() {
-  return <Button onClick={() => console.log('click')}>点击按钮</Button>
+  const [count, setCount] = useState(0)
+
+  return <Button onClick={() => setCount(count + 1)}>count: {count}</Button>
 }
 
 export default App;

@@ -1,43 +1,33 @@
 # 快速开始
 
 ## 安装
+### 前置准备
+ - <a href="https://zh-hans.react.dev/" target="_blank">React</a> 18 及以上版本。
 
-## 配置vite.config.ts
-如果没有使用vite，请忽略此步骤。
-```ts
-import path from 'path'
+::: code-group
+```bash [npm]
+npm install ono-react-element
+```
+```bash [yarn]
+yarn add ono-react-element
+```
+```bash [pnpm]
+pnpm add ono-react-element
+```
+```bash [bun]
+bun add ono-react-element
+```
+:::
 
-export default defineConfig(() => {
+## 引入样式
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 
-  return {
-    ...
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src')
-      }
-    }
-  }
-})
+  引入全部样式
+```tsx
+import 'ono-react-element/dist/index.css'
 ```
 
-## 配置tsconfig.json
-```json
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    ...
-    "lib": [..., "ES2022"],
-    ...
-    "baseUrl": ".",
-    "paths": {
-      "@/*":["src/*"]
-    }
-  }
-}
-```
-
-## 配置git
-如果没有使用git，请忽略此步骤。
-```bash
-git config core.ignorecase false
+ 引入部分样式
+```tsx src/main.tsx
+import 'ono-react-element/dist/style/button.css'
 ```

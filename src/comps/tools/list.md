@@ -1,17 +1,9 @@
 # List 列表循环
 将数组的每一项循环输出到页面上。
 
-## 前置条件
-下载Checkbox组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
-```tsx
-export * from './List';
-```
-
 ## 基础用法
 ```tsx
-import { List } from '@/components/tools'
+import { List } from 'ono-react-element'
 
 function App() {
   const list = [
@@ -56,8 +48,7 @@ export default App;
 
 ## 数组为空时显示fallback
 ```tsx
-import { List } from '@/components/tools'
-import { Button } from '@/components/elements'
+import { Button, List } from 'ono-react-element'
 
 function App() {
   const [list, setList] = useState<string[]>([
@@ -124,8 +115,7 @@ export default App;
 
 ## 自动去掉数组中的null和undefined
 ```tsx
-import { List } from '@/components/tools'
-import colorUtils from '@/utils/colorUtils'
+import { List, colorUtils } from 'ono-react-element'
 
 function App() {
   const createDataSource = (num: number) => {

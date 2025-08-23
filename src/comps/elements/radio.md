@@ -2,17 +2,15 @@
 单选框用于在多个选项中选取一个。
 
 ## 前置条件
-下载Radio组件文件,并将文件放入`src/components/elements`文件夹下。
-
-在`src/components/elements/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Radio';
+import 'ono-react-element/dist/style/Radio.css'
 ```
 
 ## 单个单选框用法
 ```tsx
 import React, { useState } from'react'
-import { Radio } from '@/components/elements'
+import { Radio } from 'ono-react-element'
 
 function App() {
   const [checked, setChecked] = useState(false)
@@ -36,7 +34,7 @@ export default App;
 ## 多个单选框用法
 ```tsx
 import React, { useState } from'react'
-import { RadioGroup } from '@/components/elements'
+import { RadioGroup } from 'ono-react-element'
 
 function App() {
   const [language, setLanguage] = useState<string>('html')
@@ -67,7 +65,7 @@ export default App;
 ## 自定义多个单选框用法
 ```tsx
 import React, { useState } from'react'
-import { RadioGroup } from '@/components/elements'
+import { RadioGroup } from 'ono-react-element'
 
 function App() {
   const [language, setLanguage] = useState<string>('vue')

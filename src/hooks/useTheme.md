@@ -1,20 +1,13 @@
 # useTheme
 根据传入的theme类型来来触发对应的事件。
 
-## 前置条件
-下载`useTheme.ts`文件,并将文件放入`src/hooks`文件夹下。
-
-在`src/hooks/index.ts`写入以下代码
-```tsx
-export * from './useTheme';
-```
-
 ## 基础用法
 ```tsx
-import { useTheme, ThemeType } from '@/hooks'
+import { useState } from'react'
+import { useTheme, ThemeType } from 'ono-react-element'
 
 function App() {
-    const [theme, setTheme] = useTheme<ThemeType>('light')
+    const [theme, setTheme] = useState<ThemeType>('light')
 
     useTheme({
         theme, // 当传入为system时，会根据系统的主题来切换

@@ -2,19 +2,14 @@
 全局展示操作反馈信息。
 
 ## 前置条件
-该组件依赖`injunctiveDom`组件，请先下载<a href='/ono-document/comps/tools/injunctiveDom'>`injunctiveDom`</a>文件至`src/components/tools`文件夹中。
-
-下载Message组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
+在react项目入口文件中引入样式，默认为`src/main.tsx`。
 ```tsx
-export * from './Message';
+import 'ono-react-element/dist/style/Message.css'
 ```
 
 ## 基础用法
 ```tsx
-import { Button } from '@/components/elements'
-import { Message } from '@/components/tools'
+import { Button, Message } from 'ono-react-element'
 
 function App() {
   return (
@@ -40,8 +35,7 @@ export default App;
 
 ## loading用法
 ```tsx
-import { Button } from '@/components/elements'
-import { Message } from '@/components/tools'
+import { Button, Message } from 'ono-react-element'
 
 function App() {
   return (
@@ -66,8 +60,7 @@ export default App;
 
 ## 使用duration属性
 ```tsx
-import { Button } from '@/components/elements'
-import { Message } from '@/components/tools'
+import { Button, Message } from 'ono-react-element'
 
 function App() {
   return (
@@ -91,8 +84,7 @@ export default App;
 
 ## 使用close按钮关闭
 ```tsx
-import { Button } from '@/components/elements'
-import { Message } from '@/components/tools'
+import { Button, Message } from 'ono-react-element'
 
 function App() {
   return (

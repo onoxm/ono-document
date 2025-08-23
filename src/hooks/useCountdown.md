@@ -1,17 +1,9 @@
 # useCountdown
 一个专门处理数组数据的 React Hooks。
 
-## 前置条件
-下载`useCountdown.ts`文件,并将文件放入`src/hooks`文件夹下。
-
-在`src/hooks/index.ts`写入以下代码
-```tsx
-export * from './useCountdown';
-```
-
 ## 基础实用
 ```tsx
-import { useCountdown } from '@/hooks'
+import { useCountdown } from 'ono-react-element'
 
 function App() {
     const [remainingTime, startCountdown, resetCountdown] = useCountdown();

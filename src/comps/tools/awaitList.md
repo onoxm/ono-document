@@ -1,18 +1,9 @@
 # AwaitList 异步列表循环
 异步获取数组，并将其每一项循环输出到页面上。
 
-## 前置条件
-下载AwaitList组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
-```tsx
-export * from './AwaitList';
-```
-
 ## 基础用法
 ```tsx
-import { AwaitList, List } from '@/components/tools'
-import colorUtils from '@/utils/colorUtils'
+import { AwaitList, List, colorUtils } from 'ono-react-element'
 
 function App() {
   const createDataSource = (num: number) => {

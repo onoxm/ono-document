@@ -1,19 +1,9 @@
 # useKeyPress
 用于监听键盘事件的hooks。
 
-## 前置条件
-该hooks依赖于`useEventListener`，需要先下载 <a href='/ono-document/hooks/useEventListener'>useEventListener</a> 文件至`src/hooks`文件夹中。
-
-下载`useKeyPress.ts`文件,并将文件放入`src/hooks`文件夹下。
-
-在`src/hooks/index.ts`写入以下代码
-```tsx
-export * from './useKeyPress';
-```
-
 ## 基础用法
 ```tsx
-import { useKeyPress } from '@/hooks';
+import { useKeyPress } from 'ono-react-element';
 
 function App() {
     useKeyPress(
@@ -27,7 +17,7 @@ function App() {
 
 ## 监听多个按键
 ```tsx
-import { useKeyPress } from '@/hooks';
+import { useKeyPress } from 'ono-react-element';
 
 function App() {
     useKeyPress(
@@ -41,7 +31,7 @@ function App() {
 
 ## 监听组合键
 ```tsx
-import { useKeyPress } from '@/hooks';
+import { useKeyPress } from 'ono-react-element';
 
 function App() {
     useKeyPress(
@@ -55,7 +45,7 @@ function App() {
 
 ## 精确匹配
 ```tsx
-import { useKeyPress } from '@/hooks';
+import { useKeyPress } from 'ono-react-element';
 
 function App() {
     useKeyPress(
