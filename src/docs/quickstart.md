@@ -28,6 +28,6 @@ import 'ono-react-element/dist/index.css'
 ```
 
  引入部分样式
-```tsx src/main.tsx
-import 'ono-react-element/dist/style/button.css'
+```tsx
+import 'ono-react-element/dist/style/index.css'
 ```
