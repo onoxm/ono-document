@@ -171,40 +171,95 @@ export default App;
 import { Button, Modal } from 'ono-react-element'
 
 function App() {
-    const handleModal = () => {
-        Modal({
-            modalBody: handleClose => 
-                <div
-                    style={{
-                        width: '416px',
-                        height: '200px',
-                        backgroundColor: '#f0f2f5',
-                        padding: '20px',
-                        borderRadius: '8px'
-                    }}
-                >
-                    <h1>自定义弹窗标题</h1>
-                    <p style={{ marginTop: '16px' }}>自定义弹窗内容</p>
-                    <button
-                        style={{
-                        float: 'right',
-                        padding: '4px 16px',
-                        backgroundColor: '#5644b8',
-                        color: '#fff',
-                        borderRadius: '4px',
-                        marginTop: '64px'
-                        }}
-                        onClick={handleClose}
-                    >
-                        关闭弹窗
-                    </button>
-                </div>
-        })
-    }
+  const handleModal = () => {
+    Modal({
+      modalBody: handleClose => (
+        <div
+          style={{
+            width: '416px',
+            height: '200px',
+            backgroundColor: '#f0f2f5',
+            padding: '20px',
+            borderRadius: '8px'
+          }}
+        >
+          <h1>自定义弹窗标题</h1>
+          <p style={{ marginTop: '16px' }}>自定义弹窗内容</p>
+          <button
+            style={{
+              float: 'right',
+              padding: '4px 16px',
+              backgroundColor: '#5644b8',
+              color: '#fff',
+              borderRadius: '4px',
+              marginTop: '64px'
+            }}
+            onClick={handleClose}
+          >
+            关闭弹窗
+          </button>
+        </div>
+      )
+    })
+  }
 
-    return <div>
-        <Button onClick={handleModal}>打开弹窗</Button>
+  return (
+    <div>
+      <Button onClick={handleModal}>打开弹窗</Button>
     </div>
+  )
+}
+
+export default App;
+```
+
+## 指定弹窗出现和消失位置
+```tsx
+import { Button, Modal } from 'ono-react-element'
+
+function App() {
+  const handleModal = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+
+    Modal({
+      title: '弹窗标题',
+      content: '弹窗内容',
+      okText: '确定',
+      cancelText: '取消',
+      startPosition: { x: centerX, y: centerY },
+      onConfirm: () => {
+        console.log('确定')
+      },
+      onCancel: () => {
+        console.log('取消')
+      }
+    })
+  }
+
+  return <Button onClick={handleModal}>打开弹窗</Button>
+}
+
+export default App;
+```
+
+## 使用Promise延时关闭
+```tsx
+import { Button, Modal } from 'ono-react-element'
+
+function App() {
+  const handleModal = () => {
+    Modal({
+      title: '弹窗标题',
+      content: '弹窗内容',
+      okText: '确定',
+      cancelText: '取消',
+      onConfirm: () => new Promise(res => setTimeout(res, 3000))
+    })
+  }
+
+  return <Button onClick={handleModal}>打开弹窗</Button>
 }
 
 export default App;
@@ -219,10 +274,11 @@ content|弹窗内容|<code>ReactNode</code>|<code>string</code>|否
 icon|弹窗图标|<code>ReactNode</code>|<code>ReactNode</code>|否
 okText|确定按钮文字|<code>string</code>|<code>string</code>|否
 cancelText|取消按钮文字|<code>string</code>|<code>string</code>|否
+startPosition|弹窗出现的起始位置|<code>{ x: number, y: number }</code>|-|否
 confirmDisabled|确定按钮禁用|<code>boolean</code>|<code>false</code>|否
 cancelDisabled|取消按钮禁用|<code>boolean</code>|<code>false</code>|否
-onConfirm|确定按钮回调|<code>() => void</code>|<code>() => void</code>|否
-onCancel|取消按钮回调|<code>() => void</code>|<code>() => void</code>|否
+onConfirm|确定按钮回调|<code>() => void \| Promise\<void></code>|-|否
+onCancel|取消按钮回调|<code>() => void \| Promise\<void></code>|-|否
 mask|是否显示蒙层|<code>boolean</code>|<code>true</code>|否
 maskClosable|点击蒙层是否可关闭弹窗|<code>boolean</code>|<code>false</code>|否
 width|弹窗宽度|<code>string</code>\|<code>number</code>|<code>416</code>|否
