@@ -33,9 +33,9 @@ function App() {
   return (
     <div style={{ width: '100%' }}>
       <MenuButton
-        w="80px"
-        clr="#333"
-        bgc="pink"
+        width="80px"
+        lineColor="#333"
+        backgroundColor="pink"
         active={open}
         onchange={setOpen}
       />
@@ -50,9 +50,9 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-w|按钮宽度|<code>string</code>|<code>40px</code>|否
-clr|按钮文字颜色|<code>string</code>|<code>#f5f5f5</code>|否
-bgc|按钮背景颜色|<code>string</code>|<code>#342A7C</code>|否
+width|按钮宽度|<code>string</code>\<code>number</code>|<code>40</code>|否
+lineColor|按钮横线颜色|<code>string</code>|<code>#f5f5f5</code>|否
+backgroundColor|按钮背景颜色|<code>string</code>|<code>#342A7C</code>|否
 duration|菜单展开动画时长，单位毫秒|<code>number</code>|<code>400</code>|否
 active|是否展开菜单|<code>boolean</code>|<code>false</code>|否
 onchange|菜单展开状态改变时触发|<code>(bl: boolean) => void</code>|<code>() => {}</code>|否
