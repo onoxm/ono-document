@@ -50,7 +50,7 @@ export default App;
 通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-width|按钮宽度|<code>string</code>\<code>number</code>|<code>40</code>|否
+width|按钮宽度|<code>string</code>\|<code>number</code>|<code>40</code>|否
 lineColor|按钮横线颜色|<code>string</code>|<code>#f5f5f5</code>|否
 backgroundColor|按钮背景颜色|<code>string</code>|<code>#342A7C</code>|否
 duration|菜单展开动画时长，单位毫秒|<code>number</code>|<code>400</code>|否
