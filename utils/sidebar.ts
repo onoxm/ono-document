@@ -72,25 +72,30 @@ export const sidebar = {
         { text: 'useCountdown', link: '/hooks/useCountdown' },
         { text: 'useDefer', link: '/hooks/useDefer' },
         { text: 'useEventListener', link: '/hooks/useEventListener' },
-        { text: 'useFullScreen', link: '/hooks/useFullScreen' },
+        // { text: 'useFullScreen', link: '/hooks/useFullScreen' },
         { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
         { text: 'useGlobalData', link: '/hooks/useGlobalData' },
         { text: 'useKeypress', link: '/hooks/useKeypress' },
         { text: 'useReactive', link: '/hooks/useReactive' },
         { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useThemePro', link: '/hooks/useThemePro' },
+        { text: 'useThemePro', link: '/hooks/useThemePro' }
         // { text: 'useUpdate', link: '/hooks/useUpdate' }
       ]
     }
   ],
   '/utils/': [
     {
-      text: 'Utils',
+      text: 'Common Utils',
       items: [
-        { text: 'colorUtils', link: '/utils/colorUtils' },
-        { text: 'themeUtils', link: '/utils/themeUtils' },
-        { text: 'fullScreen', link: '/utils/fullScreen' }
+        { text: 'chainClassNames', link: '/utils/common/chainClassNames' },
+        { text: 'hasDuplicates', link: '/utils/common/hasDuplicates' },
+        // { text: 'scrollToItem', link: '/utils/common/scrollToItem' },
+        { text: 'selectProperties', link: '/utils/common/selectProperties' }
       ]
+    },
+    {
+      text: 'Color Utils',
+      items: [{ text: 'colorUtils', link: '/utils/color/colorUtils' }]
     }
   ],
   '/examples/': [
