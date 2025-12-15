@@ -10,10 +10,12 @@ function App() {
         'click', // 你想要监听的事件类型
         (e:Event) => { // 事件触发时执行的回调函数
             console.log('点击事件触发了！');
-        },{
+        },
+        {
         target: document.documentElement, // 你想要监听的目标元素
         deps: [] // 依赖项，当依赖项发生变化时，会重新绑定事件监听
-    })
+        }
+    )
 }
 ```
 

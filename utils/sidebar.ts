@@ -64,6 +64,12 @@ export const sidebar = {
       ]
     }
   ],
+  '/event/': [
+    {
+      text: 'event',
+      items: [{ text: 'createEventEmitter', link: '/event/createEventEmitter' }]
+    }
+  ],
   '/hooks/': [
     {
       text: 'Hooks',
@@ -88,7 +94,17 @@ export const sidebar = {
       text: 'Common Utils',
       items: [
         { text: 'chainClassNames', link: '/utils/common/chainClassNames' },
+        { text: 'ellipsisString', link: '/utils/common/ellipsisString' },
         { text: 'hasDuplicates', link: '/utils/common/hasDuplicates' },
+        { text: 'gcd', link: '/utils/common/gcd' },
+        {
+          text: 'getElementCenterPosition',
+          link: '/utils/common/getElementCenterPosition'
+        },
+        { text: 'getImageSize', link: '/utils/common/getImageSize' },
+        { text: 'getRatio', link: '/utils/common/getRatio' },
+        { text: 'quickSort', link: '/utils/common/quickSort' },
+        { text: 'randomString', link: '/utils/common/randomString' },
         // { text: 'scrollToItem', link: '/utils/common/scrollToItem' },
         { text: 'selectProperties', link: '/utils/common/selectProperties' }
       ]
@@ -96,6 +112,14 @@ export const sidebar = {
     {
       text: 'Color Utils',
       items: [{ text: 'colorUtils', link: '/utils/color/colorUtils' }]
+    },
+    {
+      text: 'File Utils',
+      items: [
+        { text: 'base64ToBlob', link: '/utils/file/base64ToBlob' },
+        { text: 'base64ToFile', link: '/utils/file/base64ToFile' },
+        { text: 'isBase64', link: '/utils/file/isBase64' }
+      ]
     }
   ],
   '/examples/': [
