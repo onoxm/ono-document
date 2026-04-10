@@ -1,12 +1,6 @@
 # AutoSliderList 自动滑块
 一个按钮列表组件，点击某个按钮滑块会自动滑到对应的位置。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/AutoSliderList.css'
-```
-
 ## 基础用法
 ```tsx
 import React, { useState } from'react'

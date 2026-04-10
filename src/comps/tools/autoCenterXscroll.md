@@ -1,14 +1,6 @@
 # AutoCenterXscroll
 一个元素列表组件，点击某个元素， 该元素会自动滑动到列表组件的中间位置。
 
-## 前置条件
-下载AutoSliderList组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
-```tsx
-export * from './AutoCenterXscroll';
-```
-
 ## 基础用法
 ```tsx
 import React, { useState } from'react';

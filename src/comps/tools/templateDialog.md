@@ -1,12 +1,6 @@
 # TemplateDialog 模版对话框
 一个模版对话框组件，用于模版对话框。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Pagination.css'
-```
-
 ## 基础用法
 ```tsx
 import { useState } from'react'

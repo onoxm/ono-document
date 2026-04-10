@@ -1,12 +1,6 @@
 # MenuButton 菜单按钮
 菜单按钮用于显示隐藏菜单。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/MenuButton.css'
-```
-
 ## 基础用法
 ```tsx
 import { MenuButton } from 'ono-react-element'

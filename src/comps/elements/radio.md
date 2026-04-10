@@ -1,12 +1,6 @@
 # Radio 单选框
 单选框用于在多个选项中选取一个。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Radio.css'
-```
-
 ## 单个单选框用法
 ```tsx
 import React, { useState } from'react'

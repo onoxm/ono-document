@@ -1,12 +1,6 @@
 # Button 按钮
 按钮用于开始一个即时操作。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Button.css'
-```
-
 ## 基础用法
 ```tsx
 import { Button } from 'ono-react-element'

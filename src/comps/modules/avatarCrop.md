@@ -17,12 +17,6 @@
 - 头像上传功能
 - 任何需要图片裁剪功能的Web应用
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/AvatarCrop.css'
-```
-
 ## 基础用法
 ```tsx
 import React, { useState, useRef } from'react';

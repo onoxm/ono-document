@@ -1,12 +1,6 @@
 # Checkbox 多选框
 收集用户的多项选择。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Checkbox.css'
-```
-
 ## 基础用法
 ```tsx
 import React, { useState } from'react'

@@ -1,12 +1,6 @@
 # Card3D 3D卡片
 Card3D组件是卡片组件，可以实现3D效果。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Card3D.css'
-```
-
 ## 基础用法
 ```tsx
 import { Card3D } from 'ono-react-element'

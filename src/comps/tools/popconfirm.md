@@ -1,16 +1,6 @@
 # Popconfirm 气泡确认框
 点击元素，弹出气泡式的确认框。
 
-## 前置条件
-该组件依赖于`Popover组件`，需要先下载 <a href='/ono-document/comps/popover'>Popover</a> 文件至`src/components/tools`文件夹中。
-
-下载Button组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
-```tsx
-export * from './Popconfirm';
-```
-
 ## 基础用法
 ```tsx
 import { Button } from 'ono-react-element'

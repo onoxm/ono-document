@@ -1,12 +1,6 @@
 # Switch 开关
 使用开关切换两种状态之间。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Switch.css'
-```
-
 ## 基础用法
 ```tsx
 import React, { useState } from'react'

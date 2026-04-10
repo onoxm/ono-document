@@ -1,12 +1,6 @@
 # Pagination 分页
 分页器用于分隔长列表，每次只加载一个页面。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Pagination.css'
-```
-
 ## 基础用法
 ```tsx
 import React, { useState } from'react'

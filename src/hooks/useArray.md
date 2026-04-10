@@ -1,14 +1,6 @@
 # useArray
 一个专门处理数组数据的 React Hooks。
 
-## 前置条件
-下载`useArray.ts`文件,并将文件放入`src/hooks`文件夹下。
-
-在`src/hooks/index.ts`写入以下代码
-```tsx
-export * from './useArray';
-```
-
 ## 基础实用
 ```tsx
 import { useArray } from '@/hooks'

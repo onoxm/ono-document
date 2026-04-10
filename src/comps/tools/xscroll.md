@@ -1,14 +1,6 @@
 # Xscroll 滚动组件
 一个可滚动组件，纵向滚动时，组件会横向滚动。
 
-## 前置条件
-下载Xscroll组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
-```tsx
-export * from './Xscroll';
-```
-
 ## 基础用法
 ```tsx
 import { List, Xscroll } from '@/components/tools'

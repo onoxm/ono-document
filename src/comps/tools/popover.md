@@ -1,16 +1,6 @@
 # Popover 气泡卡片
 点击/鼠标移入元素，弹出气泡式的卡片浮层。
 
-## 前置条件
-该组件依赖于`useEventListener`，需要先下载 <a href='/ono-document/hooks/useEventListener'>useEventListener</a> 文件至`src/hooks`文件夹中。
-
-下载Popover组件文件,并将文件放入`src/components/tools`文件夹下。
-
-在`src/components/tools/index.ts`写入以下代码
-```tsx
-export * from './Popover';
-```
-
 ## 基础用法
 ```tsx
 import { Popover } from '@/components/tools'

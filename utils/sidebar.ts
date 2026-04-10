@@ -122,6 +122,13 @@ export const sidebar = {
       ]
     }
   ],
+  '/plugins/': [
+    {
+      text: 'Vite插件',
+      collapsed: false,
+      items: [{ text: 'autoRouter', link: '/plugins/autoRouter' }]
+    }
+  ],
   '/examples/': [
     {
       text: 'Examples',

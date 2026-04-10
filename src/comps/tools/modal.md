@@ -1,12 +1,6 @@
 # Modal 弹窗
 展示一个对话框，提供标题、内容区、操作区。
 
-## 前置条件
-在react项目入口文件中引入样式，默认为`src/main.tsx`。
-```tsx
-import 'ono-react-element/dist/style/Modal.css'
-```
-
 ## 基础用法
 ```tsx
 import { Button, Modal } from 'ono-react-element'
