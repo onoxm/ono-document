@@ -65,10 +65,19 @@ npm install react-router
 // vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import autoRouter from '@onoxm/vite-plugin-auto-router'
+import autoRouter from '@onoxm/vite-plugin-auto-router/react'
 
 export default defineConfig({
-  plugins: [react(), autoRouter()]
+  plugins: [
+    react(),
+    autoRouter({
+      onGenerated: async filePaths => {
+        for (const filePath of filePaths) {
+          console.log('Generated:', filePath)
+        }
+      }
+    })
+  ]
 })
 ```
 
@@ -97,7 +106,7 @@ src/
 
 继承自 [React Router RouteObject](https://reactrouter.com/start/data/route-object)，并进行以下修改：
 
-- **移除**: `path`, `Component`, `element`, `children`
+- **移除**: `Component`, `element`, `children`
 - **新增**: `type?: 'single' | 'wrap'`
 
 ##### type: 'single'
@@ -125,7 +134,7 @@ import PagesUser from './../pages/user/index.tsx'
 import PagesUserId from './../pages/user/[id]/index.tsx'
 
 type PageConfig = Partial<
-  Omit<RouteObject, 'path' | 'Component' | 'element' | 'children'> & {
+  Omit<RouteObject, 'Component' | 'element' | 'children'> & {
     type?: 'single' | 'wrap'
   }
 >
@@ -197,7 +206,7 @@ import PagesUser from './../pages/user/index.tsx'
 import PagesUserId from './../pages/user/[id]/index.tsx'
 
 type PageConfig = Partial<
-  Omit<RouteObject, 'path' | 'Component' | 'element' | 'children'> & {
+  Omit<RouteObject, 'Component' | 'element' | 'children'> & {
     type?: 'single' | 'wrap'
   }
 >
@@ -254,14 +263,19 @@ npm install vue-router
 // vite.config.ts
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import autoRouter from '@onoxm/vite-plugin-auto-router'
+import autoRouter from '@onoxm/vite-plugin-auto-router/vue'
 
 export default defineConfig({
   plugins: [
     vue(),
     autoRouter({
-      framework: 'vue',
-      pagesDir: './src/views'
+      pagesDir: './src/views',
+      configPattern: '/**/*.meta.ts',
+      onGenerated: async filePaths => {
+        for (const filePath of filePaths) {
+          console.log('Generated:', filePath)
+        }
+      }
     })
   ]
 })
@@ -275,12 +289,12 @@ src/
 │   ├── 404.vue
 │   ├── home/
 │   │   ├── index.vue
-│   │   └── index.config.ts
+│   │   └── index.meta.ts
 │   └── user/
 │       ├── index.vue
-│       ├── index.config.ts
+│       ├── index.meta.ts
 │       ├── [id].vue
-│       └── [id].config.ts
+│       └── [id].meta.ts
 ```
 
 #### 特殊页面
@@ -293,7 +307,7 @@ src/
 
 继承自 [Vue Router RouteRecordRaw](https://router.vuejs.org/api/#routerecordraw)，并进行以下修改：
 
-- **移除**: `path`, `component`, `children`
+- **移除**: `component`, `children`
 - **新增**: `type?: 'single' | 'wrap'`
 
 ##### type: 'single'
@@ -301,7 +315,7 @@ src/
 当 `type` 配置为 `single` 时，该页面组件会作为独立路由生成：
 
 ```typescript
-// src/views/user/index.config.ts
+// src/views/user/index.meta.ts
 import { defineConfig } from '../../router/autoRouter'
 
 export default defineConfig({
@@ -320,7 +334,7 @@ import ViewsUser from './../views/user/index.vue'
 import ViewsUserId from './../views/user/[id]/index.vue'
 
 type PageConfig = Partial<
-  Omit<RouteRecordRaw, 'path' | 'component' | 'children'> & {
+  Omit<RouteRecordRaw, 'component' | 'children'> & {
     type?: 'single' | 'wrap'
   }
 >
@@ -373,7 +387,7 @@ export const routes: RouteRecordRaw[] = [
 当 `type` 配置为 `wrap` 时，该页面组件会作为父路由容器包裹其下的子路由：
 
 ```typescript
-// src/views/user/index.config.ts
+// src/views/user/index.meta.ts
 import { defineConfig } from '../../router/autoRouter'
 
 export default defineConfig({
@@ -386,12 +400,13 @@ export default defineConfig({
 ```typescript
 // src/router/autoRouter.ts
 import type { RouteRecordRaw } from 'vue-router'
+import Views404 from './../views/404.vue'
 import ViewsHome from './../views/home/index.vue'
 import ViewsUser from './../views/user/index.vue'
 import ViewsUserId from './../views/user/[id]/index.vue'
 
 type PageConfig = Partial<
-  Omit<RouteRecordRaw, 'path' | 'component' | 'children'> & {
+  Omit<RouteRecordRaw, 'component' | 'children'> & {
     type?: 'single' | 'wrap'
   }
 >
@@ -440,22 +455,47 @@ export const routes: RouteRecordRaw[] = [
 
 ### 插件配置
 
-| 选项         | 类型               | 默认值          | 说明                     |
-| ------------ | ------------------ | --------------- | ------------------------ |
-| `framework`  | `'react' \| 'vue'` | `'react'`       | 框架类型                 |
-| `pagesDir`   | `string`           | `'./src/pages'` | 页面目录                 |
-| `routesFile` | `string`           | `undefined`     | 生成的路由文件路径       |
-| `keepHome`   | `boolean`          | `false`         | 是否保留 `home` 页面     |
-| `keepRoot`   | `boolean`          | `false`         | 是否保留 `__root__` 页面 |
-| `lazy`       | `boolean`          | `true`          | 是否启用懒加载           |
-| `hmr`        | `boolean`          | `false`         | 是否启用热更新           |
+| 选项             | 类型                                             | 默认值            | 说明                     |
+| ---------------- | ------------------------------------------------ | ----------------- | ------------------------ |
+| `framework`      | `'react' \| 'vue'`                               | `'react'`         | 框架类型                 |
+| `pagesDir`       | `string`                                         | `'./src/pages'`   | 页面目录                 |
+| `routesFile`     | `string`                                         | `undefined`       | 生成的路由文件路径       |
+| `keepHome`       | `boolean`                                        | `false`           | 是否保留 `home` 页面     |
+| `keepRoot`       | `boolean`                                        | `false`           | 是否保留 `__root__` 页面 |
+| `lazy`           | `boolean`                                        | `true`            | 是否启用懒加载           |
+| `hmr`            | `boolean`                                        | `undefined`       | 是否启用热更新           |
+| `developmentHmr` | `boolean`                                        | `true`            | 是否在开发模式启用热更新 |
+| `productionHmr`  | `boolean`                                        | `false`           | 是否在生产模式启用热更新 |
+| `configPattern`  | `string`                                         | `/**/*.config.{js,ts}` | 配置文件模式             |
+| `onGenerated`    | `(filePaths: string[]) => Promise<void> \| void` | `undefined`       | 生成路由后调用的回调函数 |
 
 ### 页面配置
 
-| 选项   | 类型                 | 默认值     | 说明           |
-| ------ | -------------------- | ---------- | -------------- |
-| `type` | `'single' \| 'wrap'` | `'single'` | 路由类型       |
-| `*`    | `any`                | `any`      | 继承自路由配置 |
+| 选项         | 类型                 | 默认值     | 说明                                                                 |
+| ------------ | -------------------- | ---------- | -------------------------------------------------------------------- |
+| `type`       | `'single' \| 'wrap'` | `'single'` | 路由类型                                                             |
+| `path`       | `string`              | `undefined` | 路由路径，支持使用 `[currentPath]` 占位符引用当前路径            |
+| `*`          | `any`                | `any`      | 继承自路由配置                                                       |
+
+#### path 使用示例
+
+使用 `[currentPath]` 占位符可以在替换路径时引用当前路径：
+
+```typescript
+// src/pages/user/index.config.ts
+import { defineConfig } from '../../router/autoRouter'
+
+export default defineConfig({
+  // 将 /user 替换为 /users/v2
+  path: '/users/v2'
+})
+
+// 或者使用占位符，在当前路径后添加后缀
+export default defineConfig({
+  // 将 /user 替换为 /user/v2
+  path: '[currentPath]/v2'
+})
+```
 
 ## 📄 License
 
