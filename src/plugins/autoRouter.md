@@ -455,27 +455,25 @@ export const routes: RouteRecordRaw[] = [
 
 ### 插件配置
 
-| 选项             | 类型                                             | 默认值            | 说明                     |
-| ---------------- | ------------------------------------------------ | ----------------- | ------------------------ |
-| `framework`      | `'react' \| 'vue'`                               | `'react'`         | 框架类型                 |
-| `pagesDir`       | `string`                                         | `'./src/pages'`   | 页面目录                 |
-| `routesFile`     | `string`                                         | `undefined`       | 生成的路由文件路径       |
-| `keepHome`       | `boolean`                                        | `false`           | 是否保留 `home` 页面     |
-| `keepRoot`       | `boolean`                                        | `false`           | 是否保留 `__root__` 页面 |
-| `lazy`           | `boolean`                                        | `true`            | 是否启用懒加载           |
-| `hmr`            | `boolean`                                        | `undefined`       | 是否启用热更新           |
-| `developmentHmr` | `boolean`                                        | `true`            | 是否在开发模式启用热更新 |
-| `productionHmr`  | `boolean`                                        | `false`           | 是否在生产模式启用热更新 |
-| `configPattern`  | `string`                                         | `/**/*.config.{js,ts}` | 配置文件模式             |
-| `onGenerated`    | `(filePaths: string[]) => Promise<void> \| void` | `undefined`       | 生成路由后调用的回调函数 |
+| 选项            | 类型                                                         | 默认值                                     | 说明                                                                      |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------------- |
+| `framework`     | `'react' \| 'vue'`                                           | `'react'`                                  | 框架类型                                                                  |
+| `pagesDir`      | `string`                                                     | `'./src/pages'`                            | 页面目录                                                                  |
+| `routesFile`    | `string`                                                     | `undefined`                                | 生成的路由文件路径                                                        |
+| `keepHome`      | `boolean`                                                    | `false`                                    | 是否保留 `home` 页面                                                      |
+| `keepRoot`      | `boolean`                                                    | `false`                                    | 是否保留 `__root__` 页面                                                  |
+| `lazy`          | `boolean`                                                    | `true`                                     | 是否启用懒加载                                                            |
+| `hmr`           | `boolean \| { development?: boolean; production?: boolean }` | `{ development: true, production: false }` | 热更新配置：布尔值用于在所有环境中启用/禁用 HMR，或使用对象按环境分别配置 |
+| `configPattern` | `string`                                                     | `/**/*.config.{js,ts}`                     | 配置文件模式                                                              |
+| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void`             | `undefined`                                | 生成路由后调用的回调函数                                                  |
 
 ### 页面配置
 
-| 选项         | 类型                 | 默认值     | 说明                                                                 |
-| ------------ | -------------------- | ---------- | -------------------------------------------------------------------- |
-| `type`       | `'single' \| 'wrap'` | `'single'` | 路由类型                                                             |
-| `path`       | `string`              | `undefined` | 路由路径，支持使用 `[currentPath]` 占位符引用当前路径            |
-| `*`          | `any`                | `any`      | 继承自路由配置                                                       |
+| 选项   | 类型                 | 默认值      | 说明                                                  |
+| ------ | -------------------- | ----------- | ----------------------------------------------------- |
+| `type` | `'single' \| 'wrap'` | `'single'`  | 路由类型                                              |
+| `path` | `string`             | `undefined` | 路由路径，支持使用 `[currentPath]` 占位符引用当前路径 |
+| `*`    | `any`                | `any`       | 继承自路由配置                                        |
 
 #### path 使用示例
 
