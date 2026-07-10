@@ -109,6 +109,10 @@ src/
 - **移除**: `Component`, `element`, `children`
 - **新增**: `type?: 'single' | 'wrap'`
 
+> **⚠️ 重要提示**
+>
+> 配置文件**不能**使用具名导出（`export const`、`export function` 等）。仅允许使用 `export default`。如果配置文件包含具名导出，插件将跳过该文件并在控制台显示警告信息。
+
 ##### type: 'single'
 
 当 `type` 配置为 `single` 时，该页面组件会作为独立路由生成：
@@ -310,6 +314,10 @@ src/
 - **移除**: `component`, `children`
 - **新增**: `type?: 'single' | 'wrap'`
 
+> **⚠️ 重要提示**
+>
+> 配置文件**不能**使用具名导出（`export const`、`export function` 等）。仅允许使用 `export default`。如果配置文件包含具名导出，插件将跳过该文件并在控制台显示警告信息。
+
 ##### type: 'single'
 
 当 `type` 配置为 `single` 时，该页面组件会作为独立路由生成：
@@ -455,17 +463,47 @@ export const routes: RouteRecordRaw[] = [
 
 ### 插件配置
 
-| 选项            | 类型                                             | 默认值                 | 说明                     |
-| --------------- | ------------------------------------------------ | ---------------------- | ------------------------ |
-| `framework`     | `'react' \| 'vue'`                               | `'react'`              | 框架类型                 |
-| `pagesDir`      | `string`                                         | `'./src/pages'`        | 页面目录                 |
-| `routesFile`    | `string`                                         | `undefined`            | 生成的路由文件路径       |
-| `keepHome`      | `boolean`                                        | `false`                | 是否保留 `home` 页面     |
-| `keepRoot`      | `boolean`                                        | `false`                | 是否保留 `__root__` 页面 |
-| `lazy`          | `boolean`                                        | `true`                 | 是否启用懒加载           |
-| `hmr`           | `boolean`                                        | `true`                 | 是否启用热更新           |
-| `configPattern` | `string`                                         | `/**/*.config.{js,ts}` | 配置文件模式             |
-| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`            | 生成路由后调用的回调函数 |
+| 选项            | 类型                                             | 默认值                 | 说明                                         |
+| --------------- | ------------------------------------------------ | ---------------------- | -------------------------------------------- |
+| `framework`     | `'react' \| 'vue'`                               | `'react'`              | 框架类型                                     |
+| `pagesDir`      | `string`                                         | `'./src/pages'`        | 页面目录                                     |
+| `routesFile`    | `string`                                         | `undefined`            | 生成的路由文件路径                           |
+| `keepHome`      | `boolean`                                        | `false`                | 是否保留 `home` 页面                         |
+| `keepRoot`      | `boolean`                                        | `false`                | 是否保留 `__root__` 页面                     |
+| `lazy`          | `boolean`                                        | `true`                 | 是否启用懒加载                               |
+| `hmr`           | `boolean`                                        | `true`                 | 是否启用热更新                               |
+| `hmrDebounceMs` | `number`                                         | `200`                  | HMR 防抖延迟（毫秒）                         |
+| `configPattern` | `string`                                         | `/**/*.config.{js,ts}` | 配置文件模式                                 |
+| `log`           | `boolean`                                        | `false`                | 是否在 HMR 期间输出路由生成日志              |
+| `dryRun`        | `boolean`                                        | `false`                | 预览模式：仅输出路由结构到控制台，不写入文件 |
+| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`            | 生成路由后调用的回调函数                     |
+
+#### dryRun 使用示例
+
+启用 `dryRun` 可以在控制台预览生成的路由树，而不会向磁盘写入任何文件。适用于在正式生成文件前调试或验证路由结构：
+
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import autoRouter from '@onoxm/vite-plugin-auto-router/react'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    autoRouter({
+      dryRun: true
+    })
+  ]
+})
+```
+
+当 `dryRun` 为 `true` 时：
+
+- 路由结构以可读的树形结构打印到控制台
+- 不会向磁盘写入任何路由文件
+- 不会删除已有的路由文件
+- 跳过 `onGenerated` 回调
 
 ### 页面配置
 
