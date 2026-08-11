@@ -253,6 +253,93 @@ export const routes: RouteObject[] = [
 ]
 ```
 
+##### hydrateFallbackElement / HydrateFallback（React Router lazy 模式）
+
+当页面配置中包含 `hydrateFallbackElement` 或 `HydrateFallback` 字段时，插件会自动将该页面切换为 [React Router 的 `lazy` 模式](https://reactrouter.com/start/data/lazy)：
+
+- **不再生成** `element` 字段和同步 `import` 语句
+- **改为生成** `lazy` 属性，动态导入组件模块并返回 `Component`
+- 保留原 hydrate 字段，用于 SSR hydration 阶段的占位渲染
+
+React Router v7 中这两个是**并行字段**，可任选其一或同时使用：
+
+| 字段                     | 类型                  | 接收值                 |
+| ------------------------ | --------------------- | ---------------------- |
+| `hydrateFallbackElement` | `React.ReactNode`     | JSX 元素 `<Loading />` |
+| `HydrateFallback`        | `React.ComponentType` | 组件引用 `Loading`     |
+
+**用法 1：hydrateFallbackElement（JSX 元素）**
+
+配置文件扩展名需使用 `.config.tsx` 或 `.config.jsx`：
+
+```tsx
+// src/pages/index.config.tsx
+import Loading from '../components/Loading'
+
+export default defineConfig({
+  hydrateFallbackElement: <Loading />
+})
+```
+
+**用法 2：HydrateFallback（组件引用）**
+
+```tsx
+// src/pages/index.config.tsx
+import Loading from '../components/Loading'
+
+export default defineConfig({
+  HydrateFallback: Loading
+})
+```
+
+生成的路由结构（两种用法生成结果相同，仅 hydrate 字段不同）：
+
+```typescript
+// src/router/autoRouter.tsx
+import type { RouteObject } from 'react-router'
+import Loading from './../components/Loading.tsx'
+
+type PageConfig = Partial<
+  Omit<RouteObject, 'Component' | 'element' | 'children' | 'lazy'> & {
+    type?: 'single' | 'wrap'
+  }
+>
+
+export const defineConfig = (config: PageConfig) => config
+
+export const routes: RouteObject[] = [
+  {
+    path: '/',
+    children: [
+      {
+        path: '',
+        index: true,
+        hydrateFallbackElement: <Loading />,  // 或 HydrateFallback: Loading
+        lazy: () => import('../pages/index.tsx').then(m => ({ Component: m.default }))
+      }
+    ]
+  }
+]
+```
+
+**lazy 模式优先级**
+
+| 页面配置                                         | 插件 `lazy` 选项 | 该页面的生成模式                                  |
+| ------------------------------------------------ | ---------------- | ------------------------------------------------- |
+| 含 `hydrateFallbackElement` 或 `HydrateFallback` | 任意值           | React Router `lazy`（最高优先级，页面级覆盖全局） |
+| 无 hydrate 配置                                  | `true`           | `React.lazy()` + `<Suspense>`                     |
+| 无 hydrate 配置                                  | `false`          | 同步 `import` + `element`                         |
+
+**混合场景**
+
+同一项目中，配置了 hydrate 的路由走 React Router `lazy`，未配置的路由按全局 `lazy` 选项走 `React.lazy` 或同步 import。插件会智能判断是否需要引入 `import { lazy, Suspense } from 'react'`——当所有路由都走 React Router `lazy` 时不会引入。
+
+> **注意**
+>
+> - 使用 `hydrateFallbackElement` + JSX 元素时，扩展名必须为 `.config.tsx` 或 `.config.jsx`；使用 `HydrateFallback` + 组件引用时，扩展名可为 `.config.ts` 或 `.config.js`
+> - fallback 组件（如 `Loading`）的 import 会自动收集并去重后注入到生成的路由文件
+> - 不要使用小写 `hydrateFallback`（React Router v7 中不存在此字段名，只识别大写 `HydrateFallback` 和 `hydrateFallbackElement`）
+
 ### Vue 项目
 
 #### 安装依赖
@@ -463,20 +550,20 @@ export const routes: RouteRecordRaw[] = [
 
 ### 插件配置
 
-| 选项            | 类型                                             | 默认值                 | 说明                                         |
-| --------------- | ------------------------------------------------ | ---------------------- | -------------------------------------------- |
-| `framework`     | `'react' \| 'vue'`                               | `'react'`              | 框架类型                                     |
-| `pagesDir`      | `string`                                         | `'./src/pages'`        | 页面目录                                     |
-| `routesFile`    | `string`                                         | `undefined`            | 生成的路由文件路径                           |
-| `keepHome`      | `boolean`                                        | `false`                | 是否保留 `home` 页面                         |
-| `keepRoot`      | `boolean`                                        | `false`                | 是否保留 `__root__` 页面                     |
-| `lazy`          | `boolean`                                        | `true`                 | 是否启用懒加载                               |
-| `hmr`           | `boolean`                                        | `true`                 | 是否启用热更新                               |
-| `hmrDebounceMs` | `number`                                         | `200`                  | HMR 防抖延迟（毫秒）                         |
-| `configPattern` | `string`                                         | `/**/*.config.{js,ts}` | 配置文件模式                                 |
-| `log`           | `boolean`                                        | `false`                | 是否在 HMR 期间输出路由生成日志              |
-| `dryRun`        | `boolean`                                        | `false`                | 预览模式：仅输出路由结构到控制台，不写入文件 |
-| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`            | 生成路由后调用的回调函数                     |
+| 选项            | 类型                                             | 默认值                         | 说明                                         |
+| --------------- | ------------------------------------------------ | ------------------------------ | -------------------------------------------- |
+| `framework`     | `'react' \| 'vue'`                               | `'react'`                      | 框架类型                                     |
+| `pagesDir`      | `string`                                         | `'./src/pages'`                | 页面目录                                     |
+| `routesFile`    | `string`                                         | `undefined`                    | 生成的路由文件路径                           |
+| `keepHome`      | `boolean`                                        | `false`                        | 是否保留 `home` 页面                         |
+| `keepRoot`      | `boolean`                                        | `false`                        | 是否保留 `__root__` 页面                     |
+| `lazy`          | `boolean`                                        | `true`                         | 是否启用懒加载                               |
+| `hmr`           | `boolean`                                        | `true`                         | 是否启用热更新                               |
+| `hmrDebounceMs` | `number`                                         | `200`                          | HMR 防抖延迟（毫秒）                         |
+| `configPattern` | `string`                                         | `/**/*.config.{js,ts,jsx,tsx}` | 配置文件模式                                 |
+| `log`           | `boolean`                                        | `false`                        | 是否在 HMR 期间输出路由生成日志              |
+| `dryRun`        | `boolean`                                        | `false`                        | 预览模式：仅输出路由结构到控制台，不写入文件 |
+| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`                    | 生成路由后调用的回调函数                     |
 
 #### dryRun 使用示例
 
