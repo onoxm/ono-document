@@ -11,9 +11,11 @@
 - 约定式路由，按目录结构自动映射
 - 支持动态路由 `[id]` 语法
 - `home` 页面路径自动转换为 `/`（可配置）
-- `__root__` 页面作为根路由容器（可配置）
-- 可配置懒加载和热更新
+- `__root__` 页面作为根路由容器，包裹所有其他路由（可配置）
+- 零配置热更新
 - 支持页面级配置文件
+- 虚拟模块模式：通过 `virtual:onoxm-auto-router/{react|vue}` 在内存中提供路由代码，零文件残留
+- 虚拟模块模式下自动注入 `vite-env.d.ts` 类型声明，TypeScript 类型安全开箱即用
 - TypeScript 类型安全
 
 ## 🚀 安装
@@ -71,11 +73,7 @@ export default defineConfig({
   plugins: [
     react(),
     autoRouter({
-      onGenerated: async filePaths => {
-        for (const filePath of filePaths) {
-          console.log('Generated:', filePath)
-        }
-      }
+      virtualModule: true
     })
   ]
 })
@@ -119,7 +117,7 @@ src/
 
 ```typescript
 // src/pages/user/index.config.ts
-import { defineConfig } from '../../router/autoRouter'
+import { defineConfig } from 'virtual:onoxm-auto-router/react'
 
 export default defineConfig({
   type: 'single'
@@ -129,13 +127,13 @@ export default defineConfig({
 生成的路由结构：
 
 ```typescript
-// src/router/autoRouter.tsx
+// virtual:onoxm-auto-router/react
 import type { RouteObject } from 'react-router'
-import Pages404 from './../pages/404.tsx'
-import Pages from './../pages/index.tsx'
-import PagesRoot from './../pages/__root__.tsx'
-import PagesUser from './../pages/user/index.tsx'
-import PagesUserId from './../pages/user/[id]/index.tsx'
+import Pages404 from './pages/404.tsx'
+import Pages from './pages/index.tsx'
+import PagesRoot from './pages/__root__.tsx'
+import PagesUser from './pages/user/index.tsx'
+import PagesUserId from './pages/user/[id]/index.tsx'
 
 type PageConfig = Partial<
   Omit<RouteObject, 'Component' | 'element' | 'children'> & {
@@ -191,7 +189,7 @@ export const routes: RouteObject[] = [
 
 ```typescript
 // src/pages/user/index.config.ts
-import { defineConfig } from '../../router/autoRouter'
+import { defineConfig } from 'virtual:onoxm-auto-router/react'
 
 export default defineConfig({
   type: 'wrap'
@@ -201,13 +199,13 @@ export default defineConfig({
 生成的路由结构：
 
 ```typescript
-// src/router/autoRouter.tsx
+// virtual:onoxm-auto-router/react
 import type { RouteObject } from 'react-router'
-import Pages404 from './../pages/404.tsx'
-import Pages from './../pages/index.tsx'
-import PagesRoot from './../pages/__root__.tsx'
-import PagesUser from './../pages/user/index.tsx'
-import PagesUserId from './../pages/user/[id]/index.tsx'
+import Pages404 from './pages/404.tsx'
+import Pages from './pages/index.tsx'
+import PagesRoot from './pages/__root__.tsx'
+import PagesUser from './pages/user/index.tsx'
+import PagesUserId from './pages/user/[id]/index.tsx'
 
 type PageConfig = Partial<
   Omit<RouteObject, 'Component' | 'element' | 'children'> & {
@@ -263,10 +261,10 @@ export const routes: RouteObject[] = [
 
 React Router v7 中这两个是**并行字段**，可任选其一或同时使用：
 
-| 字段                     | 类型                  | 接收值                 |
-| ------------------------ | --------------------- | ---------------------- |
-| `hydrateFallbackElement` | `React.ReactNode`     | JSX 元素 `<Loading />` |
-| `HydrateFallback`        | `React.ComponentType` | 组件引用 `Loading`     |
+| 字段 | 类型 | 接收值 |
+| --- | --- | --- |
+| `hydrateFallbackElement` | `React.ReactNode` | JSX 元素 `<Loading />` |
+| `HydrateFallback` | `React.ComponentType` | 组件引用 `Loading` |
 
 **用法 1：hydrateFallbackElement（JSX 元素）**
 
@@ -295,9 +293,9 @@ export default defineConfig({
 生成的路由结构（两种用法生成结果相同，仅 hydrate 字段不同）：
 
 ```typescript
-// src/router/autoRouter.tsx
+// virtual:onoxm-auto-router/react
 import type { RouteObject } from 'react-router'
-import Loading from './../components/Loading.tsx'
+import Loading from './components/Loading.tsx'
 
 type PageConfig = Partial<
   Omit<RouteObject, 'Component' | 'element' | 'children' | 'lazy'> & {
@@ -315,7 +313,7 @@ export const routes: RouteObject[] = [
         path: '',
         index: true,
         hydrateFallbackElement: <Loading />,  // 或 HydrateFallback: Loading
-        lazy: () => import('../pages/index.tsx').then(m => ({ Component: m.default }))
+        lazy: () => import('./pages/index.tsx').then(m => ({ Component: m.default }))
       }
     ]
   }
@@ -324,11 +322,11 @@ export const routes: RouteObject[] = [
 
 **lazy 模式优先级**
 
-| 页面配置                                         | 插件 `lazy` 选项 | 该页面的生成模式                                  |
-| ------------------------------------------------ | ---------------- | ------------------------------------------------- |
-| 含 `hydrateFallbackElement` 或 `HydrateFallback` | 任意值           | React Router `lazy`（最高优先级，页面级覆盖全局） |
-| 无 hydrate 配置                                  | `true`           | `React.lazy()` + `<Suspense>`                     |
-| 无 hydrate 配置                                  | `false`          | 同步 `import` + `element`                         |
+| 页面配置 | 插件 `lazy` 选项 | 该页面的生成模式 |
+| --- | --- | --- |
+| 含 `hydrateFallbackElement` 或 `HydrateFallback` | 任意值 | React Router `lazy`（最高优先级，页面级覆盖全局） |
+| 无 hydrate 配置 | `true` | `React.lazy()` + `<Suspense>` |
+| 无 hydrate 配置 | `false` | 同步 `import` + `element` |
 
 **混合场景**
 
@@ -337,7 +335,7 @@ export const routes: RouteObject[] = [
 > **注意**
 >
 > - 使用 `hydrateFallbackElement` + JSX 元素时，扩展名必须为 `.config.tsx` 或 `.config.jsx`；使用 `HydrateFallback` + 组件引用时，扩展名可为 `.config.ts` 或 `.config.js`
-> - fallback 组件（如 `Loading`）的 import 会自动收集并去重后注入到生成的路由文件
+> - fallback 组件（如 `Loading`）的 import 会自动收集并去重后注入到生成的路由代码
 > - 不要使用小写 `hydrateFallback`（React Router v7 中不存在此字段名，只识别大写 `HydrateFallback` 和 `hydrateFallbackElement`）
 
 ### Vue 项目
@@ -362,11 +360,7 @@ export default defineConfig({
     autoRouter({
       pagesDir: './src/views',
       configPattern: '/**/*.meta.ts',
-      onGenerated: async filePaths => {
-        for (const filePath of filePaths) {
-          console.log('Generated:', filePath)
-        }
-      }
+      virtualModule: true
     })
   ]
 })
@@ -411,7 +405,7 @@ src/
 
 ```typescript
 // src/views/user/index.meta.ts
-import { defineConfig } from '../../router/autoRouter'
+import { defineConfig } from 'virtual:onoxm-auto-router/vue'
 
 export default defineConfig({
   type: 'single'
@@ -421,12 +415,12 @@ export default defineConfig({
 生成的路由结构：
 
 ```typescript
-// src/router/autoRouter.ts
+// virtual:onoxm-auto-router/vue
 import type { RouteRecordRaw } from 'vue-router'
-import Views404 from './../views/404.vue'
-import ViewsHome from './../views/home/index.vue'
-import ViewsUser from './../views/user/index.vue'
-import ViewsUserId from './../views/user/[id]/index.vue'
+import Views404 from './views/404.vue'
+import ViewsHome from './views/home/index.vue'
+import ViewsUser from './views/user/index.vue'
+import ViewsUserId from './views/user/[id]/index.vue'
 
 type PageConfig = Partial<
   Omit<RouteRecordRaw, 'component' | 'children'> & {
@@ -483,7 +477,7 @@ export const routes: RouteRecordRaw[] = [
 
 ```typescript
 // src/views/user/index.meta.ts
-import { defineConfig } from '../../router/autoRouter'
+import { defineConfig } from 'virtual:onoxm-auto-router/vue'
 
 export default defineConfig({
   type: 'wrap'
@@ -493,12 +487,12 @@ export default defineConfig({
 生成的路由结构：
 
 ```typescript
-// src/router/autoRouter.ts
+// virtual:onoxm-auto-router/vue
 import type { RouteRecordRaw } from 'vue-router'
-import Views404 from './../views/404.vue'
-import ViewsHome from './../views/home/index.vue'
-import ViewsUser from './../views/user/index.vue'
-import ViewsUserId from './../views/user/[id]/index.vue'
+import Views404 from './views/404.vue'
+import ViewsHome from './views/home/index.vue'
+import ViewsUser from './views/user/index.vue'
+import ViewsUserId from './views/user/[id]/index.vue'
 
 type PageConfig = Partial<
   Omit<RouteRecordRaw, 'component' | 'children'> & {
@@ -550,24 +544,60 @@ export const routes: RouteRecordRaw[] = [
 
 ### 插件配置
 
-| 选项            | 类型                                             | 默认值                         | 说明                                         |
-| --------------- | ------------------------------------------------ | ------------------------------ | -------------------------------------------- |
-| `framework`     | `'react' \| 'vue'`                               | `'react'`                      | 框架类型                                     |
-| `pagesDir`      | `string`                                         | `'./src/pages'`                | 页面目录                                     |
-| `routesFile`    | `string`                                         | `undefined`                    | 生成的路由文件路径                           |
-| `keepHome`      | `boolean`                                        | `false`                        | 是否保留 `home` 页面                         |
-| `keepRoot`      | `boolean`                                        | `false`                        | 是否保留 `__root__` 页面                     |
-| `lazy`          | `boolean`                                        | `true`                         | 是否启用懒加载                               |
-| `hmr`           | `boolean`                                        | `true`                         | 是否启用热更新                               |
-| `hmrDebounceMs` | `number`                                         | `200`                          | HMR 防抖延迟（毫秒）                         |
-| `configPattern` | `string`                                         | `/**/*.config.{js,ts,jsx,tsx}` | 配置文件模式                                 |
-| `log`           | `boolean`                                        | `false`                        | 是否在 HMR 期间输出路由生成日志              |
-| `dryRun`        | `boolean`                                        | `false`                        | 预览模式：仅输出路由结构到控制台，不写入文件 |
-| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`                    | 生成路由后调用的回调函数                     |
+| 选项 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `framework` | `'react' \| 'vue'` | `'react'` | 框架类型 |
+| `pagesDir` | `string` | `'./src/pages'` | 页面目录 |
+| `routesFile` | `string` | `'./src/router/autoRouter.{tsx,ts}'` | ⚠️ **已弃用**，将在 v1.0.0 移除。生成的路由文件路径（`virtualModule: true` 时失效） |
+| `keepHome` | `boolean` | `false` | 是否保留 `home` 页面 |
+| `keepRoot` | `boolean` | `false` | 是否保留 `__root__` 页面 |
+| `lazy` | `boolean` | `true` | 是否启用懒加载 |
+| `hmr` | `boolean` | `true` | ⚠️ **已弃用**，将在 v1.0.0 移除。HMR 现已默认启用，无需手动配置 |
+| `hmrDebounceMs` | `number` | `200` | ⚠️ **已弃用**，将在 v1.0.0 移除。HMR 防抖延迟（毫秒）（`virtualModule: true` 时失效） |
+| `configPattern` | `string` | `/**/*.config.{js,ts,jsx,tsx}` | 配置文件模式 |
+| `log` | `false \| 'tree'` | `false` | 控制台输出路由树形预览，与文件写入行为完全解耦 |
+| `dryRun` | `boolean` | `false` | ⚠️ **已弃用**，将在 v1.0.0 移除。仅控制是否跳过文件写入，不影响控制台输出（`virtualModule: true` 时失效） |
+| `onGenerated` | `(filePaths: string[]) => Promise<void> \| void` | `undefined` | ⚠️ **已弃用**，将在 v1.0.0 移除。生成路由后调用的回调函数（`virtualModule: true` 时失效） |
+| `virtualModule` | `boolean` | `false` | 启用虚拟模块模式，路由代码通过 `virtual:onoxm-auto-router/{react\|vue}` 提供，零文件残留 |
 
-#### dryRun 使用示例
+> **已弃用参数汇总（将在 v1.0.0 移除）**
+>
+> 以下参数因虚拟模块机制的引入而失去意义，将在 v1.0.0 完全移除。迁移到 `virtualModule: true` 后无需再配置：
+>
+> | 参数 | 弃用原因 | 迁移方式 |
+> | --- | --- | --- |
+> | `routesFile` | 虚拟模块不写盘，无需指定文件路径 | 移除该参数，改用 `virtualModule: true` |
+> | `hmr` | HMR 现已默认启用，无需手动配置 | 移除该参数 |
+> | `hmrDebounceMs` | 虚拟模块通过 `moduleGraph.invalidateModule` 触发更新，无需防抖 | 移除该参数 |
+> | `onGenerated` | 虚拟模块没有"生成完成"语义，通过 Vite HMR 自动更新 | 移除该参数，如需监听更新用 Vite 插件钩子 |
+> | `dryRun` | 虚拟模块本身就不写盘，如需预览改用 `log: 'tree'` | 移除该参数，改用 `log: 'tree'` |
 
-启用 `dryRun` 可以在控制台预览生成的路由树，而不会向磁盘写入任何文件。适用于在正式生成文件前调试或验证路由结构：
+#### log 使用示例
+
+`log` 参数仅负责是否在控制台输出路由树形预览，与文件写入行为完全解耦。支持两个值：
+
+- `false`（默认）：不输出
+- `'tree'`：输出可读的路由树形结构、组件列表、配置导入及目标文件路径
+
+```typescript
+autoRouter({
+  log: 'tree' // 仅打印路由树，不影响文件写入
+})
+```
+
+> **注意**
+>
+> `log` 管打印，`virtualModule` 管写盘，两者正交。可以单独使用 `log: 'tree'` 在正常生成路由的同时查看预览。
+
+### 虚拟模块模式（virtualModule）
+
+启用 `virtualModule: true` 后，路由代码不再写入磁盘，而是通过 Vite 虚拟模块 `virtual:onoxm-auto-router/react`（或 `/vue`）在内存中提供，适用于对 Tree Shaking 友好、不希望产生生成产物的场景。
+
+> 🚨 **首次使用必读**
+>
+> 插件会在 Vite 启动后的 `configResolved` 钩子中，自动将 `/// <reference types="@onoxm/vite-plugin-auto-router/virtual" />` 注入到 `vite-env.d.ts`。如果你的构建脚本先跑 `tsc` 再跑 `vite build`（如 `tsc -b && vite build`），**第一次**构建可能会因为 `tsc` 无法解析 `virtual:onoxm-auto-router/*` 而失败。
+>
+> **解决方法：**先单独运行一次 `vite dev` 或 `vite build`，插件会自动创建 `vite-env.d.ts`，之后将该文件提交到版本控制。后续所有构建都能正常通过。
 
 ```typescript
 // vite.config.ts
@@ -579,26 +609,74 @@ export default defineConfig({
   plugins: [
     react(),
     autoRouter({
-      dryRun: true
+      virtualModule: true
     })
   ]
 })
 ```
 
-当 `dryRun` 为 `true` 时：
+在应用代码中直接从虚拟模块导入：
 
-- 路由结构以可读的树形结构打印到控制台
-- 不会向磁盘写入任何路由文件
-- 不会删除已有的路由文件
-- 跳过 `onGenerated` 回调
+```typescript
+// src/router/index.ts
+import { createBrowserRouter } from 'react-router'
+import { routes } from 'virtual:onoxm-auto-router/react'
+
+export const router = createBrowserRouter(routes)
+```
+
+页面配置文件同样从虚拟模块导入 `defineConfig`：
+
+```typescript
+// src/pages/user/index.config.ts
+import { defineConfig } from 'virtual:onoxm-auto-router/react'
+
+export default defineConfig({
+  type: 'single'
+})
+```
+
+**构建与 SSR 兼容性**
+
+虚拟模块模式同时支持 `vite dev` 和 `vite build`。虚拟模块在构建阶段与普通源文件一样被解析处理。SSR 已支持——生成的路由代码兼容服务端渲染环境。
+
+**虚拟模块模式下失效的选项**
+
+以下选项在 `virtualModule: true` 时失效，插件会输出警告：
+
+- `routesFile`：虚拟模块不写盘，无需指定文件路径
+- `onGenerated`：虚拟模块没有"生成完成"的语义，通过 Vite HMR 自动更新
+- `dryRun`：虚拟模块本身就不写盘，如需预览请改用 `log: 'tree'`
+- `hmrDebounceMs`：虚拟模块通过 Vite `moduleGraph.invalidateModule` 触发更新，无需防抖
+
+**TypeScript 类型声明自动注入**
+
+虚拟模块 `virtual:onoxm-auto-router/{react|vue}` 是内存模块，磁盘上没有实体文件，TypeScript 默认无法识别其命名导出（`routes`、`defineConfig`）。为了让 TS 类型检查通过，需要在项目的 `vite-env.d.ts` 里声明该模块的类型。
+
+插件包通过 `./virtual` 子路径暴露了类型声明（`@onoxm/vite-plugin-auto-router/virtual`）。启用 `virtualModule: true` 且项目为 TypeScript 项目（存在 `tsconfig.json`）时，插件会在 Vite 的 `configResolved` 钩子（dev 和 build 均会触发）**静默自动注入**以下内容到 `vite-env.d.ts`：
+
+```typescript
+/// <reference types="@onoxm/vite-plugin-auto-router/virtual" />
+```
+
+注入规则：
+
+| 场景 | 行为 |
+| --- | --- |
+| `src/vite-env.d.ts` 存在且已含 reference | 跳过，内容不变（幂等） |
+| `src/vite-env.d.ts` 存在但无 reference | 末尾空一行后追加 reference |
+| 根目录 `vite-env.d.ts` 存在但 `src/` 下无 | 在根目录文件追加 |
+| `src/vite-env.d.ts` 和根目录都有 | 优先处理 `src/` 下那个，根目录文件不碰 |
+| 都不存在 | 在 `src/` 下创建 `vite-env.d.ts`，写入 reference |
+| 任何异常 | 仅 warn，不抛错，不阻塞 Vite 启动 |
 
 ### 页面配置
 
-| 选项   | 类型                 | 默认值      | 说明                                                  |
-| ------ | -------------------- | ----------- | ----------------------------------------------------- |
-| `type` | `'single' \| 'wrap'` | `'single'`  | 路由类型                                              |
-| `path` | `string`             | `undefined` | 路由路径，支持使用 `[currentPath]` 占位符引用当前路径 |
-| `*`    | `any`                | `any`       | 继承自路由配置                                        |
+| 选项 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `type` | `'single' \| 'wrap'` | `'single'` | 路由类型 |
+| `path` | `string` | `undefined` | 路由路径，支持使用 `[currentPath]` 占位符引用当前路径 |
+| `*` | `any` | `any` | 继承自路由配置 |
 
 #### path 使用示例
 
@@ -606,7 +684,7 @@ export default defineConfig({
 
 ```typescript
 // src/pages/user/index.config.ts
-import { defineConfig } from '../../router/autoRouter'
+import { defineConfig } from 'virtual:onoxm-auto-router/react'
 
 export default defineConfig({
   // 将 /user 替换为 /users/v2
