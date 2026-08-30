@@ -261,10 +261,10 @@ export const routes: RouteObject[] = [
 
 React Router v7 中这两个是**并行字段**，可任选其一或同时使用：
 
-| 字段 | 类型 | 接收值 |
-| --- | --- | --- |
-| `hydrateFallbackElement` | `React.ReactNode` | JSX 元素 `<Loading />` |
-| `HydrateFallback` | `React.ComponentType` | 组件引用 `Loading` |
+| 字段                     | 类型                  | 接收值                 |
+| ------------------------ | --------------------- | ---------------------- |
+| `hydrateFallbackElement` | `React.ReactNode`     | JSX 元素 `<Loading />` |
+| `HydrateFallback`        | `React.ComponentType` | 组件引用 `Loading`     |
 
 **用法 1：hydrateFallbackElement（JSX 元素）**
 
@@ -322,11 +322,11 @@ export const routes: RouteObject[] = [
 
 **lazy 模式优先级**
 
-| 页面配置 | 插件 `lazy` 选项 | 该页面的生成模式 |
-| --- | --- | --- |
-| 含 `hydrateFallbackElement` 或 `HydrateFallback` | 任意值 | React Router `lazy`（最高优先级，页面级覆盖全局） |
-| 无 hydrate 配置 | `true` | `React.lazy()` + `<Suspense>` |
-| 无 hydrate 配置 | `false` | 同步 `import` + `element` |
+| 页面配置                                         | 插件 `lazy` 选项 | 该页面的生成模式                                  |
+| ------------------------------------------------ | ---------------- | ------------------------------------------------- |
+| 含 `hydrateFallbackElement` 或 `HydrateFallback` | 任意值           | React Router `lazy`（最高优先级，页面级覆盖全局） |
+| 无 hydrate 配置                                  | `true`           | `React.lazy()` + `<Suspense>`                     |
+| 无 hydrate 配置                                  | `false`          | 同步 `import` + `element`                         |
 
 **混合场景**
 
@@ -544,50 +544,56 @@ export const routes: RouteRecordRaw[] = [
 
 ### 插件配置
 
-| 选项 | 类型 | 默认值 | 说明 |
-| --- | --- | --- | --- |
-| `framework` | `'react' \| 'vue'` | `'react'` | 框架类型 |
-| `pagesDir` | `string` | `'./src/pages'` | 页面目录 |
-| `routesFile` | `string` | `'./src/router/autoRouter.{tsx,ts}'` | ⚠️ **已弃用**，将在 v1.0.0 移除。生成的路由文件路径（`virtualModule: true` 时失效） |
-| `keepHome` | `boolean` | `false` | 是否保留 `home` 页面 |
-| `keepRoot` | `boolean` | `false` | 是否保留 `__root__` 页面 |
-| `lazy` | `boolean` | `true` | 是否启用懒加载 |
-| `hmr` | `boolean` | `true` | ⚠️ **已弃用**，将在 v1.0.0 移除。HMR 现已默认启用，无需手动配置 |
-| `hmrDebounceMs` | `number` | `200` | ⚠️ **已弃用**，将在 v1.0.0 移除。HMR 防抖延迟（毫秒）（`virtualModule: true` 时失效） |
-| `configPattern` | `string` | `/**/*.config.{js,ts,jsx,tsx}` | 配置文件模式 |
-| `log` | `false \| 'tree'` | `false` | 控制台输出路由树形预览，与文件写入行为完全解耦 |
-| `dryRun` | `boolean` | `false` | ⚠️ **已弃用**，将在 v1.0.0 移除。仅控制是否跳过文件写入，不影响控制台输出（`virtualModule: true` 时失效） |
-| `onGenerated` | `(filePaths: string[]) => Promise<void> \| void` | `undefined` | ⚠️ **已弃用**，将在 v1.0.0 移除。生成路由后调用的回调函数（`virtualModule: true` 时失效） |
-| `virtualModule` | `boolean` | `false` | 启用虚拟模块模式，路由代码通过 `virtual:onoxm-auto-router/{react\|vue}` 提供，零文件残留 |
+| 选项            | 类型                                             | 默认值                               | 说明                                                                                                       |
+| --------------- | ------------------------------------------------ | ------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `framework`     | `'react' \| 'vue'`                               | `'react'`                            | 框架类型                                                                                                   |
+| `pagesDir`      | `string`                                         | `'./src/pages'`                      | 页面目录                                                                                                   |
+| `routesFile`    | `string`                                         | `'./src/router/autoRouter.{tsx,ts}'` | ⚠️ **已弃用**，将在 v0.10.0 移除。生成的路由文件路径（`virtualModule: true` 时失效）                       |
+| `keepHome`      | `boolean`                                        | `false`                              | 是否保留 `home` 页面                                                                                       |
+| `keepRoot`      | `boolean`                                        | `false`                              | 是否保留 `__root__` 页面                                                                                   |
+| `lazy`          | `boolean`                                        | `true`                               | 是否启用懒加载                                                                                             |
+| `hmr`           | `boolean`                                        | `true`                               | ⚠️ **已弃用**，将在 v0.10.0 移除。HMR 现已默认启用，无需手动配置                                           |
+| `hmrDebounceMs` | `number`                                         | `200`                                | ⚠️ **已弃用**，将在 v0.10.0 移除。HMR 防抖延迟（毫秒）（`virtualModule: true` 时失效）                     |
+| `configPattern` | `string`                                         | `/**/*.config.{js,ts,jsx,tsx}`       | 配置文件模式                                                                                               |
+| `log`           | `false \| 'tree' \| 'json'`                      | `false`                              | 控制台输出路由预览：`'tree'` 输出可读树形结构，`'json'` 输出机器可读 JSON（与文件写入行为完全解耦）        |
+| `dryRun`        | `boolean`                                        | `false`                              | ⚠️ **已弃用**，将在 v0.10.0 移除。仅控制是否跳过文件写入，不影响控制台输出（`virtualModule: true` 时失效） |
+| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`                          | ⚠️ **已弃用**，将在 v0.10.0 移除。生成路由后调用的回调函数（`virtualModule: true` 时失效）                 |
+| `virtualModule` | `boolean`                                        | `false`                              | 启用虚拟模块模式，路由代码通过 `virtual:onoxm-auto-router/{react\|vue}` 提供，零文件残留                   |
 
-> **已弃用参数汇总（将在 v1.0.0 移除）**
+> **已弃用参数汇总（将在 v0.10.0 移除）**
 >
-> 以下参数因虚拟模块机制的引入而失去意义，将在 v1.0.0 完全移除。迁移到 `virtualModule: true` 后无需再配置：
+> 以下参数因虚拟模块机制的引入而失去意义，将在 v0.10.0 完全移除。迁移到 `virtualModule: true` 后无需再配置：
 >
-> | 参数 | 弃用原因 | 迁移方式 |
-> | --- | --- | --- |
-> | `routesFile` | 虚拟模块不写盘，无需指定文件路径 | 移除该参数，改用 `virtualModule: true` |
-> | `hmr` | HMR 现已默认启用，无需手动配置 | 移除该参数 |
-> | `hmrDebounceMs` | 虚拟模块通过 `moduleGraph.invalidateModule` 触发更新，无需防抖 | 移除该参数 |
-> | `onGenerated` | 虚拟模块没有"生成完成"语义，通过 Vite HMR 自动更新 | 移除该参数，如需监听更新用 Vite 插件钩子 |
-> | `dryRun` | 虚拟模块本身就不写盘，如需预览改用 `log: 'tree'` | 移除该参数，改用 `log: 'tree'` |
+> | 参数            | 弃用原因                                                          | 迁移方式                                        |
+> | --------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
+> | `routesFile`    | 虚拟模块不写盘，无需指定文件路径                                  | 移除该参数，改用 `virtualModule: true`          |
+> | `hmr`           | HMR 现已默认启用，无需手动配置                                    | 移除该参数                                      |
+> | `hmrDebounceMs` | 虚拟模块通过 `moduleGraph.invalidateModule` 触发更新，无需防抖    | 移除该参数                                      |
+> | `onGenerated`   | 虚拟模块没有"生成完成"语义，通过 Vite HMR 自动更新                | 移除该参数，如需监听更新用 Vite 插件钩子        |
+> | `dryRun`        | 虚拟模块本身就不写盘，如需预览改用 `log: 'tree'` 或 `log: 'json'` | 移除该参数，改用 `log: 'tree'` 或 `log: 'json'` |
 
 #### log 使用示例
 
-`log` 参数仅负责是否在控制台输出路由树形预览，与文件写入行为完全解耦。支持两个值：
+`log` 参数仅负责是否在控制台输出路由预览，与文件写入行为完全解耦。支持三个值：
 
 - `false`（默认）：不输出
 - `'tree'`：输出可读的路由树形结构、组件列表、配置导入及目标文件路径
+- `'json'`：输出机器可读的 JSON（包含解析后的组件名、路由树、配置导入、框架、路由文件路径），适合工具消费、日志解析或管道传输
 
 ```typescript
 autoRouter({
-  log: 'tree' // 仅打印路由树，不影响文件写入
+  log: 'tree' // 打印可读的路由树到控制台
+})
+
+// 或
+autoRouter({
+  log: 'json' // 以 JSON 格式打印路由信息（可管道至文件或其他工具）
 })
 ```
 
 > **注意**
 >
-> `log` 管打印，`virtualModule` 管写盘，两者正交。可以单独使用 `log: 'tree'` 在正常生成路由的同时查看预览。
+> `log` 管打印，`virtualModule` 管写盘，两者正交。可以单独使用 `log: 'tree'` 或 `log: 'json'` 在正常生成路由的同时查看预览。
 
 ### 虚拟模块模式（virtualModule）
 
@@ -638,7 +644,7 @@ export default defineConfig({
 
 **构建与 SSR 兼容性**
 
-虚拟模块模式同时支持 `vite dev` 和 `vite build`。虚拟模块在构建阶段与普通源文件一样被解析处理。SSR 已支持——生成的路由代码兼容服务端渲染环境。
+虚拟模块模式同时支持 `vite dev` 和 `vite build`（含 SSR 构建）。虚拟模块在构建阶段与普通源文件一样被解析处理。生成的路由代码是纯数据（不依赖浏览器 API），因此兼容服务端渲染环境。但插件不提供 SSR 专用入口——React SSR 场景下，用户需要在 server entry 中使用 `createStaticRouter` 而非 `createBrowserRouter`。
 
 **虚拟模块模式下失效的选项**
 
@@ -661,22 +667,22 @@ export default defineConfig({
 
 注入规则：
 
-| 场景 | 行为 |
-| --- | --- |
-| `src/vite-env.d.ts` 存在且已含 reference | 跳过，内容不变（幂等） |
-| `src/vite-env.d.ts` 存在但无 reference | 末尾空一行后追加 reference |
-| 根目录 `vite-env.d.ts` 存在但 `src/` 下无 | 在根目录文件追加 |
-| `src/vite-env.d.ts` 和根目录都有 | 优先处理 `src/` 下那个，根目录文件不碰 |
-| 都不存在 | 在 `src/` 下创建 `vite-env.d.ts`，写入 reference |
-| 任何异常 | 仅 warn，不抛错，不阻塞 Vite 启动 |
+| 场景                                      | 行为                                             |
+| ----------------------------------------- | ------------------------------------------------ |
+| `src/vite-env.d.ts` 存在且已含 reference  | 跳过，内容不变（幂等）                           |
+| `src/vite-env.d.ts` 存在但无 reference    | 末尾空一行后追加 reference                       |
+| 根目录 `vite-env.d.ts` 存在但 `src/` 下无 | 在根目录文件追加                                 |
+| `src/vite-env.d.ts` 和根目录都有          | 优先处理 `src/` 下那个，根目录文件不碰           |
+| 都不存在                                  | 在 `src/` 下创建 `vite-env.d.ts`，写入 reference |
+| 任何异常                                  | 仅 warn，不抛错，不阻塞 Vite 启动                |
 
 ### 页面配置
 
-| 选项 | 类型 | 默认值 | 说明 |
-| --- | --- | --- | --- |
-| `type` | `'single' \| 'wrap'` | `'single'` | 路由类型 |
-| `path` | `string` | `undefined` | 路由路径，支持使用 `[currentPath]` 占位符引用当前路径 |
-| `*` | `any` | `any` | 继承自路由配置 |
+| 选项   | 类型                 | 默认值      | 说明                                                  |
+| ------ | -------------------- | ----------- | ----------------------------------------------------- |
+| `type` | `'single' \| 'wrap'` | `'single'`  | 路由类型                                              |
+| `path` | `string`             | `undefined` | 路由路径，支持使用 `[currentPath]` 占位符引用当前路径 |
+| `*`    | `any`                | `any`       | 继承自路由配置                                        |
 
 #### path 使用示例
 
