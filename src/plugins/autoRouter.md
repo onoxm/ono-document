@@ -74,6 +74,7 @@ export default defineConfig({
   plugins: [
     react(),
     autoRouter({
+      // v0.10.0 之后虚拟模块将成为默认行为，此参数将被移除
       virtualModule: true
     })
   ]
@@ -361,6 +362,7 @@ export default defineConfig({
     autoRouter({
       pagesDir: './src/views',
       configPattern: '/**/*.meta.ts',
+      // v0.10.0 之后虚拟模块将成为默认行为，此参数将被移除
       virtualModule: true
     })
   ]
@@ -545,20 +547,21 @@ export const routes: RouteRecordRaw[] = [
 
 ### 插件配置
 
-| 选项            | 类型                                             | 默认值                                                           | 说明                                                                                                              |
-| --------------- | ------------------------------------------------ | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `framework`     | `'react' \| 'vue'`                               | `'react'`                                                        | 框架类型                                                                                                          |
-| `pagesDir`      | `string`                                         | `'./src/pages'`                                                  | 页面目录                                                                                                          |
-| `routesFile`    | `string`                                         | `'src/router/autoRouter.{tsx,jsx}'`（React）/ `'{ts,js}'`（Vue） | ⚠️ **已弃用**，将在 v0.10.0 移除。生成的路由文件路径，按框架与项目语言决定（`virtualModule: true` 时失效）        |
-| `keepHome`      | `boolean`                                        | `false`                                                          | 是否保留 `home` 页面                                                                                              |
-| `keepRoot`      | `boolean`                                        | `false`                                                          | 是否保留 `__root__` 页面                                                                                          |
-| `lazy`          | `boolean`                                        | `true`                                                           | 是否启用懒加载                                                                                                    |
-| `hmr`           | `boolean`                                        | `true`                                                           | ⚠️ **已弃用**，将在 v0.10.0 移除。HMR 现已默认启用，无需手动配置                                                  |
-| `hmrDebounceMs` | `number`                                         | `200`                                                            | ⚠️ **已弃用**，将在 v0.10.0 移除。HMR 防抖延迟（毫秒）（`virtualModule: true` 时失效）                            |
-| `configPattern` | `string`                                         | `/**/*.config.{js,ts,jsx,tsx}`                                   | 配置文件模式                                                                                                      |
-| `log`           | `false \| 'tree' \| 'json'`                      | `false`                                                          | 控制台输出路由预览：`'tree'` 输出可读树形结构，`'json'` 输出格式化（2 空格缩进）的 JSON（与文件写入行为完全解耦） |
-| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`                                                      | ⚠️ **已弃用**，将在 v0.10.0 移除。生成路由后调用的回调函数（`virtualModule: true` 时失效）                        |
-| `virtualModule` | `boolean`                                        | `false`                                                          | ⚠️ **已弃用**，将在 v0.10.0 移除。移除之后将会默认启动虚拟模块                                                    |
+| 选项            | 类型                                             | 默认值                                                           | 说明                                                                                                                                           |
+| --------------- | ------------------------------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `framework`     | `'react' \| 'vue'`                               | `'react'`                                                        | 框架类型                                                                                                                                       |
+| `pagesDir`      | `string`                                         | `'./src/pages'`                                                  | 页面目录                                                                                                                                       |
+| `routesFile`    | `string`                                         | `'src/router/autoRouter.{tsx,jsx}'`（React）/ `'{ts,js}'`（Vue） | ⚠️ **已弃用**，将在 v0.10.0 移除。生成的路由文件路径，按框架与项目语言决定（`virtualModule: true` 时失效）                                     |
+| `keepHome`      | `boolean`                                        | `false`                                                          | 是否保留 `home` 页面                                                                                                                           |
+| `keepRoot`      | `boolean`                                        | `false`                                                          | 是否保留 `__root__` 页面                                                                                                                       |
+| `lazy`          | `boolean`                                        | `true`                                                           | 是否启用懒加载                                                                                                                                 |
+| `hmr`           | `boolean`                                        | `true`                                                           | ⚠️ **已弃用**，将在 v0.10.0 移除。HMR 现已默认启用，无需手动配置                                                                               |
+| `hmrDebounceMs` | `number`                                         | `200`                                                            | ⚠️ **已弃用**，将在 v0.10.0 移除。HMR 防抖延迟（毫秒）（`virtualModule: true` 时失效）                                                         |
+| `configPattern` | `string`                                         | `/**/*.config.{js,ts,jsx,tsx}`                                   | 配置文件模式                                                                                                                                   |
+| `log`           | `false \| 'tree' \| 'json'`                      | `false`                                                          | 控制台输出路由预览：`'tree'` 输出可读树形结构，`'json'` 输出格式化（2 空格缩进）的 JSON（与文件写入行为完全解耦）                              |
+| `dryRun`        | `boolean`                                        | `false`                                                          | ⚠️ **已弃用**，将在 v0.10.0 移除。仅控制是否跳过文件写入，不影响控制台输出（`virtualModule: true` 时失效）                                     |
+| `onGenerated`   | `(filePaths: string[]) => Promise<void> \| void` | `undefined`                                                      | ⚠️ **已弃用**，将在 v0.10.0 移除。生成路由后调用的回调函数（`virtualModule: true` 时失效）                                                     |
+| `virtualModule` | `boolean`                                        | `false`                                                          | ⚠️ **已弃用**，将在 v0.10.0 移除。虚拟模块模式将成为默认（且唯一）的输出方式 —— 默认开启且不再可配置。请直接从配置中移除此参数，无需替代方案。 |
 
 > **已弃用参数汇总（将在 v0.10.0 移除）**
 >
@@ -596,6 +599,10 @@ autoRouter({
 
 ### 虚拟模块模式（virtualModule）
 
+> **弃用通知**
+>
+> `virtualModule` 参数已弃用，将在 v0.10.0 移除。从 v0.10.0 开始，插件将**始终**以虚拟模块（`virtual:onoxm-auto-router/{react|vue}`）的形式输出路由代码。该模式将默认开启且不再可配置。你现在就可以安全地从配置中移除 `virtualModule: true` —— 在最新版本中此行为已经是默认行为。
+
 启用 `virtualModule: true` 后，路由代码不再写入磁盘，而是通过 Vite 虚拟模块 `virtual:onoxm-auto-router/react`（或 `/vue`）在内存中提供，适用于对 Tree Shaking 友好、不希望产生生成产物的场景。
 
 > 🚨 **首次使用必读**
@@ -614,6 +621,7 @@ export default defineConfig({
   plugins: [
     react(),
     autoRouter({
+      // v0.10.0 之后虚拟模块将成为默认行为，此参数将被移除
       virtualModule: true
     })
   ]
