@@ -685,4 +685,4 @@ export default defineConfig({
 
 ## 📄 License
 
-[MIT](./LICENSE) © 2026 onoxm
+MIT
