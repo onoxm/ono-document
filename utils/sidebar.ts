@@ -5,8 +5,7 @@ export const sidebar = {
       // collapsed: false,
       items: [
         { text: '快速开始', link: '/docs/quickstart' },
-        { text: 'Prettierrc 配置', link: '/docs/prettierrc' },
-        { text: '主题切换', link: '/docs/theme' }
+        { text: 'Prettierrc 配置', link: '/docs/prettierrc' }
       ]
     }
   ],
@@ -18,10 +17,11 @@ export const sidebar = {
         { text: 'Button 按钮', link: '/comps/elements/button' },
         { text: 'Card3D 3D卡片', link: '/comps/elements/card3d' },
         { text: 'Checkbox 多选框', link: '/comps/elements/checkbox' },
-        // { text: 'Input 输入框', link: '/comps/elements/input' },
+        { text: 'Input 输入框', link: '/comps/elements/input' },
         { text: 'MenuButton 菜单按钮', link: '/comps/elements/menuButton' },
         { text: 'Radio 单选框', link: '/comps/elements/radio' },
-        { text: 'Switch 开关', link: '/comps/elements/switch' }
+        { text: 'Switch 开关', link: '/comps/elements/switch' },
+        { text: 'Textarea 文本域', link: '/comps/elements/textarea' }
       ]
     },
     {
@@ -29,7 +29,7 @@ export const sidebar = {
       collapsed: false,
       items: [
         { text: 'Avatar Crop 头像裁剪', link: '/comps/modules/avatarCrop' },
-        // { text: 'Select 下拉选择', link: '/comps/modules/select' },
+        { text: 'Select 下拉选择', link: '/comps/modules/select' },
         { text: 'VirtualList 虚拟列表', link: '/comps/modules/virtualList' },
         { text: 'Waterfall 瀑布流', link: '/comps/modules/waterfall' }
       ]
@@ -44,16 +44,13 @@ export const sidebar = {
         },
         // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
         { text: 'AwaitList 异步列表循环', link: '/comps/tools/awaitList' },
+        { text: 'Drawer 抽屉', link: '/comps/tools/drawer' },
         { text: 'List 列表循环', link: '/comps/tools/list' },
         { text: 'Message 消息提示', link: '/comps/tools/message' },
         { text: 'Modal 弹窗', link: '/comps/tools/modal' },
         { text: 'Pagination 分页', link: '/comps/tools/pagination' },
         { text: 'Popover 气泡卡片', link: '/comps/tools/popover' },
         { text: 'Popconfirm 气泡确认框', link: '/comps/tools/popconfirm' },
-        {
-          text: 'PortalRenderer 命令式Dom',
-          link: '/comps/tools/portalRenderer'
-        },
         // { text: 'Toast 提示框', link: '/comps/tools/toast' },
         {
           text: 'TemplateDialog 模版对话框',
@@ -86,6 +83,17 @@ export const sidebar = {
         { text: 'useTheme', link: '/hooks/useTheme' },
         { text: 'useThemePro', link: '/hooks/useThemePro' }
         // { text: 'useUpdate', link: '/hooks/useUpdate' }
+      ]
+    }
+  ],
+  '/tools/': [
+    {
+      text: 'Tools',
+      items: [
+        {
+          text: 'PortalRenderer 命令式Dom',
+          link: '/tools/portalRenderer'
+        },
       ]
     }
   ],

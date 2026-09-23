@@ -1,201 +1,91 @@
 # Popover 气泡卡片
-点击/鼠标移入元素，弹出气泡式的卡片浮层。
+点击或悬停元素时弹出气泡卡片，适合承载「标题 + 内容」这类稍重的信息。
 
 ## 基础用法
+不传 `trigger` 时是**点击触发**。
+
 ```tsx
-import { Popover } from '@/components/tools'
+import { Button, Popover } from 'ono-react-element'
 
 function App() {
-  return
-    <Popover content={'这是一段内容'}>
-      <div>Hover</div>
-    </Popover>
-}
-
-export default App;
-```
-
-## 点击触发
-```tsx
-import { Button } from 'ono-react-element'
-import { Popover } from '@/components/tools'
-
-function App() {
-  return
-    <Popover content={'这是一段内容'} trigger="click">
+  return (
+    <Popover content="这是一段内容">
       <Button>Click</Button>
     </Popover>
+  )
 }
 
 export default App;
 ```
 
-## 默认打开
+## 悬停触发
 ```tsx
-import { Popover } from '@/components/tools'
+import { Popover } from 'ono-react-element'
 
 function App() {
-  return
-    <Popover content={'这是一段内容'} defaultOpen>
-      <div>Hover</div>
+  return (
+    <Popover content="这是一段内容" trigger="hover">
+      <div style={{ width: 'fit-content' }}>Hover</div>
     </Popover>
+  )
 }
 
 export default App;
 ```
 
-## 隐藏箭头
+## 标题与内容
 ```tsx
-import { Popover } from '@/components/tools'
+import { Button, Popover } from 'ono-react-element'
 
 function App() {
-  return
-    <Popover content={'这是一段内容'} isShowArrow={false}>
-      <div>Hover</div>
+  return (
+    <Popover
+      title="卡片标题"
+      content="卡片内容，可以是一段稍长的说明文字。"
+    >
+      <Button>Click</Button>
     </Popover>
+  )
 }
 
 export default App;
 ```
 
-## 自定义位置
+## 默认展开
 ```tsx
-import { List } from 'ono-react-element'
-import { Popover, PositionType } from '@/components/tools'
+import { Popover } from 'ono-react-element'
 
 function App() {
-  const position = [
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: 'topLeft',
-      label: '上左'
-    },
-    {
-      pos: 'top',
-      label: '上'
-    },
-    {
-      pos: 'topRight',
-      label: '上右'
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: 'leftTop',
-      label: '左上'
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: 'rightTop',
-      label: '右上'
-    },
-    {
-      pos: 'left',
-      label: '左'
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: 'right',
-      label: '右'
-    },
-    {
-      pos: 'leftBottom',
-      label: '左下'
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: 'rightBottom',
-      label: '右下'
-    },
-    {
-      pos: '',
-      label: ''
-    },
-    {
-      pos: 'bottomLeft',
-      label: '下左'
-    },
-    {
-      pos: 'bottom',
-      label: '下'
-    },
-    {
-      pos: 'bottomRight',
-      label: '下右'
-    },
-    {
-      pos: '',
-      label: ''
-    }
-  ]
+  return (
+    <Popover content="这是一段内容" defaultOpen>
+      <div style={{ width: 'fit-content' }}>Hover</div>
+    </Popover>
+  )
+}
+
+export default App;
+```
+
+## 受控显示
+传 `open` 后变成受控，配合 `onOpenChange` 自己管理显示状态。
+
+```tsx
+import { useState } from 'react'
+import { Button, Popover } from 'ono-react-element'
+
+function App() {
+  const [open, setOpen] = useState(false)
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          width: '800px',
-          gap: '10px'
-        }}
+    <div style={{ display: 'flex', gap: 10 }}>
+      <Button onClick={() => setOpen(!open)}>切换</Button>
+      <Popover
+        content="这是一段内容"
+        open={open}
+        onOpenChange={setOpen}
       >
-        <List list={position}>
-          {({ pos, label }, i) =>
-            pos === '' ? (
-              <div key={i}></div>
-            ) : (
-              <Popover
-                key={i}
-                overlayStyle={{ width: '300px' }}
-                content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime voluptatibus doloribus iure quia excepturi iste sunt esse quibusdam omnis nesciunt ullam laborum accusamus amet recusandae, soluta velit! Amet, maiores nisi."
-                position={pos as PositionType}
-              >
-                <div style={{ padding: '8px', border: '1px solid #333' }}>
-                  {label}
-                </div>
-              </Popover>
-            )
-          }
-        </List>
-      </div>
+        <Button>受控的气泡卡片</Button>
+      </Popover>
     </div>
   )
 }
@@ -203,37 +93,128 @@ function App() {
 export default App;
 ```
 
+## 隐藏箭头
+```tsx
+import { Popover } from 'ono-react-element'
+
+function App() {
+  return (
+    <Popover content="这是一段内容" trigger="hover" isShowArrow={false}>
+      <div style={{ width: 'fit-content' }}>Hover</div>
+    </Popover>
+  )
+}
+
+export default App;
+```
+
+## 自定义方位
+`placement` 的取值与 Popper 一致，见文末的 `PlacementType`。
+
+```tsx
+import { Button, Popover } from 'ono-react-element'
+
+function App() {
+  return (
+    <div style={{ display: 'flex', gap: 10, padding: 40 }}>
+      <Popover content="上方" placement="top">
+        <Button>top</Button>
+      </Popover>
+      <Popover content="右侧" placement="right">
+        <Button>right</Button>
+      </Popover>
+      <Popover content="左下" placement="bottom-start">
+        <Button>bottom-start</Button>
+      </Popover>
+    </div>
+  )
+}
+
+export default App;
+```
+
+## 自定义内容宽度与样式
+`overlayStyle` / `overlayClassName` 作用在内层内容容器上，`style` / `className` 作用在浮层上。
+
+```tsx
+import { Button, Popover } from 'ono-react-element'
+
+function App() {
+  return (
+    <Popover
+      content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      overlayStyle={{ width: 300 }}
+      overlayClassName="my-popover-content"
+    >
+      <Button>Click</Button>
+    </Popover>
+  )
+}
+
+export default App;
+```
+
+## 自定义边框颜色
+默认没有边框（`borderColor` 被设为 `transparent`），需要边框时自己传色值。
+
+```tsx
+import { Button, Popover } from 'ono-react-element'
+
+function App() {
+  return (
+    <Popover content="这是一段内容" borderColor="#52c41a">
+      <Button>Click</Button>
+    </Popover>
+  )
+}
+
+export default App;
+```
+
 ## API
-通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-children|需要触发气泡卡片的元素|<code>ReactNode</code>|-|是
-color|气泡背景色|<code>string</code>|<code>'#fff'</code>|否
-borderRadius|圆角大小|<code>number</code>\|<code>string</code>|<code>'5px'</code>|否
-content|气泡内容|<code>ReactNode</code>\|<code>() => ReactNode</code>|-|是
-padding|气泡内边距|<code>number</code>\|<code>string</code>|<code>10</code>|否
-trigger|触发方式|<code>'hover'</code>\|<code>'click'</code>|<code>'hover'</code>|否
-zIndex|层级|<code>number</code>|<code>9999</code>|否
-defaultOpen|是否默认显示|<code>boolean</code>|<code>false</code>|否
-overlayClassName|浮层类名|<code>string</code>|-|否
-overlayStyle|浮层样式|<code>CSSProperties</code>|-|否
-open|控制浮层显示状态|<code>boolean</code>|<code>false</code>|否
-onOpenChange|浮层显示状态改变回调函数|<code>(open: boolean) => void</code>|<code>() => {}</code>|否
+children|触发元素，单个 React 元素时会被注入 ref 用于定位|<code>ReactNode</code>|-|是
+title|卡片标题|<code>ReactNode</code>|-|否
+content|卡片内容|<code>ReactNode</code>|-|否
+trigger|触发方式|<code>'hover'</code>\|<code>'click'</code>\|<code>'focus'</code>\|<code>'contextmenu'</code>|<code>'click'</code>|否
+placement|浮层相对触发元素的方位|<code>PlacementType</code>|<code>'top'</code>|否
 isShowArrow|是否显示箭头|<code>boolean</code>|<code>true</code>|否
-position|气泡位置|<code>positionParams</code>|<code>'top'</code>|否
+overlayClassName|内层内容容器的类名|<code>string</code>|-|否
+overlayStyle|内层内容容器的样式|<code>CSSProperties</code>|-|否
+className|浮层类名|<code>string</code>|-|否
+style|浮层样式|<code>CSSProperties</code>|-|否
+borderColor|浮层边框与箭头颜色|<code>string</code>|<code>'transparent'</code>|否
+sameWidth|浮层宽度是否跟随触发元素|<code>boolean</code>|<code>false</code>|否
+autoAdjustOverflow|空间不足时自动翻转方位|<code>boolean</code>|<code>true</code>|否
+arrowPointAtCenter|箭头是否指向触发元素的中心|<code>boolean</code>|<code>false</code>|否
+disabled|禁用后只渲染触发元素，不再弹出浮层|<code>boolean</code>|<code>false</code>|否
+defaultOpen|是否默认展开（非受控）|<code>boolean</code>|<code>false</code>|否
+open|受控的展开状态|<code>boolean</code>|-|否
+onOpenChange|展开状态变化回调|<code>(isVisible: boolean) => void</code>|-|否
+mouseDelay|<code>hover</code> 触发的延迟（ms），可分别设置进入与离开|<code>number</code>\|<code>\{ enter: number; leave: number \}</code>|<code>200</code>|否
+zIndex|浮层层级|<code>number</code>|<code>999</code>|否
+popperOptions|透传给 <code>@popperjs/core</code> 的配置|<code>Partial\<Options></code>|<code>\{\}</code>|否
 
-### positionParams
+### PlacementType
 类型|说明
 :- | :- 
-<code>'top'</code>|上方
-<code>'bottom'</code>|下方
-<code>'left'</code>|左侧
-<code>'right'</code>|右侧
-<code>'topLeft'</code>|上左方
-<code>'topRight'</code>|上右方
-<code>'bottomLeft'</code>|下左方
-<code>'bottomRight'</code>|下右方
-<code>'leftTop'</code>|左上角
-<code>'leftBottom'</code>|左下角
-<code>'rightTop'</code>|右上角
-<code>'rightBottom'</code>|右下角
+<code>'top'</code>|上方居中
+<code>'top-start'</code>|上方靠左
+<code>'top-end'</code>|上方靠右
+<code>'bottom'</code>|下方居中
+<code>'bottom-start'</code>|下方靠左
+<code>'bottom-end'</code>|下方靠右
+<code>'left'</code>|左侧居中
+<code>'left-start'</code>|左侧靠上
+<code>'left-end'</code>|左侧靠下
+<code>'right'</code>|右侧居中
+<code>'right-start'</code>|右侧靠上
+<code>'right-end'</code>|右侧靠下
+
+## 注意事项
+- Popover 的 `trigger` 默认是 `'click'`，而底层的 PopoverBase 默认是 `'hover'` —— 只有 Popover 把默认值改成了点击。
+- 浮层通过 Portal 渲染到 `document.body`，不受父级 `overflow` 裁剪；但也因此不在触发元素的子树里 —— `trigger="click"` 时点击浮层内部会被判定为「点击外部」而关闭，需要在浮层里放可交互内容时请改用受控的 `open` + `onOpenChange`。
+- 浮层默认是深色底、白字、13px 字号、最大宽度 300px，且 `borderColor` 被固定为 `transparent`（无边框）。要改成浅色卡片请用 `className` / `overlayStyle` 覆盖背景与文字色。
+- `title`、`content` 都是可选的，两者都不传时浮层是空的。
+- 方位参数名是 `placement`（不是 `position`）；`color`、`borderRadius`、`padding` 这些参数在源码里并不存在，请用 `overlayStyle`（内容容器）或 `style`（浮层）传。
