@@ -175,6 +175,6 @@ popperOptions|透传给 <code>@popperjs/core</code> 的配置|<code>Partial\<Opt
 - 默认 `hover` 触发且有 200ms 延迟（`mouseDelay`）；鼠标从触发元素移到浮层上不会关闭，移开后延迟关闭。
 - 内容默认带 `fontWeight: bold` 与 `4px 8px` 的内边距；浮层本身是深色底（`#333`）白字、字号 13px、最大宽度 300px。
 - `className` 会同时加在内容容器和浮层上，只想改浮层外观时请用 `style`。
-- 浮层通过 Portal 渲染到 `document.body`，不受父级 `overflow` 裁剪；但也因此不在触发元素的子树里 —— `trigger="click"` 时点击浮层内部会被判定为「点击外部」而关闭。
+- 浮层通过 Portal 渲染到 `document.body`，不受父级 `overflow` 裁剪。外部点击的判定把**触发元素和浮层本身**都算作「内部」，所以点击浮层内容不会把它关掉；并且只在 `trigger` 为 `'click'` / `'contextmenu'` 时才会因外部点击而关闭。
 - 内容为单段文字。需要「标题 + 内容」的多行卡片请用 Popover。
 - `content` 在类型上是可选的，但不传就没有内容可显示，实际使用时应始终传入。

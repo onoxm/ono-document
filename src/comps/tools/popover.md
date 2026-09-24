@@ -214,7 +214,7 @@ popperOptions|透传给 <code>@popperjs/core</code> 的配置|<code>Partial\<Opt
 
 ## 注意事项
 - Popover 的 `trigger` 默认是 `'click'`，而底层的 PopoverBase 默认是 `'hover'` —— 只有 Popover 把默认值改成了点击。
-- 浮层通过 Portal 渲染到 `document.body`，不受父级 `overflow` 裁剪；但也因此不在触发元素的子树里 —— `trigger="click"` 时点击浮层内部会被判定为「点击外部」而关闭，需要在浮层里放可交互内容时请改用受控的 `open` + `onOpenChange`。
+- 浮层通过 Portal 渲染到 `document.body`，不受父级 `overflow` 裁剪。外部点击的判定把**触发元素和浮层本身**都算作「内部」，所以浮层里放可交互内容不会被误关；并且只在 `trigger` 为 `'click'` / `'contextmenu'` 时才会因外部点击而关闭。
 - 浮层默认是深色底、白字、13px 字号、最大宽度 300px，且 `borderColor` 被固定为 `transparent`（无边框）。要改成浅色卡片请用 `className` / `overlayStyle` 覆盖背景与文字色。
 - `title`、`content` 都是可选的，两者都不传时浮层是空的。
 - 方位参数名是 `placement`（不是 `position`）；`color`、`borderRadius`、`padding` 这些参数在源码里并不存在，请用 `overlayStyle`（内容容器）或 `style`（浮层）传。
