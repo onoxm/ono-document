@@ -145,6 +145,7 @@ checked|Checkbox是否选中|<code>boolean</code>|-|是
 className|Checkbox的className|<code>string</code>|-|否
 style|Checkbox的style|<code>CSSProperties</code>|-|否
 indeterminate|Checkbox的中间状态|<code>boolean</code>|<code>false</code>|否
-indeterminateColor|Checkbox的中间状态颜色|<code>string</code>|-|否
-indeterminateStyle|Checkbox的中间状态样式|<code>'line'</code>\|<code>'lborder'</code>|<code>'line'</code>|否
+checkedColor|Checkbox选中时的颜色|<code>string</code>|<code>'#0077cc'</code>|否
+indeterminateColor|Checkbox的中间状态颜色|<code>string</code>|<code>'#0077cc'</code>|否
+indeterminateStyle|Checkbox的中间状态样式|<code>'line'</code>\|<code>'border'</code>|<code>'line'</code>|否
 onChange|Checkbox的change事件回调函数|<code>(e: ChangeEvent\<HTMLInputElement>) => void</code>|-|是

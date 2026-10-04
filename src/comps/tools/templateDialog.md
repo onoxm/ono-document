@@ -338,7 +338,9 @@ animation|进出场动画，不传则没有动画|<code>{ type: 'zoom'; element:
 duration|动画时长（ms），同时作用于遮罩与对话框|<code>number</code>|<code>300</code>|否
 maskColor|遮罩颜色|<code>string</code>|<code>'rgba(0, 0, 0, 0.5)'</code>|否
 maskClickClose|点击遮罩是否关闭|<code>boolean</code>|<code>true</code>|否
+escClose|按下 Esc 是否关闭对话框|<code>boolean</code>|<code>true</code>|否
 disableContextMenu|是否禁用遮罩上的右键菜单|<code>boolean</code>|<code>false</code>|否
+getContainer|浮层落点解析器，不传则原地渲染|<code>PopupContainerResolver</code>|-|否
 dialogClose|请求关闭，由使用方在回调里移除组件|<code>() => void</code>|-|是
 className|自定义类名，作用在对话框本体上|<code>string</code>|-|否
 style|自定义样式，作用在对话框本体上|<code>CSSProperties</code>|-|否
@@ -354,5 +356,6 @@ startPosition|<code>fade</code> 的起点位置（相对遮罩高度的 CSS 长�
 - `dialogClose` 与 `children` 函数里的 `close` 不是同一个：`dialogClose` 是你传进来的「真正移除组件」的回调，直接调它没有离场动画；函数参数里的 `close` 会先挂上离场动画、等 `duration` 后再调 `dialogClose`，点击遮罩走的也是这个版本。因此关闭按钮建议用函数参数里的 `close`。
 - 不传 `animation` 时没有动画：关闭会立即调用 `dialogClose`，遮罩也不会淡入淡出（遮罩动画的时长变量 `--duration` 只在传入 `animation` 时才会被组件写入）。
 - 不要把 `position` 写进 `style`：居中由组件自身的 `position: absolute` + `top/left: 50%` + `translate: -50% -50%` 完成（配合遮罩的 flex 居中），在 `style` 里写 `position: 'relative'` 会把对话框推到视口右下角。对话框本体已经是定位元素，内部需要绝对定位的元素可以直接相对它定位。
-- 遮罩是 `position: fixed` + `z-index: 9999`，不受父级 `overflow` 影响；但若祖先元素带 `transform`、`filter` 等属性，仍然会改变它的定位基准，这种情况建议配合 `portalRenderer` 使用。
+- 遮罩是 `position: fixed` + `z-index: var(--ono-z-modal, 1999)`，不受父级 `overflow` 影响；但若祖先元素带 `transform`、`filter` 等属性，仍然会改变它的定位基准，这种情况用 `getContainer` 指定一个更外层的容器即可。
+- `escClose` 默认为 `true`，与「点遮罩关闭」同语义：走「先播离场动画、再调 `dialogClose`」的那条路径。多层浮层叠加（如 Drawer 里再开对话框）时，一次 Esc 只关最上面那一层。
 - 遮罩上的点击会关闭对话框，但点击对话框本体不会（组件内部已 `stopPropagation`）；`disableContextMenu` 也只作用于遮罩的右键菜单，对话框内部不受影响。

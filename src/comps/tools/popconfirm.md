@@ -272,7 +272,8 @@ sameWidth|浮层宽度是否跟随触发元素|<code>boolean</code>|<code>false<
 autoAdjustOverflow|空间不足时自动翻转方位|<code>boolean</code>|<code>true</code>|否
 arrowPointAtCenter|箭头是否指向触发元素的中心|<code>boolean</code>|<code>false</code>|否
 mouseDelay|<code>hover</code> 触发的延迟（ms），可分别设置进入与离开|<code>number</code>\|<code>{ enter: number; leave: number }</code>|<code>200</code>|否
-zIndex|浮层层级|<code>number</code>|<code>999</code>|否
+zIndex|浮层层级，不传时跟随 CSS 变量 <code>--ono-z-popup</code>|<code>number</code>|<code>999</code>|否
+getPopupContainer|浮层的落点解析器，不传则走内置解析链|<code>PopupContainerResolver</code>|-|否
 popperOptions|透传给 <code>@popperjs/core</code> 的配置|<code>Partial&lt;Options&gt;</code>|<code>{}</code>|否
 
 ### PlacementType
@@ -293,7 +294,8 @@ popperOptions|透传给 <code>@popperjs/core</code> 的配置|<code>Partial&lt;O
 
 ## 注意事项
 - 两个按钮的关闭时机不一样：**取消**是先关闭浮层、再调 `onCancel`；**确定**是先调 `onConfirm`，同步返回时紧跟着关闭，异步则等 Promise 落定。无论走哪条路，只要关闭就会额外触发一次 `onOpenChange(false)`。
-- 浮层通过 Portal 挂到 `document.body`，不受父级 `overflow` 裁剪，也不在触发元素的子树里。组件把**触发元素和浮层本身**都算作「内部」，所以点击气泡里的空白处不会关闭它 —— 异步确定的 loading 能显示出来，靠的正是这一条。
+- 浮层默认 Portal 到 `document.body`，不受父级 `overflow` 裁剪，也不在触发元素的子树里；触发元素在 Modal / Drawer 里时落点会自动改为该弹窗容器内部，也可以用 `getPopupContainer` 显式指定。
+- 组件把**触发元素和浮层本身**都算作「内部」，所以点击气泡里的空白处不会关闭它 —— 异步确定的 loading 能显示出来，靠的正是这一条。
 - 「外部」的判定同时监听 `click` 与 `contextmenu`，并且只在 `trigger` 为 `click` / `contextmenu` 时才关闭。因此在 Popconfirm 下**在浮层和触发元素之外点右键也会关闭**；反过来，在触发元素上点右键本身不会打开气泡（那需要显式设成 `trigger="contextmenu"`）。
 - 异步确定进行中**取消按钮仍然可用**：点它会立刻关闭浮层，但并不会取消那个 Promise；等 Promise 落定后还会再走一次关闭。
 - 异步确定被拒绝时，组件既不关浮层、也不替你吞掉错误 —— 拒绝会继续往外抛，控制台会看到 `Uncaught (in promise)`。要提示用户就在 `onConfirm` 里自己 `try/catch`（本包构建开了 dropConsole，组件内部不会打任何日志）。⚠️ 想「失败就留在原地重试」，`catch` 里必须 `throw` 重新抛出。

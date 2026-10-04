@@ -366,10 +366,12 @@ onConfirm|确定按钮回调，返回 Promise 时弹窗等它落定再关闭|<co
 onCancel|取消按钮回调，返回的 Promise **不会被等待**|<code>() =&gt; void \| Promise&lt;void&gt;</code>|-|否
 mask|是否显示蒙层|<code>boolean</code>|<code>true</code>|否
 maskClosable|点击蒙层是否可关闭弹窗|<code>boolean</code>|<code>false</code>|否
+escClose|按下 Esc 是否关闭弹窗|<code>boolean</code>|<code>true</code>|否
 width|弹窗宽度，数字按 px、字符串原样使用|<code>string</code>\|<code>number</code>|<code>416</code>|否
 btnClr|按钮主题色|<code>string</code>|<code>#5644b8</code>|否
 footer|自定义底部内容，传 <code>null</code> 时不渲染底部|<code>(params) =&gt; ReactElement</code>\|<code>null</code>|取消 + 确定两个按钮|否
 modalBody|自定义弹窗内容，会替换默认的标题、内容与底部|<code>(handleClose: () =&gt; void) =&gt; ReactElement</code>|<code>null</code>|否
+getContainer|浮层落点解析器，不传则挂到 <code>document.body</code>|<code>PopupContainerResolver</code>|-|否
 
 ### footerRenderParams
 参数|说明|类型|默认值|是否必填
@@ -398,4 +400,6 @@ style|按钮行内样式|<code>CSSProperties</code>|-|否
 - `OkBtn` / `CancelBtn` 只认 `onClick`、`children`、`className`、`style` 四个属性（**不像 Popconfirm 那样能透传完整的 `ButtonProps`**），其它属性既过不了类型检查、运行时也不会被渲染。
 - 使用 `modalBody` 时默认的头部、内容与底部都不再渲染，**此时自定义内容没有做点击阻断**：如果同时开了 `maskClosable`，点在内容上会冒泡到外层、被当成「点了蒙层」而关闭，需要自己在内容的根节点上 `stopPropagation`。
 - `mask` 为 `false` 时既不显示蒙层、也不进入 `dialog` 的模态模式（走 `show()`），页面滚动不会被锁定；`mask` 为 `true` 时走 `showModal()`，页面不可滚动。
+- `escClose` 默认为 `true`：按 Esc 会关闭弹窗，但**不会触发 `onCancel`**（与点击蒙层关闭同语义，只有点「取消」按钮才走 `onCancel`）。多层弹窗叠加时，一次 Esc 只关最上面那一层。⚠️ `mask` 为 `false`（走 `show()`）时收不到原生的 `cancel` 事件，Esc 与 `onCancel` 都可能失效。
+- `getContainer` 用于 Shadow DOM / 微前端场景：默认挂到 `document.body`，在 shadow root 里会跑到宿主外面、拿不到组件样式。它是 <code>Modal()</code> 的调用参数（与 <code>title</code> / <code>content</code> 同级），不是某个组件的 props。
 - `Modal()` 的返回值是 `destroy` 方法，可用于在外部主动关闭弹窗。连续调用会打开多个互相独立的弹窗，它们共用同一个 `<div id="ono-modal">` 容器，全部关闭后容器才被移除。

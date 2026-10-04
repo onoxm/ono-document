@@ -128,6 +128,30 @@ function App() {
 export default App;
 ```
 
+## 手动关闭
+`toast.xxx()` 会返回一个句柄，调用它的 `destroy()` 可以随时关掉这条提示。
+
+```tsx
+import { Button, toast } from 'ono-react-element'
+
+function App() {
+  return (
+    <div style={{ width: '100%' }}>
+      <Button
+        onClick={() => {
+          const { destroy } = toast.success({ message: '稍后手动关闭' })
+          setTimeout(destroy, 5000)
+        }}
+      >
+        提示
+      </Button>
+    </div>
+  )
+}
+
+export default App;
+```
+
 ## API
 静态方法
 
@@ -135,6 +159,8 @@ export default App;
 - <code>toast.error(message)</code>
 - <code>toast.warning(message)</code>
 - <code>toast.promise(promise, options)</code>
+
+以上方法都返回 <code>{ destroy: () =&gt; void }</code> 句柄，可随时关闭该条提示。
 
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
@@ -150,8 +176,9 @@ offset|与相邻提示之间的垂直间距（px）|<code>number</code>|<code>20
 className|内层内容盒的类名|<code>string</code>|-|否
 style|最外层定位容器的样式|<code>CSSProperties</code>|-|否
 promiseOptions|仅 <code>toast.promise</code> 使用|<code>PromiseOptionsType</code>|-|否
-instancesKey|相同标识的提示会被原地更新|<code>string</code>|<code>toast.promise</code> 固定为 <code>'toast-promise'</code>|否
+key|相同标识的提示会被原地更新而不是新增|<code>string</code>|-|否
 zIndex|层级，新增实例时会被内部自动分配的层级覆盖|<code>number</code>|内部按序号分配|否
+getContainer|提示的挂载容器解析器，不传则挂到 <code>document.body</code>|<code>PopupContainerResolver</code>|-|否
 
 ### PromiseOptionsType
 参数|说明|类型|默认值|是否必填
@@ -170,9 +197,10 @@ error|失败文案，传函数时入参为 reject 的原因|<code>string</code>\
 
 ## 注意事项
 - 提示固定在页面**顶部居中**，新提示插在最上方，已有提示会被顶向下方（Message 相反，新提示追加在下方）。
-- Toast 只有 `success`、`error`、`warning` 三个静态方法和一个 `promise`，没有 `info`、也没有关闭按钮，并且**不对外暴露关闭方法**，只能等它自动消失（`promise` 类型则要等 Promise 落定）。
-- `toast.promise` 内部固定使用 `instancesKey: 'toast-promise'`，所以同一时间只有一条 Promise 提示，再次调用会**原地更新**那一条而不是新开一条；Promise 落定后内部用 `isUseEnterAnimation: false` 更新，不会重播入场动画。
+- Toast 只有 `success`、`error`、`warning` 三个静态方法和一个 `promise`，没有 `info`、也没有关闭按钮；`toast.xxx()` 会返回 <code>{ destroy: () =&gt; void }</code> 句柄，可随时关掉这条提示。
+- `toast.promise` 的 loading 与结算态是**同一个实例就地更新**（不占用任何 `key`），所以多个 Promise 同时进行时各占一条、互不顶掉；结算时不会重播入场动画。
 - 鼠标悬停时暂停计时，移开后按完整的 `duration` 重新计时。
 - `duration` 包含离场动画：定时器是 `duration - speed`，随后用 `speed` 播放淡出；离场动画由一个 DOM 克隆节点播放，原节点在动画开始时就已经从页面移除。
 - `className` 作用在内层内容盒（`.ono-toast-base` / `.ono-toast-promise`）上，`style` 作用在最外层定位容器上 —— 改背景、圆角用 `className`，改位置、层级用 `style`。
-- `zIndex` 传了不生效：每个实例的层级由内部按序号自动分配。
+- 提示默认挂到 `document.body`。在 Shadow DOM / 微前端里用 `getContainer` 指定挂载容器，否则提示会跑到 shadow root 外面、拿不到宿主注入的组件样式。
+- `zIndex` 传了不生效：层级由内部按序号自动分配（notice 档 2999 起，第一条实际是 3000），这样同档内「后开的在上」天然成立。

@@ -2,8 +2,10 @@
 单选框用于在多个选项中选取一个。
 
 ## 单个单选框用法
+`checked` 是受控值，需要自己维护。根元素是一个 `<label>`，点圆点或点文字都能切换。
+
 ```tsx
-import React, { useState } from'react'
+import { useState } from 'react'
 import { Radio } from 'ono-react-element'
 
 function App() {
@@ -26,8 +28,10 @@ export default App;
 ```
 
 ## 多个单选框用法
+`RadioGroup` 由 `options` 生成整组单选框，只需要维护一个 `value`。
+
 ```tsx
-import React, { useState } from'react'
+import { useState } from 'react'
 import { RadioGroup } from 'ono-react-element'
 
 function App() {
@@ -56,9 +60,11 @@ function App() {
 export default App;
 ```
 
-## 自定义多个单选框用法
+## 自定义外观
+`radioW` / `radioGap` 控制圆点尺寸与间距，`checkedColor` / `unCheckedColor` 控制选中与未选中的填充色，`labelPosition` 决定文字在圆点哪一侧。`RadioGroup` 的根元素是一个 flex 容器，`style` 里可以直接写 `gap`、`flexDirection` 等布局属性。
+
 ```tsx
-import React, { useState } from'react'
+import { useState } from 'react'
 import { RadioGroup } from 'ono-react-element'
 
 function App() {
@@ -109,37 +115,45 @@ export default App;
 ### Radio
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-value|关联 Radio 选项的值|<code>T</code>|-|是
-name|Radio 组的name|<code>string</code>|-|否
-checked|指定当前是否选中|<code>boolean</code>|-|是
-children|label中显示的文字|<code>boolean</code>|-|否
+value|该单选框的值|<code>T</code>|-|是
+name|原生 <code>name</code>，用于把同一组的单选框关联起来|<code>string</code>|-|否
+checked|是否选中（受控）|<code>boolean</code>|-|是
+children|圆点右侧显示的内容|<code>ReactNode</code>|-|否
 disabled|是否禁用|<code>boolean</code>|<code>false</code>|否
-radioW|Radio的宽度|<code>string</code>\|<code>number</code>|<code>16</code>|否
-radioGap|Radio和label之间的gap|<code>string</code>\|<code>number</code>|<code>4</code>|否
-className|Radio和label父元素的类名|<code>string</code>|<code>-</code>|否
-style|Radio和label父元素的样式|<code>CSSProperties</code>|<code>-</code>|否
-checkColor|Radio选中时的颜色|<code>string</code>|<code>'#532ce1'</code>|否
-unCheckColor|Radio未选中时的颜色|<code>string</code>|<code>'transparent'</code>|否
-onChange|当 Radio 的值发送改变时触发|<code>(e: React.ChangeEvent\<HTMLInputElement>) => void</code>|-|是
+radioW|圆点直径，数字按 px 处理|<code>string</code>\|<code>number</code>|<code>16</code>|否
+radioGap|圆点与内容之间的间距，数字按 px 处理|<code>string</code>\|<code>number</code>|<code>4</code>|否
+className|根元素（<code>label</code>）的类名|<code>string</code>|-|否
+style|根元素（<code>label</code>）的样式|<code>CSSProperties</code>|-|否
+checkedColor|选中时的填充色与边框色|<code>string</code>|<code>'#532ce1'</code>|否
+unCheckedColor|未选中时的填充色|<code>string</code>|<code>'transparent'</code>|否
+onChange|选中状态变化时触发|<code>(e: React.ChangeEvent\<HTMLInputElement>) => void</code>|-|是
 
 ### RadioGroup
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-value|关联 Radio 选项的值|<code>T</code>|-|是
-name|Radio 组的name|<code>string</code>|-|否
-options|Radio 选项列表|<code>RadioItemType</code>|-|是
-radioW|Radio的宽度|<code>string</code>\|<code>number</code>|<code>16</code>|否
-radioGap|Radio和label之间的gap|<code>string</code>\|<code>number</code>|<code>4</code>|否
-style|RadioGroup的样式|<code>CSSProperties</code>|<code>-</code>|否
-className|RadioGroup的样式的类名|<code>string</code>|<code>-</code>|否
-checkColor|Radio选中时的颜色|<code>string</code>|<code>'#532ce1'</code>|否
-unCheckColor|Radio未选中时的颜色|<code>string</code>|<code>'transparent'</code>|否
-labelPosition|Radio的标签位置|<code>'left'</code>\|<code>'right'</code>|<code>'left'</code>|否
-onChange|当 Radio 的值发送改变时触发|<code>(value: T) => void</code>|-|是
+value|当前选中的值|<code>T</code>|-|是
+name|原生 <code>name</code>，透传给组内每个单选框|<code>string</code>|-|否
+options|选项列表|<code>RadioItemType\<T>[]</code>|-|是
+radioW|圆点直径，数字按 px 处理|<code>string</code>\|<code>number</code>|<code>16</code>|否
+radioGap|圆点与内容之间的间距，数字按 px 处理|<code>string</code>\|<code>number</code>|<code>4</code>|否
+style|根元素（<code>div</code>）的样式|<code>CSSProperties</code>|-|否
+className|根元素（<code>div</code>）的类名|<code>string</code>|-|否
+checkedColor|选中时的填充色与边框色|<code>string</code>|<code>'#532ce1'</code>|否
+unCheckedColor|未选中时的填充色|<code>string</code>|<code>'transparent'</code>|否
+labelPosition|文字相对圆点的位置|<code>'left'</code>\|<code>'right'</code>|<code>'right'</code>|否
+onChange|选中项变化时触发，参数是选中项的值|<code>(value: T) => void</code>|-|是
 
 ### RadioItemType
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
-value|Radio 选项的值|<code>T</code>|-|是
-label|Radio 选项的文字|<code>string</code>|-|是
-disabled|禁用函数|<code>boolean</code>\|<code>(value: string\|number\|boolean) => boolean</code>|-|否
+value|选项的值|<code>T</code>|-|是
+label|选项的文字|<code>string</code>|-|是
+disabled|是否禁用该项，传函数时按分组当前选中值判断|<code>boolean</code>\|<code>(value: T) => boolean</code>|-|否
+
+## 注意事项
+- `Radio` 的根元素是 `<label>`，内部的 `<input type="radio">` 铺满了整个圆点：点圆点或点文字都能切换；禁用时由原生 `disabled` 接管，不响应点击。键盘上用 `Tab` 聚焦，**同组的单选框传了相同的 `name` 时**还能用方向键在组内切换。
+- `radioW` / `radioGap` / `checkedColor` / `unCheckedColor` 是通过 CSS 变量（`--w` / `--gap` / `--checkedColor` / `--unCheckedColor`）注入的，默认值写在样式里，所以首帧就是最终尺寸与颜色，不会先闪一下默认样式；`style` 里写同名变量可以覆盖它们。
+- 圆点自身不显示文字：`children` 会被放进圆点右侧的 `<span>` 中，并带 `user-select: none`。
+- 有额外的交互动效：悬停未禁用项时圆点边框会变成 `checkedColor`，键盘聚焦时有外描边，禁用项整体半透明并使用 `not-allowed` 光标。
+- `RadioGroup` 用 `String(选中值) === String(选项值)` 判断是否选中，因此数字 `1` 与字符串 `'1'` 会被视为同一项。
+- `options` 里 `disabled` 传函数时，**入参是分组的当前选中值，不是该选项自身的值**。想按选项自身判断，请传布尔值，或先在 `options` 里把结果算好。

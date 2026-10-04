@@ -282,7 +282,7 @@ export default App;
 :- | :- | :- | :- | :-
 dataSource|数据源|<code>VirtualListDataSource[]</code>|-|是
 direction|滚动方向|<code>'vertical'</code>\|<code>'horizontal'</code>|<code>'vertical'</code>|否
-refreshSpeed|滚动时的刷新间隔，单位毫秒|<code>number</code>|自动探测一帧耗时（最小 <code>8</code>）|否
+refreshSpeed|滚动时的刷新间隔，单位毫秒|<code>number</code>|估算列表自动探测一帧耗时（最小 <code>8</code>），固定列表为 <code>16</code>|否
 overscan|可视区外的预渲染配置|<code>OverscanInput</code>|<code>{ size: 300, max: 10 }</code>|否
 containerClassName|滚动容器的类名|<code>string</code>|-|否
 containerStyle|滚动容器的样式|<code>CSSProperties</code>|<code>{}</code>|否
@@ -312,7 +312,7 @@ data|每一项的内容|<code>ReactNode</code>|-|是
 类型|说明
 :- | :- 
 <code>number</code>|绝对数量，如 <code>5</code>，不受 <code>max</code> 限制
-<code>'a/b'</code>|占数据源总长度的比例，如 <code>'1/10'</code>，受 <code>max</code> 限制
+<code>'a/b'</code>|占数据源总长度的比例，如 <code>'1/10'</code>；单独传时不限制，只有写成 <code>{ count: '1/10', max }</code> 才会受 <code>max</code> 限制
 <code>'Npx'</code>|按尺寸换算的数量，支持 <code>px</code> / <code>vw</code> / <code>rem</code> 等单位，受 <code>max</code> 限制
 <code>{ count?, size?, max? }</code>|完整配置，<code>count</code> 可传数量或分数写法
 不传|等价于 <code>{ size: 300, max: 10 }</code>
@@ -320,7 +320,7 @@ data|每一项的内容|<code>ReactNode</code>|-|是
 ## 注意事项
 - 数据源请用组件导出的 **`createDataSource`** 生成：内部会把每项的 `id` 直接当作数组下标使用，因此 `id` 必须是 `0 ~ n-1` 的连续数字，自己拼数据源时很容易踩到错位。
 - `estimatedSize` 是当前的名字，旧版本叫 `estimatedHeight`；它同时支持传函数，适合行高随数据变化的场景。
-- `refreshSpeed` 不传时组件会先探测一帧的耗时作为刷新间隔（最小 8 毫秒），而不是固定值。
+- `refreshSpeed` 不传时的默认值**两个列表不一样**：`EstimatedVirtualList` 会先探测一帧的耗时（最小 8 毫秒），`FixedVirtualList` 则固定为 16 毫秒。
 - `onEndCallback` 的触发条件是「距底部 20px 以内」，而滚动回调本身会被 `refreshSpeed` 节流，所以快速滚动时它可能被合并为一次触发。
 - 滚动容器需要有确定的尺寸（高度或宽度），否则可视区高度为 0，列表不会渲染任何内容。
 - `containerStyle` 作用在外层滚动容器、`wrapperStyle` 作用在内部的 `ul` 上；给 `wrapperStyle` 加 `gap` / `padding` 可以控制项间距与内边距。

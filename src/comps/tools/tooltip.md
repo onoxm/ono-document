@@ -152,7 +152,8 @@ defaultOpen|是否默认展开（非受控）|<code>boolean</code>|<code>false</
 open|受控的展开状态|<code>boolean</code>|-|否
 onOpenChange|展开状态变化回调|<code>(isVisible: boolean) => void</code>|-|否
 mouseDelay|<code>hover</code> 触发的延迟（ms），可分别设置进入与离开|<code>number</code>\|<code>\{ enter: number; leave: number \}</code>|<code>200</code>|否
-zIndex|浮层层级|<code>number</code>|<code>999</code>|否
+zIndex|浮层层级，不传时跟随 CSS 变量 <code>--ono-z-popup</code>|<code>number</code>|<code>999</code>|否
+getPopupContainer|浮层的落点解析器，不传则走内置解析链|<code>PopupContainerResolver</code>|-|否
 popperOptions|透传给 <code>@popperjs/core</code> 的配置|<code>Partial\<Options></code>|<code>\{\}</code>|否
 
 ### PlacementType
@@ -175,6 +176,7 @@ popperOptions|透传给 <code>@popperjs/core</code> 的配置|<code>Partial\<Opt
 - 默认 `hover` 触发且有 200ms 延迟（`mouseDelay`）；鼠标从触发元素移到浮层上不会关闭，移开后延迟关闭。
 - 内容默认带 `fontWeight: bold` 与 `4px 8px` 的内边距；浮层本身是深色底（`#333`）白字、字号 13px、最大宽度 300px。
 - `className` 会同时加在内容容器和浮层上，只想改浮层外观时请用 `style`。
-- 浮层通过 Portal 渲染到 `document.body`，不受父级 `overflow` 裁剪。外部点击的判定把**触发元素和浮层本身**都算作「内部」，所以点击浮层内容不会把它关掉；并且只在 `trigger` 为 `'click'` / `'contextmenu'` 时才会因外部点击而关闭。
+- 浮层默认 Portal 到 `document.body`，不受父级 `overflow` 裁剪。触发元素在 Modal / Drawer 里时，落点会自动改为**该弹窗容器内部**（否则会被 top layer / 遮罩盖住）；要把浮层限制在某个容器内就用 `getPopupContainer`。
+- 外部点击的判定把**触发元素和浮层本身**都算作「内部」，所以点击浮层内容不会把它关掉；并且只在 `trigger` 为 `'click'` / `'contextmenu'` 时才会因外部点击而关闭。
 - 内容为单段文字。需要「标题 + 内容」的多行卡片请用 Popover。
 - `content` 在类型上是可选的，但不传就没有内容可显示，实际使用时应始终传入。

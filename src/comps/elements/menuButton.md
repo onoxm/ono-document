@@ -71,7 +71,7 @@ lineColor|按钮线条颜色|<code>string</code>|<code>#f5f5f5</code>|否
 backgroundColor|按钮背景颜色|<code>string</code>|<code>#342A7C</code>|否
 duration|线条变形动画时长，单位毫秒|<code>number</code>|<code>400</code>|否
 active|是否展开菜单|<code>boolean</code>|<code>false</code>|否
-onClick|点击时触发，第二个参数为本次点击后的状态|<code>(e: React.MouseEvent, bl: boolean) => void</code>|<code>() => {}</code>|否
+onClick|点击时触发，第二个参数为本次点击后的状态|<code>(e: React.MouseEvent, bl: boolean) => void</code>|-|否
 
 ## 注意事项
 - 事件名是 `onClick`，不是 `onchange`；签名为 `(e, bl)`，注意**第一个参数是点击事件**，状态在第二个参数上。

@@ -214,6 +214,7 @@ notFoundContent|无匹配项时的内容|<code>ReactNode</code>|<code>'No Data'<
 children|自定义选项渲染，第二个参数为是否选中|<code>(option: SelectOption\<T>, isSelected: boolean) => ReactNode</code>|-|否
 onClear|点击清除按钮时触发|<code>() => void</code>|-|否
 onChange|选中值改变时触发|<code>(value: T) => void</code>|-|否
+getPopupContainer|下拉浮层的落点解析器，不传则走内置解析链|<code>PopupContainerResolver</code>|-|否
 
 ### SelectOption
 参数|说明|类型|默认值|是否必填
@@ -230,4 +231,5 @@ disabled|是否禁用该选项|<code>boolean</code>|<code>false</code>|否
 - 未开启 `filterOption` 时输入框是只读的（点击会展开下拉，但无法输入）；开启后输入的关键字会在关闭下拉时被清空。
 - `clearable` 的清除按钮只在「鼠标悬停且已有选中值」时出现；点击清除会同时触发 `onClear` 和 `onChange('')`。
 - `children` 里的 `isSelected` 是按 **`label`** 与当前选中项比较得出的，如果两个选项的 `label` 相同会同时被判为选中。
-- 下拉浮层挂在 `body` 上，`selectClassName` 作用在输入框、`optionsClassName` 作用在浮层容器；浮层的边框颜色、宽度对齐等由组件内部固定，未对外开放。
+- 下拉浮层的落点自动跟着触发元素走：默认挂到 `document.body`，触发元素在 Modal / Drawer 里时会挂进该弹窗容器内部（否则会被 top layer / 遮罩盖住）。需要把浮层限制在某个滚动容器内时用 `getPopupContainer`。
+- `selectClassName` 作用在输入框、`optionsClassName` 作用在浮层容器；浮层的边框颜色、宽度对齐等由组件内部固定，未对外开放。

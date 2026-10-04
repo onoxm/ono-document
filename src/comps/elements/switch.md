@@ -90,7 +90,7 @@ export default App;
 ## API
 通用属性参考：通用属性
 
-除 `type`、`color`、`onChange` 外的 input 原生属性（如 `id`、`name`、`placeholder` 等）会透传到内部 `<input>` 元素上。
+除 `type`、`color`、`onChange`、`disabled` 外的 input 原生属性（如 `id`、`name`、`placeholder` 等）会透传到内部 `<input>` 元素上。
 
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-

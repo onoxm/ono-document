@@ -20,6 +20,7 @@ export const sidebar = {
         { text: 'Input 输入框', link: '/comps/elements/input' },
         { text: 'MenuButton 菜单按钮', link: '/comps/elements/menuButton' },
         { text: 'Radio 单选框', link: '/comps/elements/radio' },
+        { text: 'SvgImg 图标染色', link: '/comps/elements/svgImg' },
         { text: 'Switch 开关', link: '/comps/elements/switch' },
         { text: 'Textarea 文本域', link: '/comps/elements/textarea' }
       ]
@@ -29,6 +30,16 @@ export const sidebar = {
       collapsed: false,
       items: [
         { text: 'Avatar Crop 头像裁剪', link: '/comps/modules/avatarCrop' },
+        { text: 'Carousel 轮播', link: '/comps/modules/carousel' },
+        { text: 'ContainBox 缩放容器', link: '/comps/modules/containBox' },
+        {
+          text: 'ContainMediaBox 媒体缩放容器',
+          link: '/comps/modules/containMediaBox'
+        },
+        {
+          text: 'FileDropZone 文件投放区',
+          link: '/comps/modules/fileDropZone'
+        },
         { text: 'Select 下拉选择', link: '/comps/modules/select' },
         { text: 'VirtualList 虚拟列表', link: '/comps/modules/virtualList' },
         { text: 'Waterfall 瀑布流', link: '/comps/modules/waterfall' }
@@ -42,21 +53,27 @@ export const sidebar = {
           text: 'AutoSliderList 自动滑块',
           link: '/comps/tools/autoSliderList'
         },
-        // { text: 'AutoCenterXscroll 自动滑块', link: '/comps/autoCenterXscroll' },
         { text: 'AwaitList 异步列表循环', link: '/comps/tools/awaitList' },
+        { text: 'ContextMenu 右键菜单', link: '/comps/tools/contextMenu' },
         { text: 'Drawer 抽屉', link: '/comps/tools/drawer' },
         { text: 'List 列表循环', link: '/comps/tools/list' },
+        { text: 'Mask 遮罩层', link: '/comps/tools/mask' },
         { text: 'Message 消息提示', link: '/comps/tools/message' },
         { text: 'Modal 弹窗', link: '/comps/tools/modal' },
         { text: 'Pagination 分页', link: '/comps/tools/pagination' },
         { text: 'Popover 气泡卡片', link: '/comps/tools/popover' },
         { text: 'Popconfirm 气泡确认框', link: '/comps/tools/popconfirm' },
-        // { text: 'Toast 提示框', link: '/comps/tools/toast' },
+        { text: 'Portal 传送门', link: '/comps/tools/portal' },
+        {
+          text: 'ScrollableTabs 可滚动标签页',
+          link: '/comps/tools/scrollableTabs'
+        },
         {
           text: 'TemplateDialog 模版对话框',
           link: '/comps/tools/templateDialog'
         },
-        // { text: 'Tooltip 提示框', link: '/comps/tools/tooltip' },
+        { text: 'Toast 提示框', link: '/comps/tools/toast' },
+        { text: 'Tooltip 提示框', link: '/comps/tools/tooltip' },
         { text: 'Xscroll 滚动组件', link: '/comps/tools/xscroll' }
       ]
     }
@@ -79,8 +96,7 @@ export const sidebar = {
         { text: 'useKeyPress', link: '/hooks/useKeypress' },
         { text: 'useMouseClick', link: '/hooks/useMouseClick' },
         { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useThemePro', link: '/hooks/useThemePro' },
-        { text: 'useWindowSize', link: '/hooks/useWindowSize' }
+        { text: 'useThemePro', link: '/hooks/useThemePro' }
       ]
     }
   ],

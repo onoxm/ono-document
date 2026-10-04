@@ -183,7 +183,7 @@ duration|滑块滑动动画时长（毫秒）|<code>number</code>|<code>300</cod
 sliderTransitionTimingFunction|滑块动画的缓动函数|<code>string</code>|<code>'ease-in-out'</code>|否
 
 ### SliderProps
-`slider` 的入参 `Slider` 接收 `<li>` 的全部原生属性，自定义外观直接写在它上面即可：
+`slider` 的入参 `Slider` 只接住 `className`、`style` 与 `children`，自定义外观直接写在它上面即可：
 
 ```tsx
 slider={Slider => <Slider className="my-slider" style={{ background: 'pink' }} />}
