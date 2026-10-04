@@ -7,8 +7,9 @@ export const nav = [
       { text: '快速开始', link: '/docs/quickstart' },
       { text: 'components', link: '/comps/elements/button' },
       { text: 'hooks', link: '/hooks/useClickOutSide' },
-      { text: 'utils', link: '/utils/common/chainClassNames' },
-      { text: 'Vite插件', link: '/plugins/autoRouter' }
+      { text: 'utils', link: '/utils/string/chainClassNames' },
+      { text: 'Vite插件', link: '/plugins/autoRouter' },
+      { text: 'Packages', link: '/packages/onoFetch' }
     ]
   },
   { text: 'Examples', link: '/examples/markdown-examples' }

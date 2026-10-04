@@ -98,4 +98,14 @@ export * from './useGlobalData';
 ```
 
 ## 使用方法
-请前往<a href='/ono-document/hooks/useGlobalData'>useGlobalData</a>中查看具体用法。
+`useGlobalData` 返回 context 中的 `globalData` 与 `dispatch`，读取字段直接用 `globalData`，更新则调用 `dispatch`，参数形如 `{ type, key, value }`：
+
+```tsx
+import { useGlobalData } from '@/hooks'
+
+const { dispatch, globalData } = useGlobalData()
+
+dispatch({ type: 'set', key: 'username', value: 'John Doe' })
+```
+
+`type` 支持 `'get' | 'set' | 'del'`，`key` 为 `globalData` 上的字段名。

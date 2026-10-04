@@ -32,7 +32,6 @@ startCountdown|开始倒计时，调用后每秒递减|<code>() => void</code>
 resetCountdown|停止并重置为初始值，同时触发 <code>onFinish</code>|<code>() => void</code>
 
 ## API
-通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 initialTime|起始时间（单位：秒）|<code>number</code>|<code>60</code>|否

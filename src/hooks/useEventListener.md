@@ -58,7 +58,6 @@ export default App;
 ```
 
 ## API
-通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 event|你想要监听的事件类型，支持传数组|<code>string</code>\|<code>string[]</code>|-|是
@@ -74,5 +73,6 @@ listenerOptions|透传给 <code>addEventListener</code> 的第三个参数|<code
 ## 注意事项
 - `handler` 内部用 ref 保存，**每次渲染都取最新的回调**，所以不存在 `deps` 参数：回调里读到的是最新的 state / props，也不会因为回调函数重写而重新绑定监听。
 - 只有 `event`、`target`、`listenerOptions` 三者变化时才会解绑并重新监听。
+- `listenerOptions` 是 effect 依赖项之一，**直接传对象字面量（如 `{ passive: true }`）会导致每次渲染都解绑重绑** —— 每次渲染的对象引用都不同。需要传配置时，把它提到组件外部或用 `useMemo` 固定引用。
 - `event` 传数组时会分别注册，组件卸载时按同样的列表统一解绑。
 - `target` 传 `ref` 而元素尚未挂载（`ref.current` 为 `null`）时，会回落到 `window`，而不是静默失效。

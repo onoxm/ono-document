@@ -74,7 +74,6 @@ export default App;
 ```
 
 ## API
-通用属性参考：通用属性
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 outsideElement|你想要监听的元素|<code>RefObject\<HTMLElement \| null></code>\|<code>HTMLElement</code>\|<code>(RefObject\<HTMLElement \| null> \| HTMLElement)[]</code>\|<code>null</code>|-|是

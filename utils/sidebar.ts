@@ -75,14 +75,12 @@ export const sidebar = {
         { text: 'useCountdown', link: '/hooks/useCountdown' },
         { text: 'useDefer', link: '/hooks/useDefer' },
         { text: 'useEventListener', link: '/hooks/useEventListener' },
-        // { text: 'useFullScreen', link: '/hooks/useFullScreen' },
         { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
-        { text: 'useGlobalData', link: '/hooks/useGlobalData' },
-        { text: 'useKeypress', link: '/hooks/useKeypress' },
-        { text: 'useReactive', link: '/hooks/useReactive' },
+        { text: 'useKeyPress', link: '/hooks/useKeypress' },
+        { text: 'useMouseClick', link: '/hooks/useMouseClick' },
         { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useThemePro', link: '/hooks/useThemePro' }
-        // { text: 'useUpdate', link: '/hooks/useUpdate' }
+        { text: 'useThemePro', link: '/hooks/useThemePro' },
+        { text: 'useWindowSize', link: '/hooks/useWindowSize' }
       ]
     }
   ],
@@ -95,65 +93,54 @@ export const sidebar = {
           link: '/tools/portalRenderer'
         }
       ]
+    },
+    {
+      text: 'State 状态管理',
+      collapsed: false,
+      items: [
+        {
+          text: 'defineGlobalState 全局状态',
+          link: '/tools/defineGlobalState'
+        },
+        {
+          text: 'defineScopedState 作用域状态',
+          link: '/tools/defineScopedState'
+        },
+        {
+          text: 'persistMiddleware 持久化中间件',
+          link: '/tools/persistMiddleware'
+        },
+        {
+          text: 'defineMiddleware 自定义中间件',
+          link: '/tools/defineMiddleware'
+        }
+      ]
     }
   ],
   '/utils/': [
     {
-      text: 'Common Utils',
+      text: 'Array Utils',
       collapsed: false,
       items: [
-        { text: 'addCommasToNumber', link: '/utils/common/addCommasToNumber' },
+        { text: 'forEach', link: '/utils/array/forEach' },
+        { text: 'hasDuplicates', link: '/utils/array/hasDuplicates' },
+        { text: 'interleave', link: '/utils/array/interleave' },
+        { text: 'quickSort', link: '/utils/array/quickSort' }
+      ]
+    },
+    {
+      text: 'Browser Utils',
+      collapsed: false,
+      items: [
         {
-          text: 'addEventWithOriginHandler',
-          link: '/utils/common/addEventWithOriginHandler'
+          text: 'changeUrlByParams',
+          link: '/utils/browser/changeUrlByParams'
         },
-        { text: 'chainClassNames', link: '/utils/common/chainClassNames' },
-        { text: 'checkStatusCode', link: '/utils/common/checkStatusCode' },
-        { text: 'copyText', link: '/utils/common/copyText' },
-        { text: 'curry', link: '/utils/common/curry' },
-        { text: 'debounce', link: '/utils/common/debounce' },
-        { text: 'deepCopy', link: '/utils/common/deepCopy' },
-        { text: 'ellipsisString', link: '/utils/common/ellipsisString' },
+        { text: 'getBrowserInfo', link: '/utils/browser/getBrowserInfo' },
         {
-          text: 'firstLetter2Capitalize',
-          link: '/utils/common/firstLetter2Capitalize'
-        },
-        { text: 'forEach', link: '/utils/common/forEach' },
-        { text: 'gcd', link: '/utils/common/gcd' },
-        { text: 'getAllNumbers', link: '/utils/common/getAllNumbers' },
-        {
-          text: 'getCurrentFrameTime',
-          link: '/utils/common/getCurrentFrameTime'
-        },
-        { text: 'getImageSize', link: '/utils/common/getImageSize' },
-        { text: 'getPointDistance', link: '/utils/common/getPointDistance' },
-        { text: 'getRatio', link: '/utils/common/getRatio' },
-        {
-          text: 'getStringRealLenght',
-          link: '/utils/common/getStringRealLenght'
-        },
-        { text: 'hasDuplicates', link: '/utils/common/hasDuplicates' },
-        { text: 'interleave', link: '/utils/common/interleave' },
-        { text: 'isPureNumber', link: '/utils/common/isPureNumber' },
-        { text: 'lowerString', link: '/utils/common/lowerString' },
-        { text: 'padZero', link: '/utils/common/padZero' },
-        { text: 'parseQuery', link: '/utils/common/parseQuery' },
-        { text: 'passwordStrength', link: '/utils/common/passwordStrength' },
-        { text: 'pasteText', link: '/utils/common/pasteText' },
-        { text: 'printStr', link: '/utils/common/printStr' },
-        { text: 'pureNumber', link: '/utils/common/pureNumber' },
-        { text: 'quickSort', link: '/utils/common/quickSort' },
-        { text: 'rafInterval', link: '/utils/common/rafInterval' },
-        { text: 'rafTimeout', link: '/utils/common/rafTimeout' },
-        { text: 'randomString', link: '/utils/common/randomString' },
-        { text: 'removeTag', link: '/utils/common/removeTag' },
-        { text: 'scaleSize', link: '/utils/common/scaleSize' },
-        { text: 'scrollToItem', link: '/utils/common/scrollToItem' },
-        { text: 'selectProperties', link: '/utils/common/selectProperties' },
-        { text: 'shallowEqual', link: '/utils/common/shallowEqual' },
-        { text: 'singleton', link: '/utils/common/singleton' },
-        { text: 'throttle', link: '/utils/common/throttle' },
-        { text: 'upperString', link: '/utils/common/upperString' }
+          text: 'getURLSearchParams',
+          link: '/utils/browser/getURLSearchParams'
+        }
       ]
     },
     {
@@ -183,6 +170,41 @@ export const sidebar = {
       ]
     },
     {
+      text: 'Dom Utils',
+      collapsed: false,
+      items: [
+        {
+          text: 'addEventWithOriginHandler',
+          link: '/utils/dom/addEventWithOriginHandler'
+        },
+        {
+          text: 'autoHeightAnimationHide',
+          link: '/utils/dom/autoHeightAnimationHide'
+        },
+        {
+          text: 'autoHeightAnimationShow',
+          link: '/utils/dom/autoHeightAnimationShow'
+        },
+        { text: 'captureFrame', link: '/utils/dom/captureFrame' },
+        { text: 'captureFrames', link: '/utils/dom/captureFrames' },
+        { text: 'createHTML', link: '/utils/dom/createHTML' },
+        { text: 'createImageHTML', link: '/utils/dom/createImageHTML' },
+        { text: 'drawVideo', link: '/utils/dom/drawVideo' },
+        {
+          text: 'getElementCenterPosition',
+          link: '/utils/dom/getElementCenterPosition'
+        },
+        { text: 'getImageSize', link: '/utils/dom/getImageSize' },
+        { text: 'loadImage', link: '/utils/dom/loadImage' },
+        {
+          text: 'mediaAutoplayPolicies',
+          link: '/utils/dom/mediaAutoplayPolicies'
+        },
+        { text: 'printStr', link: '/utils/dom/printStr' },
+        { text: 'scrollToItem', link: '/utils/dom/scrollToItem' }
+      ]
+    },
+    {
       text: 'File Utils',
       collapsed: false,
       items: [
@@ -204,88 +226,19 @@ export const sidebar = {
       ]
     },
     {
-      text: 'Dom Utils',
+      text: 'Function Utils',
       collapsed: false,
       items: [
+        { text: 'curry', link: '/utils/function/curry' },
+        { text: 'debounce', link: '/utils/function/debounce' },
         {
-          text: 'autoHeightAnimationHide',
-          link: '/utils/dom/autoHeightAnimationHide'
+          text: 'getCurrentFrameTime',
+          link: '/utils/function/getCurrentFrameTime'
         },
-        {
-          text: 'autoHeightAnimationShow',
-          link: '/utils/dom/autoHeightAnimationShow'
-        },
-        { text: 'captureFrame', link: '/utils/dom/captureFrame' },
-        { text: 'captureFrames', link: '/utils/dom/captureFrames' },
-        { text: 'createImageHTML', link: '/utils/dom/createImageHTML' },
-        {
-          text: 'getElementCenterPosition',
-          link: '/utils/dom/getElementCenterPosition'
-        },
-        { text: 'loadImage', link: '/utils/dom/loadImage' },
-        {
-          text: 'mediaAutoplayPolicies',
-          link: '/utils/dom/mediaAutoplayPolicies'
-        }
-      ]
-    },
-    {
-      text: 'Time Utils',
-      collapsed: false,
-      items: [
-        {
-          text: 'convertSecondToOtherTime',
-          link: '/utils/time/convertSecondToOtherTime'
-        },
-        { text: 'dayOfYear', link: '/utils/time/dayOfYear' },
-        { text: 'formatSecond', link: '/utils/time/formatSecond' },
-        { text: 'formatTime', link: '/utils/time/formatTime' },
-        { text: 'isToday', link: '/utils/time/isToday' },
-        { text: 'localFormat', link: '/utils/time/localFormat' },
-        { text: 'second2Day', link: '/utils/time/second2Day' }
-      ]
-    },
-    {
-      text: 'Is Utils',
-      collapsed: false,
-      items: [
-        { text: 'isArray', link: '/utils/is/isArray' },
-        { text: 'isBrowser', link: '/utils/is/isBrowser' },
-        { text: 'isFunction', link: '/utils/is/isFunction' },
-        { text: 'isMobile', link: '/utils/is/isMobile' },
-        { text: 'isNode', link: '/utils/is/isNode' },
-        { text: 'isObject', link: '/utils/is/isObject' },
-        { text: 'isPromise', link: '/utils/is/isPromise' }
-      ]
-    },
-    {
-      text: 'Browser Utils',
-      collapsed: false,
-      items: [
-        {
-          text: 'changeUrlByParams',
-          link: '/utils/browser/changeUrlByParams'
-        },
-        { text: 'getBrowserInfo', link: '/utils/browser/getBrowserInfo' },
-        {
-          text: 'getURLSearchParams',
-          link: '/utils/browser/getURLSearchParams'
-        },
-        { text: 'uploadFile', link: '/utils/browser/uploadFile' }
-      ]
-    },
-    {
-      text: 'Platform Utils',
-      collapsed: false,
-      items: [
-        {
-          text: 'distinguishPlatform',
-          link: '/utils/platform/distinguishPlatform'
-        },
-        {
-          text: 'distinguishPlatformDelay',
-          link: '/utils/platform/distinguishPlatformDelay'
-        }
+        { text: 'rafInterval', link: '/utils/function/rafInterval' },
+        { text: 'rafTimeout', link: '/utils/function/rafTimeout' },
+        { text: 'singleton', link: '/utils/function/singleton' },
+        { text: 'throttle', link: '/utils/function/throttle' }
       ]
     },
     {
@@ -303,14 +256,116 @@ export const sidebar = {
       ]
     },
     {
-      text: 'Other Utils',
+      text: 'Is Utils',
+      collapsed: false,
+      items: [
+        { text: 'isArray', link: '/utils/is/isArray' },
+        { text: 'isBrowser', link: '/utils/is/isBrowser' },
+        { text: 'isFunction', link: '/utils/is/isFunction' },
+        { text: 'isMobile', link: '/utils/is/isMobile' },
+        { text: 'isNode', link: '/utils/is/isNode' },
+        { text: 'isObject', link: '/utils/is/isObject' },
+        { text: 'isPromise', link: '/utils/is/isPromise' }
+      ]
+    },
+    {
+      text: 'Number Utils',
+      collapsed: false,
+      items: [
+        { text: 'addCommasToNumber', link: '/utils/number/addCommasToNumber' },
+        { text: 'gcd', link: '/utils/number/gcd' },
+        { text: 'getPointDistance', link: '/utils/number/getPointDistance' },
+        { text: 'getRatio', link: '/utils/number/getRatio' },
+        { text: 'padZero', link: '/utils/number/padZero' },
+        { text: 'pureNumber', link: '/utils/number/pureNumber' },
+        { text: 'scaleSize', link: '/utils/number/scaleSize' }
+      ]
+    },
+    {
+      text: 'Object Utils',
+      collapsed: false,
+      items: [
+        { text: 'deepCopy', link: '/utils/object/deepCopy' },
+        { text: 'selectProperties', link: '/utils/object/selectProperties' },
+        { text: 'shallowEqual', link: '/utils/object/shallowEqual' }
+      ]
+    },
+    {
+      text: 'Path Utils',
+      collapsed: false,
+      items: [{ text: 'resourcesPath', link: '/utils/path/resourcesPath' }]
+    },
+    {
+      text: 'Platform Utils',
+      collapsed: false,
+      items: [
+        {
+          text: 'distinguishPlatform',
+          link: '/utils/platform/distinguishPlatform'
+        },
+        {
+          text: 'distinguishPlatformDelay',
+          link: '/utils/platform/distinguishPlatformDelay'
+        }
+      ]
+    },
+    {
+      text: 'String Utils',
+      collapsed: false,
+      items: [
+        { text: 'chainClassNames', link: '/utils/string/chainClassNames' },
+        { text: 'ellipsisString', link: '/utils/string/ellipsisString' },
+        {
+          text: 'firstLetter2Capitalize',
+          link: '/utils/string/firstLetter2Capitalize'
+        },
+        { text: 'getAllNumbers', link: '/utils/string/getAllNumbers' },
+        {
+          text: 'getStringRealLenght',
+          link: '/utils/string/getStringRealLenght'
+        },
+        { text: 'isPureNumber', link: '/utils/string/isPureNumber' },
+        { text: 'lowerString', link: '/utils/string/lowerString' },
+        { text: 'parseQuery', link: '/utils/string/parseQuery' },
+        { text: 'passwordStrength', link: '/utils/string/passwordStrength' },
+        { text: 'randomString', link: '/utils/string/randomString' },
+        { text: 'removeTag', link: '/utils/string/removeTag' },
+        { text: 'upperString', link: '/utils/string/upperString' }
+      ]
+    },
+    {
+      text: 'Time Utils',
+      collapsed: false,
+      items: [
+        {
+          text: 'convertSecondToOtherTime',
+          link: '/utils/time/convertSecondToOtherTime'
+        },
+        { text: 'convertTimestamp', link: '/utils/time/convertTimestamp' },
+        { text: 'dateFormat', link: '/utils/time/dateFormat' },
+        { text: 'dayOfYear', link: '/utils/time/dayOfYear' },
+        { text: 'formatSecond', link: '/utils/time/formatSecond' },
+        { text: 'formatTime', link: '/utils/time/formatTime' },
+        { text: 'isToday', link: '/utils/time/isToday' },
+        { text: 'localFormat', link: '/utils/time/localFormat' },
+        { text: 'monthFormat', link: '/utils/time/monthFormat' },
+        { text: 'second2Day', link: '/utils/time/second2Day' },
+        { text: 'yearFormat', link: '/utils/time/yearFormat' }
+      ]
+    },
+    {
+      text: 'Web Utils',
       collapsed: false,
       items: [
         {
           text: 'changeThemeClipPathCircle',
-          link: '/utils/changeThemeClipPathCircle'
+          link: '/utils/web/changeThemeClipPathCircle'
         },
-        { text: 'clearAsyncContagion', link: '/utils/clearAsyncContagion' }
+        { text: 'checkStatusCode', link: '/utils/web/checkStatusCode' },
+        { text: 'clearAsyncContagion', link: '/utils/web/clearAsyncContagion' },
+        { text: 'copyText', link: '/utils/web/copyText' },
+        { text: 'pasteText', link: '/utils/web/pasteText' },
+        { text: 'uploadFile', link: '/utils/web/uploadFile' }
       ]
     }
   ],
@@ -319,6 +374,13 @@ export const sidebar = {
       text: 'Vite插件',
       collapsed: false,
       items: [{ text: 'autoRouter', link: '/plugins/autoRouter' }]
+    }
+  ],
+  '/packages/': [
+    {
+      text: 'Packages 独立包',
+      collapsed: false,
+      items: [{ text: 'onoFetch 同构请求库', link: '/packages/onoFetch' }]
     }
   ],
   '/examples/': [
