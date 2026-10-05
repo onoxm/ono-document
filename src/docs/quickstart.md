@@ -34,7 +34,7 @@ import 'ono-react-element/dist/index.css'
 ```
 
 <div style="margin-top: 24px;">
-  <a href="/ono-document/comps/elements/button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s;">
+  <a href="/ono-document/comps/button" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s;">
     <span>查看 ono-react-element 组件文档</span>
     <span>→</span>
   </a>

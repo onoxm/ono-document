@@ -11,70 +11,82 @@ export const sidebar = {
   ],
   '/comps/': [
     {
-      text: 'Elements',
+      text: '基础元素',
       collapsed: false,
       items: [
-        { text: 'Button 按钮', link: '/comps/elements/button' },
-        { text: 'Card3D 3D卡片', link: '/comps/elements/card3d' },
-        { text: 'Checkbox 多选框', link: '/comps/elements/checkbox' },
-        { text: 'Input 输入框', link: '/comps/elements/input' },
-        { text: 'MenuButton 菜单按钮', link: '/comps/elements/menuButton' },
-        { text: 'Radio 单选框', link: '/comps/elements/radio' },
-        { text: 'SvgImg 图标染色', link: '/comps/elements/svgImg' },
-        { text: 'Switch 开关', link: '/comps/elements/switch' },
-        { text: 'Textarea 文本域', link: '/comps/elements/textarea' }
+        { text: 'Button 按钮', link: '/comps/button' },
+        { text: 'Card3D 3D卡片', link: '/comps/card3d' },
+        { text: 'MenuButton 菜单按钮', link: '/comps/menuButton' },
+        { text: 'SvgImg 图标染色', link: '/comps/svgImg' }
       ]
     },
     {
-      text: 'Modules',
+      text: '表单录入',
       collapsed: false,
       items: [
-        { text: 'Avatar Crop 头像裁剪', link: '/comps/modules/avatarCrop' },
-        { text: 'Carousel 轮播', link: '/comps/modules/carousel' },
-        { text: 'ContainBox 缩放容器', link: '/comps/modules/containBox' },
+        { text: 'Checkbox 多选框', link: '/comps/checkbox' },
+        { text: 'FileDropZone 文件投放区', link: '/comps/fileDropZone' },
+        { text: 'Input 输入框', link: '/comps/input' },
+        { text: 'Radio 单选框', link: '/comps/radio' },
+        { text: 'Select 下拉选择', link: '/comps/select' },
+        { text: 'Switch 开关', link: '/comps/switch' },
+        { text: 'Textarea 文本域', link: '/comps/textarea' }
+      ]
+    },
+    {
+      text: '展示与容器',
+      collapsed: false,
+      items: [
+        { text: 'Avatar Crop 头像裁剪', link: '/comps/avatarCrop' },
+        { text: 'Carousel 轮播', link: '/comps/carousel' },
+        { text: 'ContainBox 缩放容器', link: '/comps/containBox' },
         {
           text: 'ContainMediaBox 媒体缩放容器',
-          link: '/comps/modules/containMediaBox'
-        },
-        {
-          text: 'FileDropZone 文件投放区',
-          link: '/comps/modules/fileDropZone'
-        },
-        { text: 'Select 下拉选择', link: '/comps/modules/select' },
-        { text: 'VirtualList 虚拟列表', link: '/comps/modules/virtualList' },
-        { text: 'Waterfall 瀑布流', link: '/comps/modules/waterfall' }
+          link: '/comps/containMediaBox'
+        }
       ]
     },
     {
-      text: 'Tools',
+      text: '集合与滚动',
       collapsed: false,
       items: [
-        {
-          text: 'AutoSliderList 自动滑块',
-          link: '/comps/tools/autoSliderList'
-        },
-        { text: 'AwaitList 异步列表循环', link: '/comps/tools/awaitList' },
-        { text: 'ContextMenu 右键菜单', link: '/comps/tools/contextMenu' },
-        { text: 'Drawer 抽屉', link: '/comps/tools/drawer' },
-        { text: 'List 列表循环', link: '/comps/tools/list' },
-        { text: 'Mask 遮罩层', link: '/comps/tools/mask' },
-        { text: 'Message 消息提示', link: '/comps/tools/message' },
-        { text: 'Modal 弹窗', link: '/comps/tools/modal' },
-        { text: 'Pagination 分页', link: '/comps/tools/pagination' },
-        { text: 'Popover 气泡卡片', link: '/comps/tools/popover' },
-        { text: 'Popconfirm 气泡确认框', link: '/comps/tools/popconfirm' },
-        { text: 'Portal 传送门', link: '/comps/tools/portal' },
+        { text: 'AutoSliderList 自动滑块', link: '/comps/autoSliderList' },
+        { text: 'AwaitList 异步列表循环', link: '/comps/awaitList' },
+        { text: 'List 列表循环', link: '/comps/list' },
+        { text: 'Pagination 分页', link: '/comps/pagination' },
         {
           text: 'ScrollableTabs 可滚动标签页',
-          link: '/comps/tools/scrollableTabs'
+          link: '/comps/scrollableTabs'
         },
+        { text: 'VirtualList 虚拟列表', link: '/comps/virtualList' },
+        { text: 'Waterfall 瀑布流', link: '/comps/waterfall' },
+        { text: 'Xscroll 滚动组件', link: '/comps/xscroll' }
+      ]
+    },
+    {
+      text: '浮层与弹窗',
+      collapsed: false,
+      items: [
+        { text: 'ContextMenu 右键菜单', link: '/comps/contextMenu' },
+        { text: 'Drawer 抽屉', link: '/comps/drawer' },
+        { text: 'Mask 遮罩层', link: '/comps/mask' },
+        { text: 'Modal 弹窗', link: '/comps/modal' },
+        { text: 'Popconfirm 气泡确认框', link: '/comps/popconfirm' },
+        { text: 'Popover 气泡卡片', link: '/comps/popover' },
+        { text: 'Portal 传送门', link: '/comps/portal' },
         {
           text: 'TemplateDialog 模版对话框',
-          link: '/comps/tools/templateDialog'
+          link: '/comps/templateDialog'
         },
-        { text: 'Toast 提示框', link: '/comps/tools/toast' },
-        { text: 'Tooltip 提示框', link: '/comps/tools/tooltip' },
-        { text: 'Xscroll 滚动组件', link: '/comps/tools/xscroll' }
+        { text: 'Tooltip 提示框', link: '/comps/tooltip' }
+      ]
+    },
+    {
+      text: '反馈提示',
+      collapsed: false,
+      items: [
+        { text: 'Message 消息提示', link: '/comps/message' },
+        { text: 'Toast 提示框', link: '/comps/toast' }
       ]
     }
   ],
@@ -401,10 +413,13 @@ export const sidebar = {
   ],
   '/examples/': [
     {
-      text: 'Examples',
+      text: '组合场景示例',
+      collapsed: false,
       items: [
-        { text: 'Markdown Examples', link: '/examples/markdown-examples' },
-        { text: 'Runtime API Examples', link: '/examples/api-examples' }
+        { text: '概览', link: '/examples/' },
+        { text: '表单提交', link: '/examples/form' },
+        { text: '列表与分页', link: '/examples/list' },
+        { text: '抽屉表单', link: '/examples/drawer' }
       ]
     }
   ]

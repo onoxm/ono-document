@@ -61,7 +61,7 @@ export default App;
 ```
 
 ## 自定义外观
-`radioW` / `radioGap` 控制圆点尺寸与间距，`checkedColor` / `unCheckedColor` 控制选中与未选中的填充色，`labelPosition` 决定文字在圆点哪一侧。`RadioGroup` 的根元素是一个 flex 容器，`style` 里可以直接写 `gap`、`flexDirection` 等布局属性。
+`radioW` / `radioGap` 控制圆点尺寸与间距，`color` 控制填充色：传对象时分别指定选中（`active`）与未选中（`inactive`），传字符串则只换选中色、未选中回落到默认的透明。`labelPosition` 决定文字在圆点哪一侧。`RadioGroup` 的根元素是一个 flex 容器，`style` 里可以直接写 `gap`、`flexDirection` 等布局属性。
 
 ```tsx
 import { useState } from 'react'
@@ -91,8 +91,7 @@ function App() {
         radioW={24}
         value={language}
         options={languageList}
-        checkedColor="#f00"
-        unCheckedColor="#fff"
+        color={{ active: '#f00', inactive: '#fff' }}
         labelPosition="left"
         style={{
           fontSize: '24px',
@@ -101,6 +100,36 @@ function App() {
           flexDirection: 'column'
         }}
         radioGap={16}
+        onChange={value => setLanguage(value as string)}
+      />
+    </div>
+  )
+}
+
+export default App;
+```
+
+## 只换选中色
+`color` 传字符串时只覆盖选中色，未选中保持默认的透明底。
+```tsx
+import { useState } from 'react'
+import { RadioGroup } from 'ono-react-element'
+
+function App() {
+  const [language, setLanguage] = useState<string>('css')
+
+  const languageList = [
+    { label: 'HTML', value: 'html' },
+    { label: 'CSS', value: 'css' },
+    { label: 'JavaScript', value: 'js' }
+  ]
+
+  return (
+    <div style={{ width: '100%' }}>
+      <RadioGroup
+        color="#16a34a"
+        value={language}
+        options={languageList}
         onChange={value => setLanguage(value as string)}
       />
     </div>
@@ -124,8 +153,7 @@ radioW|圆点直径，数字按 px 处理|<code>string</code>\|<code>number</cod
 radioGap|圆点与内容之间的间距，数字按 px 处理|<code>string</code>\|<code>number</code>|<code>4</code>|否
 className|根元素（<code>label</code>）的类名|<code>string</code>|-|否
 style|根元素（<code>label</code>）的样式|<code>CSSProperties</code>|-|否
-checkedColor|选中时的填充色与边框色|<code>string</code>|<code>'#532ce1'</code>|否
-unCheckedColor|未选中时的填充色|<code>string</code>|<code>'transparent'</code>|否
+color|填充色，传字符串只覆盖选中色|<code>string</code>\|<code>{ active?: string; inactive?: string }</code>|<code>#532ce1</code> / <code>transparent</code>|否
 onChange|选中状态变化时触发|<code>(e: React.ChangeEvent\<HTMLInputElement>) => void</code>|-|是
 
 ### RadioGroup
@@ -138,8 +166,7 @@ radioW|圆点直径，数字按 px 处理|<code>string</code>\|<code>number</cod
 radioGap|圆点与内容之间的间距，数字按 px 处理|<code>string</code>\|<code>number</code>|<code>4</code>|否
 style|根元素（<code>div</code>）的样式|<code>CSSProperties</code>|-|否
 className|根元素（<code>div</code>）的类名|<code>string</code>|-|否
-checkedColor|选中时的填充色与边框色|<code>string</code>|<code>'#532ce1'</code>|否
-unCheckedColor|未选中时的填充色|<code>string</code>|<code>'transparent'</code>|否
+color|填充色，传字符串只覆盖选中色|<code>string</code>\|<code>{ active?: string; inactive?: string }</code>|<code>#532ce1</code> / <code>transparent</code>|否
 labelPosition|文字相对圆点的位置|<code>'left'</code>\|<code>'right'</code>|<code>'right'</code>|否
 onChange|选中项变化时触发，参数是选中项的值|<code>(value: T) => void</code>|-|是
 
@@ -152,8 +179,8 @@ disabled|是否禁用该项，传函数时按分组当前选中值判断|<code>b
 
 ## 注意事项
 - `Radio` 的根元素是 `<label>`，内部的 `<input type="radio">` 铺满了整个圆点：点圆点或点文字都能切换；禁用时由原生 `disabled` 接管，不响应点击。键盘上用 `Tab` 聚焦，**同组的单选框传了相同的 `name` 时**还能用方向键在组内切换。
-- `radioW` / `radioGap` / `checkedColor` / `unCheckedColor` 是通过 CSS 变量（`--w` / `--gap` / `--checkedColor` / `--unCheckedColor`）注入的，默认值写在样式里，所以首帧就是最终尺寸与颜色，不会先闪一下默认样式；`style` 里写同名变量可以覆盖它们。
+- `radioW` / `radioGap` / `color` 是通过 CSS 变量（`--w` / `--gap` / `--checkedColor` / `--unCheckedColor`）注入的，默认值写在样式里，所以首帧就是最终尺寸与颜色，不会先闪一下默认样式；`style` 里写同名变量可以覆盖它们。`color` 只传字符串时仅写 `--checkedColor`，`--unCheckedColor` 保持样式表默认值。
 - 圆点自身不显示文字：`children` 会被放进圆点右侧的 `<span>` 中，并带 `user-select: none`。
-- 有额外的交互动效：悬停未禁用项时圆点边框会变成 `checkedColor`，键盘聚焦时有外描边，禁用项整体半透明并使用 `not-allowed` 光标。
+- 有额外的交互动效：悬停未禁用项时圆点边框会变成选中色（`--checkedColor`），键盘聚焦时有外描边，禁用项整体半透明并使用 `not-allowed` 光标。
 - `RadioGroup` 用 `String(选中值) === String(选项值)` 判断是否选中，因此数字 `1` 与字符串 `'1'` 会被视为同一项。
 - `options` 里 `disabled` 传函数时，**入参是分组的当前选中值，不是该选项自身的值**。想按选项自身判断，请传布尔值，或先在 `options` 里把结果算好。

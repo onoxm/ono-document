@@ -12,7 +12,7 @@ hero:
       link: /docs/quickstart
     - theme: alt
       text: My Components
-      link: /comps/elements/button
+      link: /comps/button
 
 features:
   - title: Feature A
