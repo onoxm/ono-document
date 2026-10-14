@@ -50,7 +50,7 @@ export default createEventEmitter(['API:LOGIN', 'API:LOGOUT'] as const, true)
 ```
 
 ## API
-通用属性参考：通用属性
+
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 eventMap|<code>{ '事件名': 参数元组 }</code> 形式的映射，用于推断事件参数类型|<code>Record\<string, unknown[]></code>|-|是（与 <code>eventNames</code> 二选一）
@@ -67,7 +67,9 @@ emit|触发事件并传入参数|<code>(eventName, ...args) => void</code>|-|是
 clear|清空事件，不传事件名时清空全部|<code>(eventName?) => void</code>|-|是
 
 ## 注意事项
-- `emit` 一个**从未声明过**的事件名会直接抛错 `Event xxx does not exist`；而声明过的事件名即使暂时没有订阅者也不会报错。
-- `isGlobal` 为 `true` 时返回的是全局单例：**只有第一次创建时传入的事件名会被注册**，后续用不同事件名列表再调用返回的仍是同一个实例，新的名字不会进入初始化列表（此时 `on` 仍可懒注册，但 `emit` 前必须先有 `on`）。
-- `on` / `once` 返回的函数就是取消订阅的入口，在 React 里可直接作为 `useEffect` 的清理函数返回。
-- 同一个回调重复 `on` 不会重复注册（内部用 `Set` 存储），`off` 一次即可移除。
+- `emit` 一个**未知事件名**会抛错 `Event xxx does not exist`。判定依据是「该名字既不在创建时传入的事件名列表 / 映射里，也没有被 `on` / `once` 订阅过」；已登记的名字即使当前没有任何订阅者也不会报错。
+- `on` / `once` 会把**未知事件名**自动登记进内部表（这与 `isGlobal` 无关），所以对没在初始化列表里的名字，顺序必须是「先 `on` 再 `emit`」，反过来直接 `emit` 会抛上面那个错。
+- `clear` 只清空回调、**不删除事件名条目**，所以 `clear()` 之后再 `emit` 同一个名字不会抛错。
+- `isGlobal` 为 `true` 时返回的是全局单例（内部用 `Proxy` 拦截构造、只构造一次）：**只有第一次创建时传入的事件名会进入初始化列表**，后续哪怕换一套事件名 / 映射再调用，拿到的仍是那一个实例，新名字不会进列表。
+- `on` / `once` 返回的函数就是取消订阅的入口，在 React 里可直接作为 `useEffect` 的清理函数返回；同一个回调重复 `on` 不会重复注册（内部用 `Set` 存储），`off` 一次即可移除，`emit` 按订阅的先后顺序调用。
+- 需要类形式（`new EventEmitter(eventNames)`）时见 [EventEmitter](/event/eventEmitter)，两者实例方法完全相同。

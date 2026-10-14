@@ -1,9 +1,9 @@
-# AutoSliderList 自动滑块
+# SliderList 滑块列表
 一个按钮列表组件，点击某个按钮滑块会自动滑到对应的位置。
 
 ## 基础用法
 ```tsx
-import { AutoSliderList } from 'ono-react-element'
+import { SliderList } from 'ono-react-element'
 
 function App() {
   const list = [
@@ -17,7 +17,7 @@ function App() {
   ]
 
   return (
-    <AutoSliderList
+    <SliderList
       list={list}
       style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
       slider={Slider => (
@@ -42,7 +42,7 @@ function App() {
           {item}
         </li>
       )}
-    </AutoSliderList>
+    </SliderList>
   )
 }
 
@@ -51,7 +51,7 @@ export default App;
 
 ## 使用当前下标属性
 ```tsx
-import { AutoSliderList } from 'ono-react-element'
+import { SliderList } from 'ono-react-element'
 
 function App() {
   const list = [
@@ -65,7 +65,7 @@ function App() {
   ]
 
   return (
-    <AutoSliderList
+    <SliderList
       list={list}
       style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
       slider={Slider => (
@@ -91,7 +91,7 @@ function App() {
           {item}
         </li>
       )}
-    </AutoSliderList>
+    </SliderList>
   )
 }
 
@@ -101,13 +101,13 @@ export default App;
 ## 垂直方向
 `direction` 传 `Vertical` 时列表变为纵向排列，滑块会跟随当前项的高度上下移动。
 ```tsx
-import { AutoSliderList } from 'ono-react-element'
+import { SliderList } from 'ono-react-element'
 
 function App() {
   const list = ['html', 'css', 'javascript', 'typescript']
 
   return (
-    <AutoSliderList
+    <SliderList
       list={list}
       direction="Vertical"
       style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
@@ -126,7 +126,7 @@ function App() {
           {item}
         </li>
       )}
-    </AutoSliderList>
+    </SliderList>
   )
 }
 
@@ -135,13 +135,13 @@ export default App;
 
 ## 禁用点击切换
 ```tsx
-import { AutoSliderList } from 'ono-react-element'
+import { SliderList } from 'ono-react-element'
 
 function App() {
   const list = ['html', 'css', 'javascript', 'typescript']
 
   return (
-    <AutoSliderList
+    <SliderList
       list={list}
       disable
       style={{ gap: 8, padding: 8, border: '2px dashed #ccc' }}
@@ -159,7 +159,7 @@ function App() {
           {item}
         </li>
       )}
-    </AutoSliderList>
+    </SliderList>
   )
 }
 
@@ -190,7 +190,8 @@ slider={Slider => <Slider className="my-slider" style={{ background: 'pink' }} /
 ```
 
 ## 注意事项
-- 自定义滑块**没有** `sliderStyle` / `sliderClassName` 这类属性，正确做法是通过 `slider` 渲染函数给 `Slider` 传 `style` / `className`。
+- 组件名是 **`SliderList`**（早前的 `AutoSliderList` 已随组件更名一并删除），对应的类型是 `SliderListProps`。
+- 自定义滑块**没有** `sliderStyle` / `sliderClassName` 这类属性，正确做法是通过 `slider` 渲染函数给 `Slider` 传 `style` / `className`。滑块的尺寸与位移由组件写成内联样式，`className` 压不过它们，只能走 `style`。
 - 组件会克隆 `children` 返回的元素并注入 `onClick`：**你写在子元素上的 `onClick` 会被保留并先执行**，可以借此感知是哪一项被点击。
 - 点击切换的是组件内部的选中态，组件本身**没有对外暴露选中项变化的回调**；若需要完全受控，请在子元素的 `onClick` 里自行记录。
 - `disable` 为 `true` 时点击不生效，鼠标样式也会变成 `not-allowed`。

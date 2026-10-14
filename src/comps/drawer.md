@@ -355,5 +355,5 @@ onClick|点击面板的点击事件，不会触发遮罩的点击|<code>(e: Reac
 - `duration` 为 `0` 或负数时没有离场动画，`drawerClose` 会立即执行；拿不到面板节点时同理。
 - 重复触发关闭（动画期间连点遮罩或关闭按钮）只会执行一次，组件内部做了防重入。
 - 遮罩是 `position: fixed` + `z-index: var(--ono-z-modal, 1999)`，不受父级 `overflow` 影响；但若祖先元素带 `transform`、`filter` 等属性，仍会改变它的定位基准，这种情况用 `getContainer` 指定一个更外层的容器即可。
-- 离场动画的终态是 `translate: none` 而不是 `translate: 0`，这样面板不会成为 `transform` 包含块，面板里使用 `position: fixed` 的元素在动画结束后仍按视口定位。
+- 面板的进场动画用的是 `backwards` 而不是 `forwards`：位移属性 `translate` 的动画终帧即使写 `none` 也留不住（浏览器会把 `100% 0% → none` 规格化成 `translate: 0% 0%`），配上 `forwards` 就会永久生效、让面板成为包含块 —— 面板里 `position: fixed` 的子元素会被当成相对面板定位（抽屉里嵌弹窗遮罩时，弹窗会整个跑到屏幕外，而且不报错）。用 `backwards` 后动画结束不再提供值，`translate` 回落成静态 `none`，`position: fixed` 的子元素始终按视口定位。
 - 面板上的点击不会触发遮罩的关闭，你在面板上传的 `onClick` 会正常收到事件（组件内部已阻断冒泡）。

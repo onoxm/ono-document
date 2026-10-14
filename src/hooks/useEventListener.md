@@ -76,3 +76,5 @@ listenerOptions|透传给 <code>addEventListener</code> 的第三个参数|<code
 - `listenerOptions` 是 effect 依赖项之一，**直接传对象字面量（如 `{ passive: true }`）会导致每次渲染都解绑重绑** —— 每次渲染的对象引用都不同。需要传配置时，把它提到组件外部或用 `useMemo` 固定引用。
 - `event` 传数组时会分别注册，组件卸载时按同样的列表统一解绑。
 - `target` 传 `ref` 而元素尚未挂载（`ref.current` 为 `null`）时，会回落到 `window`，而不是静默失效。
+- **元素事后才挂载也不会自动切回来**：`target` 传 `ref` 时，effect 的依赖项就是这个 `ref` 对象本身（引用稳定），元素晚挂载后 effect 不会再跑，监听会**一直留在 `window` 上**。实测对条件渲染的元素：元素挂载之后点击页面空白处，回调依然被触发。想让监听在这种情况下落到元素上，得让 `target` 的引用本身发生变化 —— 例如把元素存进 `useState`（`ref={setEl}` 之后传 `target: el`），或把 `useEventListener` 写在「元素已经挂载」的那个组件里。
+- **`target` 不支持函数形式**：只能传 `EventTarget` 或 `ref` 对象。传 `() => ref.current` 会在挂载时抛 `TypeError: targetElement.addEventListener is not a function`（注意 `useGetElementSize` 是支持函数形式的，两者不一样）。

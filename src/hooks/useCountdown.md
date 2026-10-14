@@ -38,7 +38,7 @@ initialTime|起始时间（单位：秒）|<code>number</code>|<code>60</code>|�
 onFinish|倒计时结束或重置时的回调函数|<code>() => void</code>|-|否
 
 ## 注意事项
-- 归零后**不会停住**：组件会自动重置回 `initialTime` 并调用 `onFinish`，所以 `remainingTime` 会从 0 跳回初始值。
+- 归零后**不会自动开始下一轮**：内部减到 0 后会立刻复位回 `initialTime`、把运行状态停下，并调用一次 `onFinish`（实测归零后继续等待，`remainingTime` 一直停在初始值、`onFinish` 也只调用 1 次）。要再跑一轮必须重新调用 `startCountdown`。由于复位和递减发生在同一轮更新里，界面上通常看不到 `0` 这一帧。
 - 手动调用 `resetCountdown` 同样会触发 `onFinish`，如果只希望在自然结束时执行逻辑，需要在回调里自行区分。
 - 组件卸载或调用 `resetCountdown` 时会清掉定时器；倒计时进行中再次调用 `startCountdown` 不会重置时间，只是把状态置为进行中。
 - 中途修改 `initialTime` 不会影响当前正在走的倒计时，只影响下一次重置后的起始值。

@@ -50,7 +50,6 @@ export const sidebar = {
       text: '集合与滚动',
       collapsed: false,
       items: [
-        { text: 'AutoSliderList 自动滑块', link: '/comps/autoSliderList' },
         { text: 'AwaitList 异步列表循环', link: '/comps/awaitList' },
         { text: 'List 列表循环', link: '/comps/list' },
         { text: 'Pagination 分页', link: '/comps/pagination' },
@@ -58,6 +57,7 @@ export const sidebar = {
           text: 'ScrollableTabs 可滚动标签页',
           link: '/comps/scrollableTabs'
         },
+        { text: 'SliderList 滑块列表', link: '/comps/sliderList' },
         { text: 'VirtualList 虚拟列表', link: '/comps/virtualList' },
         { text: 'Waterfall 瀑布流', link: '/comps/waterfall' },
         { text: 'Xscroll 滚动组件', link: '/comps/xscroll' }
@@ -68,6 +68,7 @@ export const sidebar = {
       collapsed: false,
       items: [
         { text: 'ContextMenu 右键菜单', link: '/comps/contextMenu' },
+        { text: 'Dialog 对话框', link: '/comps/dialog' },
         { text: 'Drawer 抽屉', link: '/comps/drawer' },
         { text: 'Mask 遮罩层', link: '/comps/mask' },
         { text: 'Modal 弹窗', link: '/comps/modal' },
@@ -75,7 +76,7 @@ export const sidebar = {
         { text: 'Popover 气泡卡片', link: '/comps/popover' },
         { text: 'Portal 传送门', link: '/comps/portal' },
         {
-          text: 'TemplateDialog 模版对话框',
+          text: 'TemplateDialog 模版对话框（已废弃）',
           link: '/comps/templateDialog'
         },
         { text: 'Tooltip 提示框', link: '/comps/tooltip' }
@@ -93,7 +94,10 @@ export const sidebar = {
   '/event/': [
     {
       text: 'event',
-      items: [{ text: 'createEventEmitter', link: '/event/createEventEmitter' }]
+      items: [
+        { text: 'createEventEmitter', link: '/event/createEventEmitter' },
+        { text: 'EventEmitter', link: '/event/eventEmitter' }
+      ]
     }
   ],
   '/hooks/': [
@@ -105,10 +109,11 @@ export const sidebar = {
         { text: 'useDefer', link: '/hooks/useDefer' },
         { text: 'useEventListener', link: '/hooks/useEventListener' },
         { text: 'useGetElementSize', link: '/hooks/useGetElementSize' },
-        { text: 'useKeyPress', link: '/hooks/useKeypress' },
+        { text: 'useKeyPress', link: '/hooks/useKeyPress' },
         { text: 'useMouseClick', link: '/hooks/useMouseClick' },
         { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useThemePro', link: '/hooks/useThemePro' }
+        { text: 'useThemePro', link: '/hooks/useThemePro' },
+        { text: 'useWindowSize（已废弃）', link: '/hooks/useWindowSize' }
       ]
     }
   ],
@@ -392,6 +397,12 @@ export const sidebar = {
         { text: 'checkStatusCode', link: '/utils/web/checkStatusCode' },
         { text: 'clearAsyncContagion', link: '/utils/web/clearAsyncContagion' },
         { text: 'copyText', link: '/utils/web/copyText' },
+        { text: 'createChunk', link: '/utils/web/createChunk' },
+        {
+          text: 'createCutFileWorkerHandler',
+          link: '/utils/web/createCutFileWorkerHandler'
+        },
+        { text: 'cutFile', link: '/utils/web/cutFile' },
         { text: 'pasteText', link: '/utils/web/pasteText' },
         { text: 'uploadFile', link: '/utils/web/uploadFile' }
       ]

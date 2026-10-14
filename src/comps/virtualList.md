@@ -107,7 +107,7 @@ function App() {
   return (
     <div style={{ width: '800px', height: '500px' }}>
       <EstimatedVirtualList
-        wrapperStyle={{ gap: 10 }}
+        styles={{ wrapper: { gap: 10 } }}
         dataSource={dataSource}
         onEndCallback={() => console.log('触底了')}
       />
@@ -284,10 +284,8 @@ dataSource|数据源|<code>VirtualListDataSource[]</code>|-|是
 direction|滚动方向|<code>'vertical'</code>\|<code>'horizontal'</code>|<code>'vertical'</code>|否
 refreshSpeed|滚动时的刷新间隔，单位毫秒|<code>number</code>|估算列表自动探测一帧耗时（最小 <code>8</code>），固定列表为 <code>16</code>|否
 overscan|可视区外的预渲染配置|<code>OverscanInput</code>|<code>{ size: 300, max: 10 }</code>|否
-containerClassName|滚动容器的类名|<code>string</code>|-|否
-containerStyle|滚动容器的样式|<code>CSSProperties</code>|<code>{}</code>|否
-wrapperClassName|内部列表的类名|<code>string</code>|-|否
-wrapperStyle|内部列表的样式|<code>CSSProperties</code>|<code>{}</code>|否
+classNames|滚动容器与内部列表的补充类名（<code>container</code> / <code>wrapper</code>）|<code>VirtualListClassNames</code>|-|否
+styles|滚动容器与内部列表的补充行内样式（<code>container</code> / <code>wrapper</code>）|<code>VirtualListStyles</code>|-|否
 updateDataSourceScroll2Top|数据源更新后是否滚动回顶部|<code>boolean</code>|-|否
 onEndCallback|滚动到底部时触发的回调|<code>() => void</code>|-|否
 containerRef|获取内部滚动容器的 ref|<code>RefObject\<HTMLDivElement \| null></code>|-|否
@@ -323,5 +321,5 @@ data|每一项的内容|<code>ReactNode</code>|-|是
 - `refreshSpeed` 不传时的默认值**两个列表不一样**：`EstimatedVirtualList` 会先探测一帧的耗时（最小 8 毫秒），`FixedVirtualList` 则固定为 16 毫秒。
 - `onEndCallback` 的触发条件是「距底部 20px 以内」，而滚动回调本身会被 `refreshSpeed` 节流，所以快速滚动时它可能被合并为一次触发。
 - 滚动容器需要有确定的尺寸（高度或宽度），否则可视区高度为 0，列表不会渲染任何内容。
-- `containerStyle` 作用在外层滚动容器、`wrapperStyle` 作用在内部的 `ul` 上；给 `wrapperStyle` 加 `gap` / `padding` 可以控制项间距与内边距。
+- `styles.container` 作用在外层滚动容器、`styles.wrapper` 作用在内部的 `ul` 上；给 `styles.wrapper` 加 `gap` / `padding` 可以控制项间距与内边距。`classNames` 的 `container` / `wrapper` 是同一落点的类名版本。
 - `updateDataSourceScroll2Top` 为真时，数据源变化会先滚动回顶部再渲染。

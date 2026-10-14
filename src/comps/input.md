@@ -162,6 +162,7 @@ suffix|输入框内后缀|<code>ReactNode</code>|-|否
 border|聚焦时的边框|<code>string</code>|<code>1px solid #5644b8</code>|否
 boxShadow|聚焦时的阴影|<code>string</code>|<code>0 0 0 2px #7969d11a</code>|否
 className|自定义类名，作用在输入框内层|<code>string</code>|-|否
+style|自定义行内样式，与 <code>className</code> **同落点**（输入框外层 <code>.ono-input-wrapper</code>）|<code>CSSProperties</code>|-|否
 onClear|点击清除按钮时触发|<code>() => void</code>|-|否
 onChange|输入内容改变时触发|<code>(event: ChangeEvent\<HTMLInputElement>) => void</code>|-|否
 onFocus|获得焦点时触发|<code>(event: ChangeEvent\<HTMLInputElement>) => void</code>|-|否
@@ -177,4 +178,5 @@ onKeyDown|按键按下时触发|<code>(event: KeyboardEvent\<HTMLInputElement>) 
 - `showPassword` 会接管 `type`：它存在时 `type` 只会是 `password` 或 `text`，此时再传 `type` 不起作用。
 - `border` / `boxShadow` 只在聚焦时生效，未聚焦时用的是默认的描边样式。
 - `className` 挂在内层的 `.ono-input-wrapper` 上；该层样式已做降权处理，宿主的单类可以直接覆盖背景、内边距等。
+- `style` 与 `className` 同落点，且展开在组件内置的 CSS 变量**之后** —— 因此可以直接覆盖 `--ono-input-border` / `--ono-input-box-shadow`；代价是覆盖之后 `border` / `boxShadow` 这两个 prop 就失效了。
 - 属性名是小写的 `readonly` 与 `autocomplete`，组件内部会映射成原生的 `readOnly` / `autoComplete`；组件只透传上表列出的字段，其余原生属性不会传给内部 `<input>`。
