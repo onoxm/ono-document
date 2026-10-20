@@ -2,7 +2,7 @@
 
 一个用于自动生成 React 或 Vue 路由文件的 Vite 插件。
 
-[English](./README.md) | 中文
+[English](https://www.npmjs.com/package/@onoxm/vite-plugin-auto-router) | 中文
 
 ## ✨ 特性
 
