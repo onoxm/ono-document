@@ -65,8 +65,8 @@ options|存储键名，或配置对象|<code>string</code>\|<code>PersistOptions
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
 name|localStorage 的键名|<code>string</code>|-|是
-properties|要筛选的字段，语义与 <code>selectProperties</code> 的第 2 参一致|<code>(keyof T)[]</code>|-|否
-include|为 <code>true</code> 时只落盘 <code>properties</code> 列出的字段，为 <code>false</code> 时排除它们|<code>boolean</code>|<code>true</code>|否
+properties|要筛选的字段，与 <code>selectProperties</code> 的第 2 参同名同义|<code>(keyof T)[]</code>|-|否
+include|为 <code>true</code> 时只落盘 <code>properties</code> 列出的字段，为 <code>false</code> 时排除它们（与 <code>selectProperties</code> 的第 3 参同名同义）|<code>boolean</code>|<code>true</code>|否
 rehydrate|是否在启动时从存储恢复|<code>boolean</code>|<code>true</code>|否
 legacyNames|旧存储键名，用于跨键迁移；单个字符串或按优先级排列的数组|<code>string</code>\|<code>string[]</code>|-|否
 

@@ -350,6 +350,53 @@ export default App;
 ```
 `classNames.option` 落在选项**外层**按钮上，所以即使传了 `children` 自定义渲染也照样生效。`styles` 的 `select` 落点与 `OnoInput` 的 `style` 同元素，展开在组件内置的 CSS 变量**之后** —— 因此可以直接覆盖 `--ono-input-border`（前提是先聚焦输入框，让 Input 消费该变量）。
 
+## 实时预览与取消回滚
+
+`onActiveChange` 报的是**游标**（鼠标划过 / 键盘上下浏览但还没回车的那一项），不是选中值 —— 它不写回、不关闭面板。配合 `onChange`（确认）与 `onCancel`（取消）可以做出「浏览时实时预览、取消就回滚」的效果，字体选择器是最典型的场景：
+
+```tsx
+import { OnoSelect } from 'ono-react-element'
+import { useRef, useState } from 'react'
+
+const fonts = [
+  { label: '系统默认', value: 'system-ui' },
+  { label: '等宽字体', value: 'monospace' },
+  { label: '宋体', value: 'serif' }
+]
+
+function App() {
+  // 当前**用于预览**的字体
+  const [preview, setPreview] = useState('system-ui')
+  // 打开面板前已确认的值，取消时回滚到它
+  const confirmedRef = useRef('system-ui')
+
+  return (
+    <div style={{ fontFamily: preview, minHeight: 120 }}>
+      <p>鼠标划过选项，这段文字会跟着变；点面板外面会回滚。</p>
+      <OnoSelect
+        options={fonts}
+        defaultValue="system-ui"
+        onDropdownVisibleChange={open => {
+          if (open) confirmedRef.current = preview
+        }}
+        // 浏览中：只改预览。reason 为 'auto' 的不是用户操作（挂载 / 过滤归位），要排除
+        onActiveChange={(value, _option, reason) => {
+          if (reason !== 'auto' && value !== undefined) setPreview(value)
+        }}
+        // 确认：把预览落成正式值
+        onChange={value => setPreview(value)}
+        // 取消：回滚到打开前
+        onCancel={() => setPreview(confirmedRef.current)}
+      />
+    </div>
+  )
+}
+
+export default App;
+```
+
+三个回调各管一件事：`onActiveChange` = 浏览中、`onChange` = 确认、`onCancel` = 取消。确认型关闭时 `onChange` **先**触发、`onDropdownVisibleChange(false)` 后触发，所以「先落值再收关闭信号」不会把刚确认的值回滚掉。
+
 ## API
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
@@ -369,7 +416,19 @@ showOptionEntries|下拉最多同时显示几项，超出部分滚动查看；�
 loop|键盘走到两端时是否环绕|<code>boolean</code>|<code>false</code>|否
 onClear|清空时触发（点击清除按钮）|<code>() => void</code>|-|否
 onChange|**真正选中某一项时**触发，参数为该项的 <code>value</code>|<code>(value: T) => void</code>|-|否
+onActiveChange|**游标（临时高亮项）变化**时触发；选中值不变、不写回、不关面板|<code>(value: T \| undefined, option: SelectOption\<T> \| undefined, reason: SelectActiveChangeReason) => void</code>|-|否
+onDropdownVisibleChange|下拉面板打开 / 关闭时触发|<code>(open: boolean) => void</code>|-|否
+onCancel|面板关闭、且本次打开期间**没有**发生过 <code>onChange</code> 时触发|<code>() => void</code>|-|否
 getPopupContainer|下拉浮层的落点解析器，不传则走内置解析链|<code>PopupContainerResolver</code>|-|否
+
+### SelectActiveChangeReason
+`onActiveChange` 第三个参数，说明游标这次**为什么**变了。
+
+类型值|说明
+:- | :-
+<code>'keyboard'</code>|键盘 <code>↑</code> / <code>↓</code> 移动
+<code>'mouse'</code>|指针悬停（键盘按下后的 300ms 占用期内会被抑制）
+<code>'auto'</code>|**不是用户操作** —— 挂载、<code>options</code> 变化、过滤结果变化后游标自动归位。做「用户正在浏览」的埋点时要排除它
 
 ### SelectOption
 参数|说明|类型|默认值|是否必填
@@ -402,4 +461,6 @@ option|该项自身|<code>SelectOption\<T></code>|-|是
 - 未开启 `filterOption` 时输入框是只读的（点击会展开下拉，但无法输入）；开启后输入的关键字会在关闭下拉时被清空。
 - `clearable` 的清除按钮只在「鼠标悬停且已有选中值」时出现。
 - `children` 完全接管选项内部渲染，默认的选中 / 游标修饰类不会自动加；第三参 `isCursor` 可用来自己画游标态。
+- `onActiveChange` **只在该值真的变化时触发**：同一项重复上报会被去重，判据是 `Object.is` 比 **value**（不是比索引），所以「过滤前后同一项恰好还落在同一索引」不会误报。挂载时游标就落在首项，因此**首次渲染后会收到一次 `reason: 'auto'`**；面板关闭时游标**不复位、也不通知**，下次打开接着上次的位置。
+- `onActiveChange` 在列表为空或过滤无结果时，`value` 与 `option` 都是 `undefined` —— **不是** `''`，`''` 是合法 value。
 - 下拉浮层的落点自动跟着触发元素走：默认挂到 `document.body`，触发元素在 Modal / Drawer 里时会挂进该弹窗容器内部（否则会被 top layer / 遮罩盖住）。需要把浮层限制在某个滚动容器内时用 `getPopupContainer`。

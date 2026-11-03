@@ -276,6 +276,31 @@ function App() {
 export default App;
 ```
 
+## 构造数据源
+
+`dataSource` 的每一项是固定的 `{ id: number, data: ReactNode }`。手写也可以，`createDataSource` 只是把「数组 + 渲染函数」映射成这个形状：
+
+```tsx
+import { createDataSource } from 'ono-react-element'
+
+const dataSource = createDataSource(['a', 'b'], (item, index) => (
+  <div>
+    {index}: {item}
+  </div>
+))
+// [
+//   { id: 0, data: <div>0: a</div> },
+//   { id: 1, data: <div>1: b</div> }
+// ]
+```
+
+参数|说明|类型|默认值|是否必填
+:- | :- | :- | :- | :-
+dataList|原始数据数组|<code>T[]</code>|-|是
+dom|把一项渲染成节点，第二个参数是下标|<code>(data: T, index: number) =&gt; ReactNode</code>|-|是
+
+⚠️ `id` 取的就是**数组下标**。列表增删 / 重排后 id 会跟着变，需要稳定 key（比如带删除、拖拽排序）时请自己拼 `dataSource`，不要用它。
+
 ## API
 ### 公共参数
 参数|说明|类型|默认值|是否必填

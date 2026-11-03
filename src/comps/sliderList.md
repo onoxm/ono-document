@@ -190,7 +190,7 @@ slider={Slider => <Slider className="my-slider" style={{ background: 'pink' }} /
 ```
 
 ## 注意事项
-- 组件名是 **`SliderList`**（早前的 `AutoSliderList` 已随组件更名一并删除），对应的类型是 `SliderListProps`。
+- 组件名是 **`SliderList`**，对应的类型是 `SliderListProps`。旧名 **`AutoSliderList` 仍在包内导出**、行为不变（只是把 props 原样转交给 `SliderList` 的薄壳），但已标注 `@deprecated`，将在 **0.7.x 移除** —— 换名字即可，props 逐字未变。⚠️ 唯一要一并改的是自定义 CSS：类名前缀已从 `ono-auto-slider-list-*` 变成 `ono-slider-list-*`，薄壳复用的就是 `SliderList` 这份样式。
 - 自定义滑块**没有** `sliderStyle` / `sliderClassName` 这类属性，正确做法是通过 `slider` 渲染函数给 `Slider` 传 `style` / `className`。滑块的尺寸与位移由组件写成内联样式，`className` 压不过它们，只能走 `style`。
 - 组件会克隆 `children` 返回的元素并注入 `onClick`：**你写在子元素上的 `onClick` 会被保留并先执行**，可以借此感知是哪一项被点击。
 - 点击切换的是组件内部的选中态，组件本身**没有对外暴露选中项变化的回调**；若需要完全受控，请在子元素的 `onClick` 里自行记录。

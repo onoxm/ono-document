@@ -86,7 +86,8 @@ options|<code>useThemePro</code> 的参数对象|<code>UseThemeProOptions</code>
 initTheme|初始模式，**仅首次生效**，之后变更不会重新应用|<code>ThemeMode</code>|<code>'light'</code>|否
 themeRules|主题落地规则，入参为实际是否为深色|<code>(isDark: boolean) => void</code>|给 <code>html</code> 加/去 <code>dark</code> class|否
 useThreeMode|是否启用「跟随系统 → 浅色 → 深色」三态循环|<code>boolean</code>|<code>true</code>|否
-duration|圆形扩散动画时长（毫秒）|<code>number</code>|<code>300</code>|否
+duration|圆形扩散动画时长（毫秒）。扩散面积是半径的平方，调长比压陡曲线更能做出「蓄力」感|<code>number</code>|<code>450</code>|否
+easing|圆扩散的缓动曲线，收缩复用同一条曲线反向播放|<code>ThemeEasing</code>|<code>'ease-in'</code>|否
 expandOn|圆扩散发生在切到哪个主题时（即谁是动画主角）|<code>ThemeExpandOn</code>|<code>'dark'</code>|否
 
 ### ThemeMode
@@ -102,6 +103,13 @@ expandOn|圆扩散发生在切到哪个主题时（即谁是动画主角）|<cod
 <code>'dark'</code>|切到深色时圆扩散、切到浅色时圆聚拢（默认）
 <code>'light'</code>|切到浅色时圆扩散、切到深色时圆聚拢
 
+### ThemeEasing
+类型值|说明
+:- | :-
+<code>'linear'</code> <code>'ease'</code> <code>'ease-in'</code> <code>'ease-out'</code> <code>'ease-in-out'</code> <code>'step-start'</code> <code>'step-end'</code>|CSS 缓动关键字
+<code>cubic-bezier(x1, y1, x2, y2)</code>|贝塞尔曲线，如 <code>'cubic-bezier(0.4, 0, 0.2, 1)'</code>
+<code>steps(n, jump-end)</code>|阶梯函数，如 <code>'steps(4, jump-end)'</code>
+
 ## 注意事项
 - `themeRules` **不是「仅变化时触发」，而是每次应用主题都会被调用**：挂载首帧、每次 `changeTheme` / `nextTheme`、以及 `'system'` 下系统深浅色变化。所以它必须**幂等** —— 照 `isDark` 直接设值，不要写 toggle 逻辑（被多调一次就会反）。
 - 默认规则只切 `html` 上的 `dark` class。如果页面里用到原生滚动条、`<select>`、日期选择器或输入框自动填充，建议在自定义 `themeRules` 里补上 `document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'`，否则这些原生控件在暗色下仍是浅色。
@@ -110,3 +118,5 @@ expandOn|圆扩散发生在切到哪个主题时（即谁是动画主角）|<cod
 - `changeTheme` / `nextTheme` 的目标模式与当前一致时会直接返回，`onChange` 不会被调用；`onChange` 只在真正发生切换前触发。
 - `initTheme` 只在首次生效，之后再改不会重新应用主题。
 - 想反转动画方向请改 `expandOn`，不要靠「把 `isDark` 取反」来表达 —— 那样会让「谁是动画主角」的语义散落在调用处，后续很难维护。
+- `easing` 传非法值会**同步抛错**（不是静默无动画）：非法值会被 `KeyframeEffect` 拒绝，而那个错误会被 View Transition 的 promise 链吞掉，所以内部改成提前拦截。可用 `isValidThemeEasing` 先自行校验用户输入。
+- 想做出更明显的「蓄力感」时**优先加 `duration`**，而不是把曲线压得更陡：半径按 easing 走，但扩散**面积是半径的平方**，视觉铺满速度约等于 `easing(t)²` —— `ease-in` 跑完 1/4 时长只铺了约 0.7% 面积，看上去会像「点了没反应」。

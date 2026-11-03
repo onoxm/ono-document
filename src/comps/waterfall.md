@@ -282,6 +282,57 @@ function App() {
 export default App;
 ```
 
+## 虚拟化版本
+
+数据量大（几百上千张）时用 `VirtualWaterfall`：只渲染落在可视区附近的项，其余不建 DOM。props 与 `Waterfall` **完全一致**，只多一个 `bufferSize`。
+
+```tsx
+import { ImageItem, VirtualWaterfall } from 'ono-react-element'
+
+function App() {
+  const requestData = (_page: number, pageSize: number): Promise<ImageItem[]> => {
+    return new Promise<ImageItem[]>(resolve => {
+      const imgs: ImageItem[] = []
+      for (let i = 0; i < pageSize; i++) {
+        const width = Math.floor(Math.random() * 400) + 100
+        const height = Math.floor(Math.random() * 400) + 100
+        imgs.push({
+          id: `${width}` + `${height}` + i,
+          url: `https://picsum.photos/${width}/${height}`,
+          height,
+          width
+        })
+      }
+      resolve(imgs)
+    })
+  }
+
+  return (
+    <div style={{ width: '100%', height: '500px' }}>
+      <VirtualWaterfall
+        options={300}
+        pageSize={20}
+        bufferSize={500}
+        style={{ width: '100%', height: 500, padding: 12 }}
+        request={requestData}
+      >
+        {img => (
+          <img
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src={img.url}
+            alt=""
+          />
+        )}
+      </VirtualWaterfall>
+    </div>
+  )
+}
+
+export default App;
+```
+
+`bufferSize` 的单位是**像素**（默认 `500`）：可视区上下各多渲染这么多像素的内容，作为快速滚动时的缓冲。调大更不容易看到空白，调小更省内存。
+
 ## API
 参数|说明|类型|默认值|是否必填
 :- | :- | :- | :- | :-
@@ -317,4 +368,4 @@ height|图片原始高度|<code>number</code>
 - `children` 渲染的内容只在对应图片加载完成后显示，在此之前只显示 `placeholder`（不传则显示空白）。
 - `loading` 默认是 `true`，也就是默认会显示一行 `loading...`；不想要就传 `false`。
 - `updateData` 是「值发生变化」才触发，保持同一个值不会重复加载；`reloadData` 则会把已有数据全部清空后从第一页重新开始。
-- 组件另外还导出了 `VirtualWaterfall`，是瀑布流的虚拟化版本，比 `Waterfall` 多一个 `bufferSize` 参数。
+- 组件另外还导出了 `VirtualWaterfall`（虚拟化版本），props 与 `Waterfall` 完全一致，只多一个 `bufferSize`（像素缓冲，默认 `500`）。

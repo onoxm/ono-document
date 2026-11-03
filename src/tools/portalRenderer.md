@@ -64,7 +64,7 @@ export default App;
 
 ## 同一容器堆叠多个实例
 
-传同一个 `rootId`、不同的 `componentId`，多个实例会共存于同一个 root 里；`reverse` 控制渲染顺序（后调用的排在前面还是后面）：
+传同一个 `rootId`、不同的 `componentId`，多个实例会共存于同一个 root 里；`reverse` 控制渲染顺序（后调用的排在前面还是后面）。⚠️ `reverse` 是 **root 级**开关，不是实例级：每次调用都会覆盖这个 root 的顺序设置，**以最后一次调用传的值为准** —— 所以同一批实例请传一致的值。
 
 ```tsx
 import { portalRenderer } from 'ono-react-element'
@@ -152,8 +152,11 @@ getRootParent|root 挂载到哪个父节点下|<code>() =&gt; Element \| Documen
 :- | :- | :- | :- | :-
 destroy|销毁当前实例|<code>(onDestroy?: () =&gt; void) =&gt; void</code>|-|是
 
+类型上写成可选（同一个 `T` 也可能被别处直接渲染），但由 `portalRenderer` 创建时**一定会传**，组件里可以直接解构使用。
+
 ## 注意事项
 
+- **渲染是异步批处理的**：每次增删实例只是把这次变化排进一个 `requestAnimationFrame`，同一帧内连续调用多次也只渲染一次。所以调用之后不能立刻去 `document.querySelector` 刚渲染的内容 —— 需要拿 DOM 请等下一帧。
 - **同一个 `rootId` + 同一个 `componentId` 再次调用**：`props` 浅比较相等时不会重新渲染；不相等时会用新 `props` 覆盖渲染，可以当成「更新」用。
 - `destroy` 是**幂等**的：root 已卸载后再调用直接返回，不会报错。
 - 一个 root 下的实例**全部销毁后，整个 root 容器会连同卸载并移除** —— 所以 `rootId` 相同的多次调用是「共享生命周期」的。

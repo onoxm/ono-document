@@ -58,6 +58,22 @@ const unsubscribe = useUser.subscribe(() => {
 
 全局版不依赖 Context，所以对 `portalRenderer`、`Modal` 这类**自成 root** 的浮层同样有效 —— 不存在「忘包 Provider」这个失败模式。
 
+## 写入与通知
+
+两个容易踩的行为，都来自 store 内部对「值有没有变」的判断：
+
+```ts
+useUser.setState({ name: 'ono' })
+useUser.setState({ name: 'ono' }) // 值没变 ⇒ 不通知订阅者
+
+// 同一轮同步代码里的多次写入会合并成一次通知（微任务批处理）
+useUser.setState({ name: 'a' })
+useUser.setState({ age: 20 })
+// 订阅者只被叫醒一次，读到的是 { name: 'a', age: 20 }
+```
+
+判断是**逐个字段**的 `Object.is`：只要有一个字段真的变了才算「变了」；`setState({})` 与「传 updater 但返回 `{}`」都不会触发通知。
+
 ## API
 
 参数|说明|类型|默认值|是否必填

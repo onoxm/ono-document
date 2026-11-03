@@ -129,3 +129,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.workbuddy

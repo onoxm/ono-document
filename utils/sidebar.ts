@@ -58,6 +58,10 @@ export const sidebar = {
           link: '/comps/scrollableTabs'
         },
         { text: 'SliderList 滑块列表', link: '/comps/sliderList' },
+        {
+          text: 'AutoSliderList 滑块列表（已废弃）',
+          link: '/comps/autoSliderList'
+        },
         { text: 'VirtualList 虚拟列表', link: '/comps/virtualList' },
         { text: 'Waterfall 瀑布流', link: '/comps/waterfall' },
         { text: 'Xscroll 滚动组件', link: '/comps/xscroll' }
@@ -79,7 +83,11 @@ export const sidebar = {
           text: 'TemplateDialog 模版对话框（已废弃）',
           link: '/comps/templateDialog'
         },
-        { text: 'Tooltip 提示框', link: '/comps/tooltip' }
+        { text: 'Tooltip 提示框', link: '/comps/tooltip' },
+        {
+          text: 'setDefaultOverlayContainer 全局落点',
+          link: '/comps/overlayContainer'
+        }
       ]
     },
     {
@@ -403,6 +411,10 @@ export const sidebar = {
           link: '/utils/web/createCutFileWorkerHandler'
         },
         { text: 'cutFile', link: '/utils/web/cutFile' },
+        {
+          text: 'isValidThemeEasing',
+          link: '/utils/web/isValidThemeEasing'
+        },
         { text: 'pasteText', link: '/utils/web/pasteText' },
         { text: 'uploadFile', link: '/utils/web/uploadFile' }
       ]
@@ -419,7 +431,13 @@ export const sidebar = {
     {
       text: 'Packages 独立包',
       collapsed: false,
-      items: [{ text: 'onoFetch 同构请求库', link: '/packages/onoFetch' }]
+      items: [
+        { text: 'onoFetch 同构请求库', link: '/packages/onoFetch' },
+        {
+          text: 'zustandTools zustand 状态工具',
+          link: '/packages/zustandTools'
+        }
+      ]
     }
   ],
   '/examples/': [
