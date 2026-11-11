@@ -424,7 +424,12 @@ export const sidebar = {
     {
       text: 'Vite插件',
       collapsed: false,
-      items: [{ text: 'autoRouter', link: '/plugins/autoRouter' }]
+      items: [
+        {
+          text: 'autoRouter（独立文档站）',
+          link: 'https://onoxm.github.io/vite-plugin-auto-router/'
+        }
+      ]
     }
   ],
   '/packages/': [

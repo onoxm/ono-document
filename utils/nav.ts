@@ -9,7 +9,10 @@ export const nav = [
       { text: 'hooks', link: '/hooks/useClickOutSide' },
       { text: 'utils', link: '/utils/array/forEach' },
       { text: 'tools', link: '/tools/portalRenderer' },
-      { text: 'Vite插件', link: '/plugins/autoRouter' },
+      {
+        text: 'Vite插件',
+        link: 'https://onoxm.github.io/vite-plugin-auto-router/'
+      },
       { text: 'Packages', link: '/packages/onoFetch' }
     ]
   },

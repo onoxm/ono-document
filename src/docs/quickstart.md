@@ -133,45 +133,19 @@ import { createCutFileWorkerHandler } from 'ono-react-element/utils/cutFile'
 
 ### 安装
 
-#### 前置准备
-
-- <a href="https://cn.vitejs.dev/" target="_blank">Vite</a> 6、7、8 均可。
-- React 项目用 `react-router` 7，Vue 项目用 `vue-router` 4（都是可选 peer，只在引入对应入口时才需要）。
-- Node `^20.19.0` 或 `>=22.12.0`。
-
-::: code-group
-```bash [npm]
-npm install -D @onoxm/vite-plugin-auto-router
-```
-```bash [yarn]
-yarn add -D @onoxm/vite-plugin-auto-router
-```
-```bash [pnpm]
+```bash
 pnpm add -D @onoxm/vite-plugin-auto-router
 ```
-```bash [bun]
-bun add -D @onoxm/vite-plugin-auto-router
-```
-:::
 
-### 最简单的用法
+需要 Vite 6 / 7 / 8；React 项目配 `react-router` 7、Vue 项目配 `vue-router` 4（都是可选 peer，只在引入对应入口时才需要），Node 需 `^20.19.0` 或 `>=22.12.0`。
 
-```ts
-// vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import autoRouter from '@onoxm/vite-plugin-auto-router/react'
+### 完整文档在独立文档站
 
-export default defineConfig({
-  plugins: [react(), autoRouter()]
-})
-```
-
-路由从 `virtual:onoxm-auto-router/react` 取，插件会自动把类型声明注入 `vite-env.d.ts`。完整选项见插件文档。
+目录约定、路由分组、目录布局、插件选项、类型安全导航、版本迁移与更新日志，都已在独立文档站维护，本页不再展开：
 
 <div style="margin-top: 24px;">
-  <a href="/ono-document/plugins/autoRouter" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #10b981, #059669); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s;">
-    <span>查看 autoRouter 插件文档</span>
+  <a href="https://onoxm.github.io/vite-plugin-auto-router/" target="_blank" rel="noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #10b981, #059669); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s;">
+    <span>前往 autoRouter 文档站</span>
     <span>→</span>
   </a>
 </div>
