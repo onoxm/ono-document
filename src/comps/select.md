@@ -464,3 +464,5 @@ option|该项自身|<code>SelectOption\<T></code>|-|是
 - `onActiveChange` **只在该值真的变化时触发**：同一项重复上报会被去重，判据是 `Object.is` 比 **value**（不是比索引），所以「过滤前后同一项恰好还落在同一索引」不会误报。挂载时游标就落在首项，因此**首次渲染后会收到一次 `reason: 'auto'`**；面板关闭时游标**不复位、也不通知**，下次打开接着上次的位置。
 - `onActiveChange` 在列表为空或过滤无结果时，`value` 与 `option` 都是 `undefined` —— **不是** `''`，`''` 是合法 value。
 - 下拉浮层的落点自动跟着触发元素走：默认挂到 `document.body`，触发元素在 Modal / Drawer 里时会挂进该弹窗容器内部（否则会被 top layer / 遮罩盖住）。需要把浮层限制在某个滚动容器内时用 `getPopupContainer`。
+- ⚠️ **清空不关面板**：点清除按钮只触发 `onClear`，面板保持展开，因此既不会触发 `onDropdownVisibleChange(false)`、也不会触发 `onCancel`。「取消」的判据只认「本次打开会话内没有确认过」，与清空无关。
+- `onCancel` 不只覆盖「点面板外部」：**再次点击触发器收起**同样算取消（只要这次打开期间没确认过）。判断语义请按「open + 期间是否发生过 `onChange`」组合推，别按调用次数猜。

@@ -86,7 +86,7 @@ options|<code>useThemePro</code> 的参数对象|<code>UseThemeProOptions</code>
 initTheme|初始模式，**仅首次生效**，之后变更不会重新应用|<code>ThemeMode</code>|<code>'light'</code>|否
 themeRules|主题落地规则，入参为实际是否为深色|<code>(isDark: boolean) => void</code>|给 <code>html</code> 加/去 <code>dark</code> class|否
 useThreeMode|是否启用「跟随系统 → 浅色 → 深色」三态循环|<code>boolean</code>|<code>true</code>|否
-duration|圆形扩散动画时长（毫秒）。扩散面积是半径的平方，调长比压陡曲线更能做出「蓄力」感|<code>number</code>|<code>450</code>|否
+duration|圆形扩散动画时长（毫秒）。默认 300ms 下 `ease-in` 前半程接近死区，想更有「蓄力」感就调长（比压陡曲线更有效）|<code>number</code>|<code>300</code>|否
 easing|圆扩散的缓动曲线，收缩复用同一条曲线反向播放|<code>ThemeEasing</code>|<code>'ease-in'</code>|否
 expandOn|圆扩散发生在切到哪个主题时（即谁是动画主角）|<code>ThemeExpandOn</code>|<code>'dark'</code>|否
 

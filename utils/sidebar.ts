@@ -43,7 +43,8 @@ export const sidebar = {
         {
           text: 'ContainMediaBox 媒体缩放容器',
           link: '/comps/containMediaBox'
-        }
+        },
+        { text: 'ResizeDivider 分栏分隔条', link: '/comps/resizeDivider' }
       ]
     },
     {
