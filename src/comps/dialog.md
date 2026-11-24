@@ -274,7 +274,6 @@ element|<code>zoom</code> 的起点元素，对话框从该元素中心放大展
 startPosition|<code>fade</code> 的起点位置（相对遮罩高度的 CSS 长度）|<code>string</code>|-|<code>fade</code> 时必填
 
 ## 注意事项
-- `Dialog` 是 **`TemplateDialog` 的替代者**：两者渲染的是同一份实现（`DialogBase`），props、动画机制、落点语义完全一致，唯一的差别是 `Dialog` 多一层弹窗默认样式。`TemplateDialog` 已标记废弃、将在 0.7.x 移除，迁移只需换组件名。
 - 与 `Modal` 不是一回事：`Modal` 走原生 `<dialog>` 的 top layer，`Dialog` 是 `Mask` + 绝对定位的自绘浮层。
 - `dialogClose` 与 `children` 函数里的 `close` 不是同一个：`dialogClose` 是你传进来的「真正移除组件」的回调，直接调它没有离场动画；函数参数里的 `close` 会先挂上离场动画、等 `duration` 后再调 `dialogClose`，点击遮罩走的也是这个版本。因此关闭按钮建议用函数参数里的 `close`。
 - 不传 `animation` 时没有动画：关闭会立即调用 `dialogClose`，遮罩也不会淡入淡出（遮罩动画的时长变量 `--duration` 只在传入 `animation` 时才会被组件写入）。

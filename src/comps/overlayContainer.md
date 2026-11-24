@@ -101,7 +101,7 @@ triggerNode|触发浮层的元素；Drawer / Dialog 这类没有触发元素的�
 ## 注意事项
 
 - ⚠️ **只在浮层打开的那一刻读一次**，不是订阅式：改全局默认不会让已经打开的浮层搬家，也不会触发重渲染。
-- ⚠️ Drawer / Dialog / TemplateDialog **不传 `getContainer` 时是原地渲染**，而它们传给解析器的 `triggerNode` 恒为 `null`。所以给它们用的全局默认要写成**返回常量**的形式（`() => shadowRoot`）；`trigger => trigger?.getRootNode()` 这类写法拿到 `null` 会返回 `null` ⇒ 保持原地（对它们是安全的，不会误搬）。
+- ⚠️ Drawer / Dialog **不传 `getContainer` 时是原地渲染**，而它们传给解析器的 `triggerNode` 恒为 `null`。所以给它们用的全局默认要写成**返回常量**的形式（`() => shadowRoot`）；`trigger => trigger?.getRootNode()` 这类写法拿到 `null` 会返回 `null` ⇒ 保持原地（对它们是安全的，不会误搬）。
 - ⚠️ **显式指定的容器如果在 Modal / Drawer 之外，浮层会被 top layer / 遮罩盖住，而且不会报任何错**。只有明确知道自己在做什么（Shadow DOM / 微前端）时才覆盖自动探测那一级。
 - 全局默认是**模块级单例**，不是 Provider：库本身不引入任何 `createContext`。代价是 SSR 下跨请求共享 —— 本库本就依赖 `document` / `window`，属于客户端库。
 - 容器要能承载 portal 出来的节点：`ShadowRoot` 这类 `DocumentFragment` 也可以，内部不依赖 `document.getElementById`（它穿不透 shadow root）。

@@ -59,10 +59,6 @@ export const sidebar = {
           link: '/comps/scrollableTabs'
         },
         { text: 'SliderList 滑块列表', link: '/comps/sliderList' },
-        {
-          text: 'AutoSliderList 滑块列表（已废弃）',
-          link: '/comps/autoSliderList'
-        },
         { text: 'VirtualList 虚拟列表', link: '/comps/virtualList' },
         { text: 'Waterfall 瀑布流', link: '/comps/waterfall' },
         { text: 'Xscroll 滚动组件', link: '/comps/xscroll' }
@@ -80,10 +76,6 @@ export const sidebar = {
         { text: 'Popconfirm 气泡确认框', link: '/comps/popconfirm' },
         { text: 'Popover 气泡卡片', link: '/comps/popover' },
         { text: 'Portal 传送门', link: '/comps/portal' },
-        {
-          text: 'TemplateDialog 模版对话框（已废弃）',
-          link: '/comps/templateDialog'
-        },
         { text: 'Tooltip 提示框', link: '/comps/tooltip' },
         {
           text: 'setDefaultOverlayContainer 全局落点',
@@ -121,8 +113,7 @@ export const sidebar = {
         { text: 'useKeyPress', link: '/hooks/useKeyPress' },
         { text: 'useMouseClick', link: '/hooks/useMouseClick' },
         { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useThemePro', link: '/hooks/useThemePro' },
-        { text: 'useWindowSize（已废弃）', link: '/hooks/useWindowSize' }
+        { text: 'useThemePro', link: '/hooks/useThemePro' }
       ]
     }
   ],
