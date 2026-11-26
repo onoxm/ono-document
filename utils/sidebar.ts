@@ -29,6 +29,8 @@ export const sidebar = {
         { text: 'Input 输入框', link: '/comps/input' },
         { text: 'Radio 单选框', link: '/comps/radio' },
         { text: 'Select 下拉选择', link: '/comps/select' },
+        { text: 'SelectPanel 选择面板', link: '/comps/selectPanel' },
+        { text: 'useSelect 选择行为内核', link: '/comps/useSelect' },
         { text: 'Switch 开关', link: '/comps/switch' },
         { text: 'Textarea 文本域', link: '/comps/textarea' }
       ]
@@ -113,7 +115,8 @@ export const sidebar = {
         { text: 'useKeyPress', link: '/hooks/useKeyPress' },
         { text: 'useMouseClick', link: '/hooks/useMouseClick' },
         { text: 'useTheme', link: '/hooks/useTheme' },
-        { text: 'useThemePro', link: '/hooks/useThemePro' }
+        { text: 'useThemePro', link: '/hooks/useThemePro' },
+        { text: 'useTruncated', link: '/hooks/useTruncated' }
       ]
     }
   ],
